@@ -13,7 +13,7 @@ class SiteController extends AbstractController
      */
     public function index()
     {
-        return new Response('Index Action from the Site Controller');
+        return $this->render('site/index.html.twig');
     }
 
     /**
@@ -21,7 +21,7 @@ class SiteController extends AbstractController
      */
     public function play()
     {
-        return new Response('Play Action from the Site Controller');
+        return $this->render('site/play.html.twig');
     }
 
     /**
@@ -29,6 +29,6 @@ class SiteController extends AbstractController
      */
     public function highscores()
     {
-        return new Response('Highscores Action from Site Controller');
+        return $this->render('site/highscores.html.twig');
     }
 }
