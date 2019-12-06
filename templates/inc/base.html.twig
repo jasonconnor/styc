@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Slash Till You Crash - {% block title %}!{% endblock %}</title>
+        {% block stylesheets %}
+            <link href="{{ asset('assets/style/app.css') }}" rel="stylesheet">
+        {% endblock %}
+    </head>
+    <body>
+
+        {% include 'inc/header.html.twig' %}
+
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+
+        {% include 'inc/footer.html.twig' %}
+        
+        {% block javascripts %}
+            <script
+                src="https://code.jquery.com/jquery-3.4.1.js"
+                integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+                crossorigin="anonymous"></script>
+            <script src="{{ asset('assets/script/app.js') }}"></script
+        {% endblock %}
+    </body>
+</html>
