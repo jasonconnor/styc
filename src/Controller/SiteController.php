@@ -23,13 +23,18 @@ class SiteController extends AbstractController
     public function play(EntityManagerInterface $em)
     {
         $score = new Score();
-        $score->setScore(rand(0, 100000));
+        $score->setScore(rand(0, 100000))
+            ->setUsername('Kamp')
+            ->setDate(new \DateTime)
+        ;
 
         $em->persist($score);
         $em->flush();
 
         return $this->render('site/play.html.twig', [
-            'score' => $score->getScore()
+            'score' => $score->getScore(),
+            'user' => $score->getUsername(),
+            'date' => $score->getDate()
         ]);
     }
 
@@ -39,7 +44,7 @@ class SiteController extends AbstractController
     public function highscores(EntityManagerInterface $em)
     {
         $repository = $em->getRepository(Score::class);
-        $highscores = $repository->findAll();
+        $highscores = $repository->findTop100Scores();
 
         return $this->render('site/highscores.html.twig', [
             'scores' => $highscores

@@ -19,6 +19,16 @@ class ScoreRepository extends ServiceEntityRepository
         parent::__construct($registry, Score::class);
     }
 
+    public function findTop100Scores()
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.score', 'DESC')
+            ->setMaxResults(100)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Score[] Returns an array of Score objects
     //  */

@@ -21,6 +21,16 @@ class Score
      */
     private $score;
 
+    /**
+     * @ORM\Column(type="string", length=25)
+     */
+    private $username;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,6 +44,30 @@ class Score
     public function setScore(int $score): self
     {
         $this->score = $score;
+
+        return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }
