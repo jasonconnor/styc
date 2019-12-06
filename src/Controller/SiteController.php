@@ -22,19 +22,8 @@ class SiteController extends AbstractController
      */
     public function play(EntityManagerInterface $em)
     {
-        $score = new Score();
-        $score->setScore(rand(0, 100000))
-            ->setUsername('Kamp')
-            ->setDate(new \DateTime)
-        ;
-
-        $em->persist($score);
-        $em->flush();
-
         return $this->render('site/play.html.twig', [
-            'score' => $score->getScore(),
-            'user' => $score->getUsername(),
-            'date' => $score->getDate()
+            
         ]);
     }
 

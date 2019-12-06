@@ -1,0 +1,58 @@
+#gmae-container {
+    height: auto;
+}
+
+bad-guy {
+    color: rgb(57, 180, 218);
+}
+dmg-taken, enemy-hp {
+    color: rgb(209, 38, 38);
+}
+dmg-dealt, player-hp {
+    color: rgb(238, 166, 71);
+}
+hp-pot {
+    color: rgb(102, 211, 102);
+}
+#game-frame {
+    color: #eee;
+    background: rgb(0, 0, 0);
+    width: 300px;
+    padding: 5px;
+}
+#stats-display {
+    border-bottom: outset rgb(71, 71, 71) 7px;
+    background: rgb(58, 58, 58);
+    margin: 0;
+    color:#eee;
+    padding: 5px;
+}
+#activity-display {
+    height: 300px;
+    overflow: hidden;
+    margin: 0;
+}
+#button-container {
+    height: 91.2px;
+    font-size: 0;
+    padding: 0;
+    margin: 0;
+}
+.game-btn {
+    height: 90px;
+    color: rgb(71, 71, 71);
+    font-size: 16px;
+}
+.btn-100 {
+    width: 100%;
+}
+.btn-50 {
+    width: 50%;
+}
+.btn-33 {
+    width: 33.33%;
+}
+.game-btn-icon {
+    width: 64px;
+    height: 64px;
+}
