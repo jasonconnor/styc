@@ -47,10 +47,19 @@ class SiteController extends AbstractController
     /**
      * @Route("/save", name="save")
      */
-    public function save(Request $request) {
-        $score = $request->query->get('Score');
+    public function save(Request $request, EntityManagerInterface $em) {
+        $test = $request->headers->get('Score');
 
-        return new Response($score);
+        $score = new Score();
+        $score->setUsername('Jason')
+            ->setScore($test)
+            ->setDate(new \DateTime)
+        ;
+
+        $em->persist($score);
+        $em->flush();
+
+        return new Response('Score saved, check database!');
 
 
         /*
