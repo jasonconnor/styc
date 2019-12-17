@@ -60,27 +60,5 @@ class SiteController extends AbstractController
         $em->flush();
 
         return new Response('Score saved, check database!');
-
-
-        /*
-        $response = new Response();
-
-        $score = $response->headers->get("Score");
-
-        return new Response($score);
-        
-        $request = $requestStack->getCurrentRequest();
-
-        var_dump($request);
-
-        $dataResponse = array("error" => false);
-        return new JsonResponse($dataResponse);
-
-        
-        $data = $this->requestStack->getCurrentRequest('data');
-        var_dump($data);
-        $dataResponse = array("error" => false);
-        return new JsonResponse($dataResponse);
-        */
     }
 }
