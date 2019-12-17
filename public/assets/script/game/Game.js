@@ -123,6 +123,12 @@ class Game {
             "<br><br> ~~~~~~~~~ Thanks for playing ~~~~~~~~~";
         if (died) message = "<hr>You limp out of the dungeon, weak from battle." + message;
         appendToDisplay(message);
+
+        var sendScore = new XMLHttpRequest();
+        sendScore.open("POST", "http://localhost/save", "true");
+        sendScore.setRequestHeader("Score", this.score);
+        sendScore.send();
+        return sendScore;
     }
 
     runContinue() {

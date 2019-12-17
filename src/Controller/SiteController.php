@@ -5,7 +5,11 @@ namespace App\Controller;
 use App\Entity\Score;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 
 class SiteController extends AbstractController
 {
@@ -20,7 +24,7 @@ class SiteController extends AbstractController
     /**
      * @Route("/play", name="play")
      */
-    public function play(EntityManagerInterface $em)
+    public function play()
     {
         return $this->render('site/play.html.twig', [
             
@@ -38,5 +42,36 @@ class SiteController extends AbstractController
         return $this->render('site/highscores.html.twig', [
             'scores' => $highscores
         ]);
+    }
+
+    /**
+     * @Route("/save", name="save")
+     */
+    public function save(Request $request) {
+        $score = $request->query->get('Score');
+
+        return new Response($score);
+
+
+        /*
+        $response = new Response();
+
+        $score = $response->headers->get("Score");
+
+        return new Response($score);
+        
+        $request = $requestStack->getCurrentRequest();
+
+        var_dump($request);
+
+        $dataResponse = array("error" => false);
+        return new JsonResponse($dataResponse);
+
+        
+        $data = $this->requestStack->getCurrentRequest('data');
+        var_dump($data);
+        $dataResponse = array("error" => false);
+        return new JsonResponse($dataResponse);
+        */
     }
 }
