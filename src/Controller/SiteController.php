@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Score;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -45,14 +46,28 @@ class SiteController extends AbstractController
     }
 
     /**
+     * @Route("/new-user", name="new-user")
+     */
+    public function newUser(EntityManagerInterface $em)
+    {
+        $user = new User();
+        $user->setUsername('Jason');
+
+        $em->persist($user);
+        $em->flush();
+
+        return new Response(sprintf('Successfully added user %s', $user->getUsername()));
+    }
+
+    /**
      * @Route("/save", name="save")
      */
     public function save(Request $request, EntityManagerInterface $em) {
-        $test = $request->headers->get('Score');
+        $save = $request->headers->get('Score');
 
         $score = new Score();
         $score->setUsername('Jason')
-            ->setScore($test)
+            ->setScore($save)
             ->setDate(new \DateTime)
         ;
 
