@@ -12,14 +12,21 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Symfony\Component\Security\Csrf\CsrfToken;
+use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 
 class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 {
-    public function __construct(UserRepository $userRepository, RouterInterface $router)
+    private $userRepository;
+    private $router;
+    private $csrfTokenManager;
+
+    public function __construct(UserRepository $userRepository, RouterInterface $router, CsrfTokenManagerInterface $csrfTokenManager)
     {
         $this->userRepository = $userRepository;
-
         $this->router = $router;
+        $this->csrfTokenManager = $csrfTokenManager;
     }
 
     public function supports(Request $request)
@@ -31,7 +38,8 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     {
         $credentials = [
             'username' => $request->request->get('username'),
-            'password' => $request->request->get('password')
+            'password' => $request->request->get('password'),
+            'csrf_token' => $request->request->get('_csrf_token'),
         ];
 
         $request->getSession()->set(
@@ -44,6 +52,12 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
+        $token = new CsrfToken('authenticate', $credentials['csrf_token']);
+
+        if (!$this->csrfTokenManager->isTokenValid($token)) {
+            throw new InvalidCsrfTokenException();
+        }
+
         return $this->userRepository->findOneBy(['username' => $credentials['username']]);
     }
 
