@@ -3,10 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Score;
-use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -43,20 +41,6 @@ class SiteController extends AbstractController
         return $this->render('site/highscores.html.twig', [
             'scores' => $highscores
         ]);
-    }
-
-    /**
-     * @Route("/new-user", name="new-user")
-     */
-    public function newUser(EntityManagerInterface $em)
-    {
-        $user = new User();
-        $user->setUsername('Jason');
-
-        $em->persist($user);
-        $em->flush();
-
-        return new Response(sprintf('Successfully added user %s', $user->getUsername()));
     }
 
     /**

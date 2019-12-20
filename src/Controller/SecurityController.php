@@ -2,12 +2,23 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class SecurityController extends AbstractController
 {
+    private $passwordEncoder;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
     /**
      * @Route("/login", name="login")
      */
@@ -30,5 +41,24 @@ class SecurityController extends AbstractController
     public function logout()
     {
         throw new Exception('test');
+    }
+
+    /**
+     * @Route("/new-user", name="new-user")
+     */
+    public function newUser(EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoderInterface)
+    {
+        $user = new User();
+        $user->setUsername('Kamp')
+            ->setPassword($this->passwordEncoder->encodePassword(
+                $user,
+                'test'
+            ))
+        ;
+
+        $em->persist($user);
+        $em->flush();
+
+        return new Response(sprintf('Successfully added user %s', $user->getUsername()));
     }
 }
