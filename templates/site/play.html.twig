@@ -1,0 +1,25 @@
+{% extends 'inc/base.html.twig' %}
+
+{% block title %}Play STYC{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('assets/style/game/game.css') }}">
+{% endblock %}
+
+{% block main %}
+
+    <h1>Play STYC</h1>
+
+    <div id="game-container"></div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/script/game/Globals.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/script/game/Player.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/script/game/Enemy.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/script/game/Game.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/script/game/STYC.js') }}" type="text/javascript"></script>
+{% endblock %}
