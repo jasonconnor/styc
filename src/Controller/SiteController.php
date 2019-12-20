@@ -8,6 +8,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 
 class SiteController extends AbstractController
@@ -22,6 +24,7 @@ class SiteController extends AbstractController
 
     /**
      * @Route("/play", name="play")
+     * @IsGranted("ROLE_USER")
      */
     public function play()
     {
@@ -46,11 +49,12 @@ class SiteController extends AbstractController
     /**
      * @Route("/save", name="save")
      */
-    public function save(Request $request, EntityManagerInterface $em) {
+    public function save(Request $request, EntityManagerInterface $em, Session $session) {
         $save = $request->headers->get('Score');
+        $user = $this->getUser()->getUsername();
 
         $score = new Score();
-        $score->setUsername('Jason')
+        $score->setUsername($user)
             ->setScore($save)
             ->setDate(new \DateTime)
         ;

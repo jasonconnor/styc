@@ -6,12 +6,15 @@ use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class SecurityController extends AbstractController
+/**
+ * @IsGranted("ROLE_ADMIN")
+ */
+
+class AdminController extends AbstractController
 {
     private $passwordEncoder;
 
@@ -21,36 +24,22 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/login", name="login")
+     * @Route("/admin", name="admin_index")
      */
-    public function login(AuthenticationUtils $authenticationUtils)
+    public function index()
     {
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-
-        return $this->render('security/login.html.twig', [
-            'last_username' => $lastUsername,
-            'error' => $error
+        return $this->render('admin/index.html.twig', [
+            
         ]);
     }
 
     /**
-     * @Route("/logout", name="logout")
-     */
-    public function logout()
-    {
-
-    }
-
-    /**
-     * @Route("/new-user", name="new_user")
+     * @Route("/admin/new-user", name="admin_new_user")
      */
     public function newUser(EntityManagerInterface $em)
     {
         $user = new User();
-        $user->setUsername('jason')
+        $user->setUsername('userfromadmin')
             ->setPassword($this->passwordEncoder->encodePassword(
                 $user,
                 '1234'
@@ -64,13 +53,12 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/new-admin", name="new_admin")
-     * @IsGranted("ROLE_ADMIN")
+     * @Route("/admin/new-admin", name="admin_new_admin")
      */
     public function newAdmin(EntityManagerInterface $em)
     {
         $user = new User();
-        $user->setUsername('admin2')
+        $user->setUsername('adminfromadmin')
             ->setRoles(['ROLE_ADMIN'])
             ->setPassword($this->passwordEncoder->encodePassword(
                 $user,
