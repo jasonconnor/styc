@@ -9,14 +9,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 /**
  * @IsGranted("ROLE_USER")
  */
-class AccountController extends AbstractController
+class AccountController extends BaseController
 {
     /**
      * @Route("/account", name="account")
      */
     public function index()
     {
-        dd($this->getUser()->getUsername());
         return $this->render('account/index.html.twig', [
 
         ]);
