@@ -179,7 +179,7 @@ class Game {
             appendToDisplay(message);
             this.player.gainPotion();
             this.score -= this.potionPrice;
-            this.runStatsUpdate();
+            this.runStatsUpdate(true);
         }
     }
 }
