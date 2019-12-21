@@ -49,7 +49,7 @@ function setNewGame() {
 // }
 
 // Function for displaying current game stats, ran at the beginning of the game loop.
-function updateStats(s, p, e, postBattle = false) {
+function updateStats(s, p, e) {
     let statsDisplay = document.getElementById("stats-display");
     statsDisplay.innerHTML = `Score: ${s}`;
     statsDisplay.innerHTML += `<br>Level: ${p.lvl}`
@@ -58,8 +58,6 @@ function updateStats(s, p, e, postBattle = false) {
     statsDisplay.innerHTML += `<br><bad-guy>${e.name}</bad-guy>'s HP: 
         <enemy-hp>${e.hp}</enemy-hp>/<enemy-hp>${e.maxHP}</enemy-hp>`;
     statsDisplay.innerHTML += `<br>Number of Potions: ${p.numOfPotions}`;
-    if (!postBattle)
-        document.getElementById("numOfPots").innerText = ` (${p.numOfPotions})`;
 }
 
 function appendToDisplay(message, clearDisplay = false) {

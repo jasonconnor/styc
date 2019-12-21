@@ -62,10 +62,7 @@ class Game {
     }
 
     runStatsUpdate(postbattle){
-        if (postbattle)
-            updateStats(this.score, this.player, this.enemy, true);
-        else 
-            updateStats(this.score, this.player, this.enemy);
+        updateStats(this.score, this.player, this.enemy);
     }
 
     generateNewEncounter() {    // beginning of game loop
@@ -86,23 +83,23 @@ class Game {
         }
         else
             this.player.takeDamage(this.enemy.power());
-        this.runStatsUpdate(true);
+        this.runStatsUpdate();
 
         // If enemy dies, add score
         if (this.enemy.hp === 0) {
             this.numberOfEnemiesSlain++;
-            this.score += 200;
+            this.score += 200 + 50 * (Math.floor(this.player.lvl/10));
             appendToDisplay(`<br>The <bad-guy>${this.enemy.name}</bad-guy> was defeated!`);
             // If the player also died, end the game,
             if (this.player.hp === 0) {
-                this.runStatsUpdate(true);
+                this.runStatsUpdate();
                 this.runPlayerDied();
             }
             // but if player still alive, continue.
             else {
                 this.player.levelUp();
                 this.runDropChance();
-                this.runStatsUpdate(true);
+                this.runStatsUpdate();
                 if ((this.player.lvl - 1) % 5 === 0 && this.score >= this.potionPrice) {
                     this.runMerchantAppears();
                 } 
@@ -189,7 +186,7 @@ class Game {
             this.player.gainPotion();
             this.score -= this.potionPrice;
             this.numberOfPotionsBought++;
-            this.runStatsUpdate(true);
+            this.runStatsUpdate();
         }
     }
 }

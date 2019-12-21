@@ -54,8 +54,9 @@ class Player {
         // Has potions but less than max health
         else if (this.potions > 0 && this.health < this.maxHealth){ // Has potions and NOT at max health
             this.potions--;
-            let amountHealed = potionHealAmount + (this.level - 1) * 6;
+            let amountHealed = potionHealAmount + (this.level - 1) * 8;
             this.health += amountHealed;
+            this.hpCheckOverflow();
             appendToDisplay(`<hr>You drink a potion of healing, healing for <hp-pot>${amountHealed}</hp-pot>.`);
             return true;
         }
