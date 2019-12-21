@@ -7,10 +7,10 @@ Slash Til You Crash, STYC, is an in-browser text based hack and slash adventure 
 
 <h2>Change Log</h2>
 
-DD-MM-YYYY - Feature/BugFix
-DD-MM-YYYY - Feature/BudFix
+DD-MM-YYYY - Feature/BugFix<br />
+DD-MM-YYYY - Feature/BudFix<br />
 
 <hr />
 <h2>Credit</h2>
-Jason Connor (Front-end, Back-end, Database)
+Jason Connor (Front-end, Back-end, Database),
 Kamp Duong (Game Developer, Front-end)
