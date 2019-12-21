@@ -3,6 +3,8 @@ class Game {
         this.score = 0;
         this.numberOfEnemiesSlain = 0;
         this.numberOfTimesRan = 0;
+        this.numberOfPotionsBought = 0;
+        this.numberOfPotionsUsed = 0;
         this.player = new Player();
         this.enemy;
         this.gameState = 0;
@@ -20,6 +22,10 @@ class Game {
      *              2 = Post Battle
      *                  continue => game.generateNewEncounter();
      *                  exit game => game.runGameOver();
+     *              3 = Potion Merchant
+     *                  continue => game.generateNewEncounter();
+     *                  buy potion => game.runBuyPotion();
+     *                  exit game =>game.runGameOver();
      */
     changeGameState(s) {
         this.gameState = s;
@@ -115,7 +121,8 @@ class Game {
     }
 
     runDrinkPotion() {
-        this.player.heal();
+        if (this.player.heal())
+            this.numberOfPotionsUsed++;
         this.runStatsUpdate();
     }
 
@@ -147,10 +154,12 @@ class Game {
     runGameOver(died = true) {
         this.changeGameState(0);
         let message = "<hr>";
-        if (died) message += "You limp out of the dungeon, weak from battle.<br>";
+        if (died) message += "You limp out of the dungeon, weak from battle.<br><br>";
         message += `Ending Score: ${this.score}
-            <br>Number of Enemies Slain: ${this.numberOfEnemiesSlain}
+            <br>Number of Enemies slain: ${this.numberOfEnemiesSlain}
             <br>Number of Times ran: ${this.numberOfTimesRan}
+            <br>Number of Potions used: ${this.numberOfPotionsUsed}
+            <br>Number of Potions purchased: ${this.numberOfPotionsBought}
             <br><br> ~~~~~~~~~ Thanks for playing ~~~~~~~~~`;
         appendToDisplay(message);
 
@@ -179,6 +188,7 @@ class Game {
             appendToDisplay(message);
             this.player.gainPotion();
             this.score -= this.potionPrice;
+            this.numberOfPotionsBought++;
             this.runStatsUpdate(true);
         }
     }

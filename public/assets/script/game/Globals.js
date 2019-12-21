@@ -52,6 +52,7 @@ function setNewGame() {
 function updateStats(s, p, e, postBattle = false) {
     let statsDisplay = document.getElementById("stats-display");
     statsDisplay.innerHTML = `Score: ${s}`;
+    statsDisplay.innerHTML += `<br>Level: ${p.lvl}`
     statsDisplay.innerHTML += `<br>Your HP: 
         <player-hp>${p.hp}</player-hp>/<player-hp>${p.maxHP}</player-hp>`;
     statsDisplay.innerHTML += `<br><bad-guy>${e.name}</bad-guy>'s HP: 
