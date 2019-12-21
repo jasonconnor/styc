@@ -6,11 +6,11 @@ Slash Til You Crash, STYC, is an in-browser text based hack and slash adventure 
 <h2>Overview: Game</h2>
 <center>
   <a href="https://styc.jasonc.dev">
-    <img src="https://raw.githubusercontent.com/jasonconnor/styc/master/github%20readme%20assets/STYC_SCREENSHOT1.gif?token=AHRD2UXE3MJORY22AKZBABC57ZCGG" />
+    <!--img src="https://www.dropbox.com/s/t1pvdnlg7b1mk73/portrait.jpg?dl=0" /-->
   </a>
 </center>
 The game application was built in vanilla JavaScript (ES6). The core mechanics of the game is based on the methodology of a finite state machine.
-<center><img src="https://raw.githubusercontent.com/jasonconnor/styc/master/github%20readme%20assets/STYC_FiniteStateMachine.png?token=AHRD2UXE3MJORY22AKZBABC57ZCGG" width="500px" /></center>
+<center><!--img src="https://raw.githubusercontent.com/jasonconnor/styc/master/github%20readme%20assets/STYC_FiniteStateMachine.png?token=AHRD2UXE3MJORY22AKZBABC57ZCGG" width="500px" /--></center>
 
 <h2>Overview: Backend</h2>
 
@@ -24,4 +24,4 @@ DD-MM-YYYY - Feature/BudFix<br />
 <h2>Credit</h2>
 Jason Connor (Front-end, Back-end, Database),
 Kamp Duong (Game Developer, Front-end)
-<img src="https://raw.githubusercontent.com/jasonconnor/styc/master/github%20readme%20assets/Contributors.png?token=AHRD2UXE3MJORY22AKZBABC57ZCGG">
+<!--img src="https://raw.githubusercontent.com/jasonconnor/styc/master/github%20readme%20assets/Contributors.png?token=AHRD2UXE3MJORY22AKZBABC57ZCGG"-->
