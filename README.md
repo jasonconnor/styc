@@ -9,6 +9,14 @@ Slash Til You Crash, STYC, is an in-browser text based hack and slash adventure 
     <!--img src="https://www.dropbox.com/s/t1pvdnlg7b1mk73/portrait.jpg?dl=0" /-->
   </a>
 </center>
+In game, the users shall be able to:
+<ul>
+  <li>attack the enemy,</li>
+  <li>drink a potion to restore health,</li>
+  <li>attempt to run from an enemy,</li>
+  <li>buy potions from the merchant when he appears.</li>
+</ul>
+<hr />
 The game application was built in vanilla JavaScript (ES6). The core mechanics of the game is based on the methodology of a finite state machine.
 <center><!--img src="https://raw.githubusercontent.com/jasonconnor/styc/master/github%20readme%20assets/STYC_FiniteStateMachine.png?token=AHRD2UXE3MJORY22AKZBABC57ZCGG" width="500px" /--></center>
 
