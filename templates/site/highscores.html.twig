@@ -16,7 +16,7 @@
         {% for score in scores %}
 
             <tr>
-                <td>{{ score.username }}</td>
+                <td>{{ score.user.username }}</td>
                 <td>{{ score.score }}</td>
                 <td>{{ score.date|date('m/d/Y') }}</td>
             </tr>

@@ -8,6 +8,12 @@
 
     <h2>Manage Your Account</h2>
 
+    <h3>Scores</h3>
 
+    <ul>
+        {% for score in app.user.scores %}
+            <li>{{ score.score }}</li>
+        {% endfor %}
+    </ul>
 
 {% endblock %}

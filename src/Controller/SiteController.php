@@ -51,10 +51,10 @@ class SiteController extends AbstractController
      */
     public function save(Request $request, EntityManagerInterface $em, Session $session) {
         $save = $request->headers->get('Score');
-        $user = $this->getUser()->getUsername();
+        $user = $this->getUser();
 
         $score = new Score();
-        $score->setUsername($user)
+        $score->setUser($user)
             ->setScore($save)
             ->setDate(new \DateTime)
         ;
