@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\LoginFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -14,9 +15,9 @@ class AccountController extends BaseController
      * @Route("/account", name="account")
      */
     public function index()
-{   
+    {   
         return $this->render('account/index.html.twig', [
-
+            
         ]);
     }
 }

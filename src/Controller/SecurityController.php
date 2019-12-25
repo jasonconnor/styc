@@ -3,10 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -53,19 +54,23 @@ class SecurityController extends AbstractController
      */
     public function register(Request $request, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator)
     {
-        //todo - use Symfony Forms and Validation
+        $form = $this->createForm(RegistrationFormType::class);
 
-        if ($request->isMethod('POST')) {
-            $user = new User();
-            $user->setUsername($request->get('username'));
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var User $user */
+            $user = $form->getData();
 
             $user->setPassword($this->passwordEncoder->encodePassword(
                 $user,
-                $request->get('password')
+                $form['plainPassword']->getData()
             ));
 
             $this->em->persist($user);
             $this->em->flush();
+
+            $this->addFlash('success', 'New user created');
             
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
@@ -75,7 +80,9 @@ class SecurityController extends AbstractController
             );
         }        
 
-        return $this->render('security/register.html.twig');
+        return $this->render('security/register.html.twig', [
+            'registrationForm' => $form->createView()
+        ]);
     }
 
     /**

@@ -6,18 +6,10 @@
 
     <h1>Register Your Account</h1>
 
-    <form method="post">
+    {{ form_start(registrationForm) }}
+        {{ form_widget(registrationForm) }}
 
-        {# todo - replace with Symfony Form #}
-        <label for="inputUsername" class="sr-only">Username</label>
-        <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
-        
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-
-        <button class="" type="submit">
-            Register
-        </button>
-    </form>
+        <button class="" type="submit">Register</button>
+    {{ form_end(registrationForm) }}
 
 {% endblock %}

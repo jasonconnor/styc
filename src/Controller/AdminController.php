@@ -34,31 +34,12 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/new-user", name="admin_new_user")
-     */
-    public function newUser(EntityManagerInterface $em)
-    {
-        $user = new User();
-        $user->setUsername('userfromadmin')
-            ->setPassword($this->passwordEncoder->encodePassword(
-                $user,
-                '1234'
-            ))
-        ;
-
-        $em->persist($user);
-        $em->flush();
-
-        return new Response(sprintf('Successfully added user %s', $user->getUsername()));
-    }
-
-    /**
      * @Route("/admin/new-admin", name="admin_new_admin")
      */
     public function newAdmin(EntityManagerInterface $em)
     {
         $user = new User();
-        $user->setUsername('adminfromadmin')
+        $user->setUsername('admin')
             ->setRoles(['ROLE_ADMIN'])
             ->setPassword($this->passwordEncoder->encodePassword(
                 $user,
