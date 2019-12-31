@@ -4,16 +4,27 @@
 
 {% block main %}
 
-    <h1>Welcome, {{ app.user.username }}</h1>
+    <h1>{{ app.user.username }}</h1>
 
     <h2>Manage Your Account</h2>
 
-    <h3>Scores</h3>
+    <p>Change your password <a href="{{ path('change_password') }}">here</a>.</p>
 
-    <ul>
+    <h2>Scores</h2>
+
+    <table>
+
+        <tr>
+            <th>Score</th>
+            <th>Date</th>
+        </tr>
+
         {% for score in app.user.scores %}
-            <li>{{ score.score }}</li>
+            <tr>
+                <td>{{ score.score }}</td>
+                <td>{{ score.date|date('m/d/Y') }}</td>
+            </tr>
         {% endfor %}
-    </ul>
+    </table>
 
 {% endblock %}
