@@ -22,6 +22,9 @@ The game application was built in vanilla JavaScript (ES6). The core mechanics o
 
 <h2>Overview: Backend</h2>
 
+<p>
+The backend of our web application was developed using the PHP Framework Symfony. Base functionality includes    capabilities to register a user, sign into the application, play the game, and finally, submit the dynamically generated game values to the database. The top 100 of these records are displayed on the Highscores page. Additionally, users will be able to view their individual highscores on their Account page, as well as change their password.
+</p>
 
 <h2>Change Log</h2>
 
@@ -30,6 +33,6 @@ DD-MM-YYYY - Feature/BudFix<br />
 
 <hr />
 <h2>Credit</h2>
-Jason Connor (Front-end, Back-end, Database),
+Jason Connor (Front-end, Back-end, Database, Dev Ops),
 Kamp Duong (Game Developer, Front-end)
 <!--img src="https://raw.githubusercontent.com/jasonconnor/styc/master/github%20readme%20assets/Contributors.png?token=AHRD2UXE3MJORY22AKZBABC57ZCGG"-->
