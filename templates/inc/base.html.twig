@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>Slash Till You Crash - {% block title %}!{% endblock %}</title>
         {% block stylesheets %}
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"> 
             <link href="{{ asset('assets/style/app.css') }}" rel="stylesheet">
         {% endblock %}
     </head>
@@ -12,12 +13,14 @@
         {% include 'inc/header.html.twig' %}
 
         <main>
-            {% for message in app.flashes('success') %}
-                <div class="">
-                    {{ message }}
-                </div>
-            {% endfor %}
-            {% block main %}{% endblock %}
+            <div class="wrapper">
+                {% for message in app.flashes('success') %}
+                    <div class="">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                {% block main %}{% endblock %}
+            </div>
         </main>
 
         {% include 'inc/footer.html.twig' %}
