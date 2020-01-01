@@ -22,14 +22,20 @@ class Score
     private $score;
 
     /**
-     * @ORM\Column(type="string", length=25)
+     * @ORM\Column(type="integer")
      */
-    private $username;
+    private $level;
 
     /**
      * @ORM\Column(type="datetime")
      */
     private $date;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="scores")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     public function getId(): ?int
     {
@@ -48,14 +54,14 @@ class Score
         return $this;
     }
 
-    public function getUsername(): ?string
+    public function getLevel(): ?int
     {
-        return $this->username;
+        return $this->level;
     }
 
-    public function setUsername(string $username): self
+    public function setLevel(int $level): self
     {
-        $this->username = $username;
+        $this->level = $level;
 
         return $this;
     }
@@ -68,6 +74,18 @@ class Score
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -3,13 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Score;
+use App\Repository\ScoreRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
+use Symfony\Component\Routing\Annotation\Route;
 
 class SiteController extends AbstractController
 {
@@ -23,6 +23,7 @@ class SiteController extends AbstractController
 
     /**
      * @Route("/play", name="play")
+     * @IsGranted("ROLE_USER")
      */
     public function play()
     {
@@ -34,9 +35,8 @@ class SiteController extends AbstractController
     /**
      * @Route("/highscores", name="highscores")
      */
-    public function highscores(EntityManagerInterface $em)
+    public function highscores(ScoreRepository $repository)
     {
-        $repository = $em->getRepository(Score::class);
         $highscores = $repository->findTop100Scores();
 
         return $this->render('site/highscores.html.twig', [
@@ -48,15 +48,23 @@ class SiteController extends AbstractController
      * @Route("/save", name="save")
      */
     public function save(Request $request, EntityManagerInterface $em) {
-        $test = $request->headers->get('Score');
+        $saveScore = $request->headers->get('Score');
+        $saveLevel = $request->headers->get('Level');
+        $user = $this->getUser();
+        $currentHighestLevel = $user->getHighestLevel();
 
         $score = new Score();
-        $score->setUsername('Jason')
-            ->setScore($test)
+        $score->setUser($user)
+            ->setScore($saveScore)
+            ->setLevel($saveLevel)
             ->setDate(new \DateTime)
         ;
 
-        $em->persist($score);
+        if ($saveLevel > $currentHighestLevel) {
+            $user->setHighestLevel($saveLevel);
+        }
+
+        $em->persist($score, $user);
         $em->flush();
 
         return new Response('Score saved, check database!');
