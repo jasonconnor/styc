@@ -30,6 +30,7 @@ class RegistrationFormType extends AbstractType
                 ]
             ])
             ->add('plainPassword', PasswordType::class, [
+                'label' => 'Password',
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
@@ -37,7 +38,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                     new Length([
                         'min' => 5,
-                        'minMessage' => 'Your password will need to be at least 5 characters.'
+                        'minMessage' => 'Your password needs to be at least 5 characters.'
                     ])
                 ]
             ]);

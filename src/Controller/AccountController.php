@@ -20,13 +20,4 @@ class AccountController extends BaseController
         ]);
     }
 
-    /**
-     * @Route("/account/change_password", name="change_password")
-     */
-    public function changePassword()
-    {
-        return $this->render('account/newPassword.html.twig', [
-
-        ]);
-    }
 }

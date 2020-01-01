@@ -37,6 +37,6 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
           - { path: ^/play, roles: IS_AUTHENTICATED_REMEMBERED }
-          - { path: ^/change-password, roles: IS_AUTHENTICATED_FULLY }
+          - { path: ^/account/password, roles: IS_AUTHENTICATED_FULLY }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/play, roles: ROLE_USER }
