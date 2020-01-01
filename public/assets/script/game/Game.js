@@ -162,7 +162,7 @@ class Game {
 
         // create a database object to send new score that will post to the database.
         let database = new Database();
-        database.sendScoreToDatabase(this.score);
+        database.sendStatsToDatabase(this.score, this.player.lvl);
     }
 
     runContinue() {

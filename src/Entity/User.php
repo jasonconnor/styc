@@ -44,6 +44,11 @@ class User implements UserInterface
      */
     private $scores;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $highestLevel = 0;
+
     public function __construct()
     {
         $this->scores = new ArrayCollection();
@@ -149,6 +154,18 @@ class User implements UserInterface
                 $score->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getHighestLevel(): ?int
+    {
+        return $this->highestLevel;
+    }
+
+    public function setHighestLevel(int $highestLevel): self
+    {
+        $this->highestLevel = $highestLevel;
 
         return $this;
     }
