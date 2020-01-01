@@ -22,6 +22,11 @@ class Score
     private $score;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $level;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $date;
@@ -45,6 +50,18 @@ class Score
     public function setScore(int $score): self
     {
         $this->score = $score;
+
+        return $this;
+    }
+
+    public function getLevel(): ?int
+    {
+        return $this->level;
+    }
+
+    public function setLevel(int $level): self
+    {
+        $this->level = $level;
 
         return $this;
     }

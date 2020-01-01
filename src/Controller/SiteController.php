@@ -48,16 +48,23 @@ class SiteController extends AbstractController
      * @Route("/save", name="save")
      */
     public function save(Request $request, EntityManagerInterface $em) {
-        $save = $request->headers->get('Score');
+        $saveScore = $request->headers->get('Score');
+        $saveLevel = $request->headers->get('Level');
         $user = $this->getUser();
+        $currentHighestLevel = $user->getHighestLevel();
 
         $score = new Score();
         $score->setUser($user)
-            ->setScore($save)
+            ->setScore($saveScore)
+            ->setLevel($saveLevel)
             ->setDate(new \DateTime)
         ;
 
-        $em->persist($score);
+        if ($saveLevel > $currentHighestLevel) {
+            $user->setHighestLevel($saveLevel);
+        }
+
+        $em->persist($score, $user);
         $em->flush();
 
         return new Response('Score saved, check database!');

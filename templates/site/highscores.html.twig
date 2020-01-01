@@ -10,6 +10,7 @@
         <tr>
             <th>Username</th>
             <th>Score</th>
+            <th>Level</th>
             <th>Date</th>
         </tr>
 
@@ -18,6 +19,7 @@
             <tr>
                 <td>{{ score.user.username }}</td>
                 <td>{{ score.score }}</td>
+                <td>{{ score.level }}</td>
                 <td>{{ score.date|date('m/d/Y') }}</td>
             </tr>
 
