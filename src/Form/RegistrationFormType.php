@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Form\Model\RegistrationFormModel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -16,38 +17,17 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', TextType::class, [
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'You\' need a username to sign in.'
-                    ]),
-                    new Length([
-                        'min' => 2,
-                        'minMessage' => 'Your username should contain at least 2 letters.',
-                        'max' => '20',
-                        'maxMessage' => 'That username is too long; try one with no more than 20 characters.'
-                    ])
-                ]
-            ])
+            ->add('username', TextType::class)
             ->add('plainPassword', PasswordType::class, [
                 'label' => 'Password',
-                'mapped' => false,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'You\'ll need a password to sign in.'
-                    ]),
-                    new Length([
-                        'min' => 5,
-                        'minMessage' => 'Your password needs to be at least 5 characters.'
-                    ])
-                ]
-            ]);
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => RegistrationFormModel::class
         ]);
     }
 }

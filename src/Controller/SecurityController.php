@@ -60,12 +60,14 @@ class SecurityController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var User $user */
-            $user = $form->getData();
+            /** @var RegistrationFormModel $userModel */
+            $userModel = $form->getData();
 
+            $user = new User();
+            $user->setUsername($userModel->username);
             $user->setPassword($this->passwordEncoder->encodePassword(
                 $user,
-                $form['plainPassword']->getData()
+                $userModel->plainPassword
             ));
 
             $this->em->persist($user);
@@ -95,17 +97,17 @@ class SecurityController extends BaseController
     {
         $user = $this->getUser();
 
-        $form = $this->createForm(ChangePasswordFormType::class, $user);
+        $form = $this->createForm(ChangePasswordFormType::class);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var User $user */
-            $user = $form->getData();
+            $userModel = $form->getData();
 
             $user->setPassword($this->passwordEncoder->encodePassword(
                 $user,
-                $form['newPassword']->getData()
+                $userModel->newPassword
             ));
 
             $this->em->persist($user);

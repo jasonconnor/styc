@@ -2,34 +2,26 @@
 
 namespace App\Form;
 
-use App\Entity\User;
+use App\Form\Model\ChangePasswordFormModel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Length;
 
 class ChangePasswordFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('currentPassword', PasswordType::class, [
+                'label' => 'Current Password'
+            ])
             ->add('newPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => ['label' => 'New Password'],
-                'second_options' => ['label' => 'Confirm Password'],
-                'mapped' => false,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'To change your password, you\'ll need to provide a new one.'
-                    ]),
-                    new Length([
-                        'min' => 5,
-                        'minMessage' => 'Your password needs to be at least 5 characters.'
-                    ])
-                ]
+                'second_options' => ['label' => 'Confirm New Password'],
+                'invalid_message' => 'Your new passwords did not match.'
             ])
         ;
     }
@@ -37,7 +29,7 @@ class ChangePasswordFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => ChangePasswordFormModel::class
         ]);
     }
 }
