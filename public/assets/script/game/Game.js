@@ -38,11 +38,11 @@ class Game {
                 break;
             case 1:
                 btnContainer.innerHTML =
-                    `<button class="btn-33 game-btn combat-btn" onclick="game.runCombat()">
+                    `<button class="btn-33 game-btn combat-btn" id="attackBtn" onclick="game.runCombat()">
                     <img class="game-btn-icon" src="assets/images/game/attack.png">Attack</button>
-                    <button class="btn-33 game-btn combat-btn" onclick="game.runDrinkPotion()">
+                    <button class="btn-33 game-btn combat-btn" id="potionBtn" onclick="game.runDrinkPotion()">
                     <img class="game-btn-icon" src="assets/images/game/potion.png">Potion<span id="numOfPots"></span></button>
-                    <button class="btn-33 game-btn combat-btn" onclick="game.runEvade()">
+                    <button class="btn-33 game-btn combat-btn" id="runBtn" onclick="game.runEvade()">
                     <img class="game-btn-icon" src="assets/images/game/run.png">Run</button>`;
                 break;
             case 2:
@@ -157,7 +157,7 @@ class Game {
             <br>Number of Times ran: ${this.numberOfTimesRan}
             <br>Number of Potions used: ${this.numberOfPotionsUsed}
             <br>Number of Potions purchased: ${this.numberOfPotionsBought}
-            <br><br> ~~~~~~~~~ Thanks for playing ~~~~~~~~~`;
+            <br><br> ~~~~~~~~ Thanks for playing ~~~~~~~~`;
         appendToDisplay(message);
 
         // create a database object to send new score that will post to the database.
