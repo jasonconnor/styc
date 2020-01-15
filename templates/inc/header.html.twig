@@ -1,36 +1,37 @@
-<header>
-    <div class="wrapper">
-        <nav class="header-nav" id="main-nav">
-            <ul>
-                <li><a href="{{ path('index') }}">Home</a></li>
-                <li><a href="{{ path('play') }}">Play</a></li>
-                <li><a href="{{ path('highscores') }}">Highscores</a></li>
-            </ul>
-        </nav>
+<div id="app-wrapper">
+    <header>
+        <div class="wrapper">
+            <nav class="header-nav" id="main-nav">
+                
+                    <a href="{{ path('index') }}">Home</a>
+                    <a href="{{ path('play') }}">Play</a>
+                    <a href="{{ path('highscores') }}">Highscores</a>
+                
+            </nav>
 
-        <nav class="header-nav" id="account-nav">
-            <ul>
-                {% if is_granted('ROLE_USER') %}
-                    
-                    <li><a href="{{ path('account') }}">Account</a></li>
+            <nav class="header-nav" id="account-nav">
+                
+                    {% if is_granted('ROLE_USER') %}
+                        
+                        <a href="{{ path('account') }}">Account</a>
 
-                    {#
-                    {% if is_granted('ROLE_ADMIN') %}
-                    
-                        <li><a href="{{ path('admin_index') }}">Dashboard</a></li>
+                        {#
+                        {% if is_granted('ROLE_ADMIN') %}
+                        
+                            <li><a href="{{ path('admin_index') }}">Dashboard</a></li>
+
+                        {% endif %}
+                        #}
+
+                        <a href="{{ path('logout') }}">Log Out</a>
+
+                    {% else %}
+
+                        <a href="{{ path('login') }}">Log In</a>
+                        <a href="{{ path('register') }}">Register</a>
 
                     {% endif %}
-                    #}
-
-                    <li><a href="{{ path('logout') }}">Log Out</a></li>
-
-                {% else %}
-
-                    <li><a href="{{ path('login') }}">Log In</a></li>
-                    <li><a href="{{ path('register') }}">Register</a></li>
-
-                {% endif %}
-            </ul>
-        </nav>
-    </div>
-</header>
+            
+            </nav>
+        </div>
+    </header>
