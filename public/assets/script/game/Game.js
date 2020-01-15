@@ -39,11 +39,11 @@ class Game {
             case 1:
                 btnContainer.innerHTML =
                     `<button class="btn-33 game-btn combat-btn" id="attackBtn" onclick="game.runCombat()">
-                    <img class="game-btn-icon" src="assets/images/game/attack.png">Attack</button>
+                    <img class="game-btn-icon" src="assets/images/game/attack.png"><br>Attack</button>
                     <button class="btn-33 game-btn combat-btn" id="potionBtn" onclick="game.runDrinkPotion()">
-                    <img class="game-btn-icon" src="assets/images/game/potion.png">Potion<span id="numOfPots"></span></button>
+                    <img class="game-btn-icon" src="assets/images/game/potion.png"><br>Potion</button>
                     <button class="btn-33 game-btn combat-btn" id="runBtn" onclick="game.runEvade()">
-                    <img class="game-btn-icon" src="assets/images/game/run.png">Run</button>`;
+                    <img class="game-btn-icon" src="assets/images/game/run.png"><br>Run</button>`;
                 break;
             case 2:
                 btnContainer.innerHTML =
