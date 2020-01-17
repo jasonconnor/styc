@@ -36,7 +36,6 @@ class Game {
                         onclick="setNewGame()">New Game</button>`;
                     break;
                 case 1:
-                    console.log("changed to 1");
                     btnContainer.innerHTML =
                         `<button id="attackBtn" class="btn-33 game-btn combat-btn" onclick="game.runCombat()">
                         <img class="game-btn-icon" src="assets/images/game/attack.png"><br>Attack</button>
@@ -44,7 +43,6 @@ class Game {
                         <img class="game-btn-icon" src="assets/images/game/potion.png"><br>Potion</button>
                         <button id="runBtn" class="btn-33 game-btn combat-btn" onclick="game.runEvade()">
                         <img class="game-btn-icon" src="assets/images/game/run.png"><br>Run</button>`;
-                        // change src to be "assets/images/game/image.png" for actual repo
                     break;
                 case 2:
                     btnContainer.innerHTML =
@@ -94,19 +92,18 @@ class Game {
         
         const caughtCheating = () => {
             changeGameState(-1);
-            console.error("I DON'T THINK SO, CHEATER!");
-            confirm("HEY, STOP CHEATING!");
+            console.error("Something must have gone wrong!");
+            confirm("An Error Has Occurred!");
         }
 
-        this.generateNewEncounter = (evaded = false) => {    // beginning of game loop
+        this.generateNewEncounter = () => {    // beginning of game loop
             // Anti-cheat
             if (gameState === 1 ) {
                 caughtCheating()
                 return;
             }
-            if (!evaded){
-                changeGameState(1);
-            }
+            
+            changeGameState(1);
             
             enemy = new Enemy(player.lvl);
             runStatsUpdate();
@@ -185,9 +182,10 @@ class Game {
                 if (player.hp === 0) runPlayerDied();
             }
             // Successful run attempt
-            else
-                changeGameState();
-                this.generateNewEncounter(true);
+            else {
+                changeGameState(-2);
+                this.generateNewEncounter();
+            }
         }
 
         this.runGameOver = (died = true) => {
