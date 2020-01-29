@@ -1,37 +1,41 @@
-<div id="app-wrapper">
-    <header>
-        <div class="wrapper">
-            <nav class="header-nav" id="main-nav">
-                
-                    <a href="{{ path('index') }}">Home</a>
-                    <a href="{{ path('play') }}">Play</a>
-                    <a href="{{ path('highscores') }}">Highscores</a>
-                
-            </nav>
+<header>
+    <div class="wrapper">
+        <nav>
+            <div>
+                <a href="{{ path('index') }}">Home</a>
+                <a href="{{ path('play') }}">Play</a>
+                <a href="{{ path('highscores') }}">Highscores</a>
+            </div>
+            
+            <div>
+                {% if is_granted('ROLE_USER') %}
+                    
+                    <a href="{{ path('account') }}">Account</a>
 
-            <nav class="header-nav" id="account-nav">
-                
-                    {% if is_granted('ROLE_USER') %}
-                        
-                        <a href="{{ path('account') }}">Account</a>
-
-                        {#
-                        {% if is_granted('ROLE_ADMIN') %}
-                        
-                            <li><a href="{{ path('admin_index') }}">Dashboard</a></li>
-
-                        {% endif %}
-                        #}
-
-                        <a href="{{ path('logout') }}">Log Out</a>
-
-                    {% else %}
-
-                        <a href="{{ path('login') }}">Log In</a>
-                        <a href="{{ path('register') }}">Register</a>
+                    {#
+                    {% if is_granted('ROLE_ADMIN') %}
+                    
+                        <li><a href="{{ path('admin_index') }}">Dashboard</a></li>
 
                     {% endif %}
-            
-            </nav>
-        </div>
-    </header>
+                    #}
+
+                    <a href="{{ path('logout') }}">Log Out</a>
+
+                {% else %}
+
+                    <a href="{{ path('login') }}">Log In</a>
+                    <a href="{{ path('register') }}">Register</a>
+
+                {% endif %}
+            </div>
+        </nav>
+        
+        <h1>Slash Till You Crash</h1>
+
+        <a class="playBtn" href="{{ path('play') }}">
+            PLAY NOW
+        </a>
+
+    </div>
+</header>

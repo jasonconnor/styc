@@ -4,15 +4,21 @@
 
 {% block main %}
 
-    <h1>{{ app.user.username }}</h1>
+    <div class="account-highlight">
+        <h1>{{ app.user.username }}</h1>
 
-    <h2>Manage Your Account</h2>
+        <div class="account-rankings">
+
+            <span>{{ app.user.highestLevel }}</span>
+
+            {% for score in app.user.scores %}
+                <span>{{ score.score|first }}</span>
+            {% endfor %}
+
+        </div>
+    </div>
 
     <p>Change your password <a href="{{ path('change_password') }}">here</a>.</p>
-
-    <h2>Highest Level Achieved</h2>
-
-    <p>{{ app.user.highestLevel }}</p>
 
     <h2>Scores</h2>
 
