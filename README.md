@@ -7,7 +7,7 @@ Two neighboring villages have been at peace for 1,000 years after the Great-300-
 <br><br>
 You have friends to help you, so don’t feel like you must personally defeat every enemy coming your way. You can attempt to dodge them as they come rushing in, leaving them up to your companions as you try to defeat the next incoming threat!
 <br><br>
-Worry not! If you pass, your name will go down in history as being the greatest heroes who died defending this village against a plethora of enemies. Children of the future will read about how many you were able to stop before you fell! So let's see how many you can slash until you crash!
+Worry not! If you are slain, your name will go down in history as being the greatest heroes who died defending this village against a plethora of enemies. Children of the future will read about how many you were able to stop before you fell! So let's see how many you can slash until you crash!
 </p>
 
 <h2>Overview: Game</h2>
