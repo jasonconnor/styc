@@ -1,16 +1,22 @@
+main > .wrapper {
+    padding: 0;
+}
+
 #game-container {
-    height: auto;
     background-image: url("../../images/background/Old-Book.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: auto;
+    border-radius: 10px;
     min-height: 800px;
     display: flex;
+    height: auto;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 16px;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    width: 100%;
 }
 
 bad-guy, dmg-taken, enemy-hp, dmg-dealt, player-hp, hp-pot
