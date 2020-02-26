@@ -4,9 +4,11 @@
 
 {% block main %}
 
-    <h1>Log In</h1>
+    
 
     <form method="post">
+        <h1>Log In</h1>
+
         {% if error %}
             <div class="">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}

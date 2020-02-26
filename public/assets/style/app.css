@@ -8,13 +8,23 @@ body {
     font-size: 16px;
 }
 
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+     
+}
+
+/* [ Header Styles ] */
+
 header {
     background: #000;
     color: #fff;
     display: flex;
     flex-direction: row;
+    flex-shrink: 0;
     justify-content: center;
-    height: 400px;
+    height: 229px;
 }
 
 header > .wrapper {
@@ -29,6 +39,7 @@ header > .wrapper > nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 10px;
     width: 100%;
 }
 
@@ -38,10 +49,15 @@ header > .wrapper > nav > div > a {
     text-decoration: none;
 }
 
+header > .wrapper > nav > div > a:hover {
+    color: #00f;
+}
+
 header > .wrapper > h1 {
     font-family: 'Bree Serif', serif;
     font-size: 48px;
     font-weight: lighter;
+    margin-bottom: 50px;
 }
 
 header > .wrapper > a.playBtn {
@@ -49,7 +65,51 @@ header > .wrapper > a.playBtn {
     border: 1px solid darkblue;
     border-radius: 30px;
     color: #fff;
+    display: none;
     margin-bottom: 35px;
     padding: 15px 25px;
     text-decoration: none;
+}
+
+header > .wrapper > a.playBtn:hover {
+    color: #00f;
+    background: #fff;
+}
+
+/* [ Main Styles ] */
+
+main {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: row;
+    justify-content: center;
+}
+
+main > .wrapper {
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 1px 4px 10px 0px rgba(0,0,0,0.75);
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    justify-content: center;
+    margin: 50px 0;
+    padding: 20px;
+    width: 1040px;
+}
+
+main > .wrapper > .registration-form {
+    background-color: turquoise;
+}
+
+/* [ Footer Styles ] */
+
+footer {
+    background: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    height: 50px;
+    justify-content: center;
 }

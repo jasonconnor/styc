@@ -1,0 +1,12 @@
+header {
+    height: 350px;
+}
+
+header > .wrapper > h1 {
+    margin-bottom: 0;
+}
+
+
+header > .wrapper > a.playBtn {
+    display: block;
+}
