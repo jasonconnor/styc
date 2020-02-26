@@ -18,6 +18,7 @@ class Game {
          *                  attack => game.runCombat();
          *                  drink potion => game.DrinkPotion();
          *                  run => game.runEvade();
+         *                  exit game => game.runGameOver();
          *              2 = Post Battle
          *                  continue => game.generateNewEncounter();
          *                  exit game => game.runGameOver();
@@ -32,28 +33,32 @@ class Game {
             switch (s) {
                 case 0:
                     btnContainer.innerHTML =
-                        `<button class="btn-100 game-btn menu-btn"
-                        onclick="setNewGame()">New Game</button>`;
+                        `<div class="game-btn menu-btn"
+                            onclick="setNewGame()">&gt; New Campaign</div>
+                        <div class="game-btn menu btn"
+                            onclick="generateMainMenu()">&gt; Back to Main</div>`;
                     break;
                 case 1:
                     btnContainer.innerHTML =
-                        `<button id="attackBtn" class="btn-33 game-btn combat-btn" onclick="game.runCombat()">
-                        <img class="game-btn-icon" src="assets/images/game/attack.png"><br>Attack</button>
-                        <button id="potionBtn" class="btn-33 game-btn combat-btn" onclick="game.runDrinkPotion()">
-                        <img class="game-btn-icon" src="assets/images/game/potion.png"><br>Potion</button>
-                        <button id="runBtn" class="btn-33 game-btn combat-btn" onclick="game.runEvade()">
-                        <img class="game-btn-icon" src="assets/images/game/run.png"><br>Run</button>`;
+                        `<div id="attackBtn" class="game-btn combat-btn" onclick="game.runCombat()">
+                        <img src="assets/images/game/attack.png" height="22px">&nbsp;Attack the enemy</div>
+                        <div id="potionBtn" class="game-btn combat-btn" onclick="game.runDrinkPotion()">
+                        <img src="assets/images/game/potion.png" height="22px">&nbsp;Drink a Potion</div>
+                        <div id="runBtn" class="game-btn combat-btn" onclick="game.runEvade()">
+                        <img src="assets/images/game/run.png" height="22px">&nbsp;Attempt to Run</div>
+                        <br>
+                        <div class="game-btn ooc-btn" onclick="game.runGameOver(false)">Quit Game</div>`;
                     break;
                 case 2:
                     btnContainer.innerHTML =
-                        `<button class="btn-50 game-btn ooc-btn" onclick="game.generateNewEncounter()">Continue</button>
-                        <button class="btn-50 game-btn ooc-btn" onclick="game.runGameOver(false)">End Game</button>`;
+                        `<div class="game-btn ooc-btn" onclick="game.generateNewEncounter()">Continue</div>
+                        <div class="game-btn ooc-btn" onclick="game.runGameOver(false)">End Game</div>`;
                     break;
                 case 3:
                     btnContainer.innerHTML = 
-                        `<button class="btn-33 game-btn ooc-btn" onclick="game.generateNewEncounter()">Continue</button>
-                        <button class="btn-33 game-btn ooc-btn" onclick="game.runBuyPotion()">Buy Potion</button>
-                        <button class="btn-33 game-btn ooc-btn" onclick="game.runGameOver(false)">End Game</button>`;
+                        `<div class="game-btn ooc-btn" onclick="game.generateNewEncounter()">Continue</div>
+                        <div class="game-btn ooc-btn" onclick="game.runBuyPotion()">Buy Potion</div>
+                        <div class="game-btn ooc-btn" onclick="game.runGameOver(false)">End Game</div>`;
                     break;
                 case -1:
                     document.getElementById("game-container").innerHTML = "<h1>I DON'T THINK SO, CHEATER!</h1>";
@@ -92,7 +97,7 @@ class Game {
         
         const caughtCheating = () => {
             changeGameState(-1);
-            console.error("Something must have gone wrong!");
+            console.error("Something has gone wrong!");
             confirm("An Error Has Occurred!");
         }
 
@@ -197,7 +202,8 @@ class Game {
                 <br>Number of Times ran: ${numberOfTimesRan}
                 <br>Number of Potions used: ${numberOfPotionsUsed}
                 <br>Number of Potions purchased: ${numberOfPotionsBought}
-                <br><br> ~~~~~~~~ Thanks for playing ~~~~~~~~`;
+                <br><br>
+                <big-letter>T</big-letter>hanks for playing!`;
             appendToDisplay(message);
 
             // create a database object to send new score that will post to the database.
