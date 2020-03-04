@@ -2,19 +2,44 @@
 
 {% block title %}Register{% endblock %}
 
+{% block form_row %}
+    {%- set widget_attr = {} -%}
+    {%- if help is not empty -%}
+        {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
+    {%- endif -%}
+
+    {{- form_label(form) -}}
+    <br>
+    {{- form_errors(form) -}}
+    {{- form_widget(form, widget_attr) -}}
+    {{- form_help(form) -}}
+
+{% endblock %}
+
 {% block main %}
 
-    
-
     {{ form_start(registrationForm, {
-        attr: { class: 'registration-form' }
-    })
-    }}
+        attr: { id: 'registration-form' }
+    }) }}
+
         <h1>Register Your Account</h1>
         
-        {{ form_widget(registrationForm) }}
+        {{ form_row(registrationForm.username, {
+            attr: { id: 'registration-form-username',
+                    class: 'registration-form-input',
+                    placeholder: 'Username'
+                }
+        }) }}
 
-        <button class="" type="submit">Register</button>
+        {{ form_row(registrationForm.plainPassword, {
+            attr: { id: 'registration-form-password',
+                    class: 'registration-form-input',
+                    placeholder: 'Password'
+                }
+        }) }}
+
+        <button id="registration-form-submit" type="submit">Register</button>
+
     {{ form_end(registrationForm) }}
 
 {% endblock %}

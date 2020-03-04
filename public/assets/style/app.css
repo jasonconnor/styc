@@ -98,8 +98,102 @@ main > .wrapper {
     width: 1040px;
 }
 
-main > .wrapper > .registration-form {
-    background-color: turquoise;
+/**
+ * Registration Form Styles
+ */
+
+#registration-form {
+    display: flex;
+    flex-direction: column;
+}
+#registration-form > h1 {
+    font-family: 'Bree Serif', serif;
+    font-weight: lighter;
+    margin-bottom: 35px;
+}
+
+#registration-form > .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.registration-form-input {
+    border: 1px solid #888;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 18px;
+    margin: 10px 0 20px;
+}
+
+.registration-form-input:focus {
+    border-color: #00f;
+}
+
+#registration-form-submit {
+    background: #00f;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+/**
+ * Login Form Styles
+ */
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#login-form > h1 {
+    font-family: 'Bree Serif', sans-serif;
+    font-weight: lighter;
+    margin-bottom: 35px;
+}
+
+#login-form > .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form-input {
+    border: 1px solid #888;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 18px;
+    margin: 10px 0 20px;
+    width: 355px;
+}
+
+#inputPassword {
+    margin-bottom: 5px;
+}
+
+.login-form-input:focus {
+    border-color: #00f;
+}
+
+.login-form-options {
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+#login-form-submit {
+    background: #00f;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 10px;
+    margin-top: 25px;
 }
 
 /* [ Footer Styles ] */

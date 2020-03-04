@@ -6,7 +6,7 @@
 
     
 
-    <form method="post">
+    <form method="post" id="login-form">
         <h1>Log In</h1>
 
         {% if error %}
@@ -14,24 +14,26 @@
         {% endif %}
 
         <label for="inputUsername" class="sr-only">Username</label>
-        <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+        <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control login-form-input" placeholder="Username" required autofocus>
         
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input type="password" name="password" id="inputPassword" class="form-control login-form-input" placeholder="Password" required>
 
         <input type="hidden" name="_csrf_token"
             value="{{ csrf_token('authenticate') }}"
         >
 
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" name="_remember_me">Remember me
-            </label>
+        <div class="login-form-options">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="_remember_me">Remember me
+                </label>
+            </div>
+            
+            <p>Need to <a href="{{ path('register') }}">register</a>?</p>
         </div>
-        
-        <p>Need to <a href="{{ path('register') }}">register</a>?</p>
 
-        <button class="" type="submit">
+        <button id="login-form-submit" type="submit">
             Log In
         </button>
     </form>
