@@ -15,15 +15,25 @@ class ChangePasswordFormType extends AbstractType
     {
         $builder
             ->add('currentPassword', PasswordType::class, [
-                'label' => 'Current Password'
+                'label' => 'Current Password',
+                'attr' => [
+                    'class' => 'form-input'
+                ]
             ])
             ->add('newPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'first_options' => ['label' => 'New Password'],
-                'second_options' => ['label' => 'Confirm New Password'],
-                'invalid_message' => 'Your new passwords did not match.'
-            ])
-        ;
+                'first_options' => ['label' => 'New Password',
+                                    'attr' => [
+                                        'class' => 'form-input',
+                                        'placeholder' => 'New Password'
+                                    ]      
+            ], 'second_options' => ['label' => 'Confirm New Password',
+                                    'attr' => [
+                                        'class' => 'form-input',
+                                        'placeholder' => 'Confirm New Password'
+                                    ]
+            ], 'invalid_message' => 'Your new passwords did not match.'
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

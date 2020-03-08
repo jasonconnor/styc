@@ -1,4 +1,5 @@
 {% extends 'inc/base.html.twig' %}
+{% form_theme registrationForm _self %}
 
 {% block title %}Register{% endblock %}
 
@@ -16,29 +17,38 @@
 
 {% endblock %}
 
+{% block stylesheets %}
+{{ parent() }}
+<link href="{{ asset('assets/style/form.css') }}" rel="stylesheet">
+{% endblock %}
+
+
 {% block main %}
 
     {{ form_start(registrationForm, {
-        attr: { id: 'registration-form' }
+        attr: { 
+            id: 'registrationForm',
+            class: 'app-form'
+            }
     }) }}
 
         <h1>Register Your Account</h1>
         
         {{ form_row(registrationForm.username, {
-            attr: { id: 'registration-form-username',
-                    class: 'registration-form-input',
+            attr: {
+                    class: 'form-input',
                     placeholder: 'Username'
                 }
         }) }}
 
         {{ form_row(registrationForm.plainPassword, {
-            attr: { id: 'registration-form-password',
-                    class: 'registration-form-input',
+            attr: {
+                    class: 'form-input',
                     placeholder: 'Password'
                 }
         }) }}
 
-        <button id="registration-form-submit" type="submit">Register</button>
+        <button class="form-submit" type="submit">Register</button>
 
     {{ form_end(registrationForm) }}
 

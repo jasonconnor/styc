@@ -2,11 +2,16 @@
 
 {% block title %}Log In{% endblock %}
 
+{% block stylesheets %}
+{{ parent() }}
+<link href="{{ asset('assets/style/form.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block main %}
 
     
 
-    <form method="post" id="login-form">
+    <form method="post" id="loginForm" class="app-form">
         <h1>Log In</h1>
 
         {% if error %}
@@ -14,10 +19,10 @@
         {% endif %}
 
         <label for="inputUsername" class="sr-only">Username</label>
-        <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control login-form-input" placeholder="Username" required autofocus>
+        <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control form-input" placeholder="Username" required autofocus>
         
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control login-form-input" placeholder="Password" required>
+        <input type="password" name="password" id="inputPassword" class="form-control form-input" placeholder="Password" required>
 
         <input type="hidden" name="_csrf_token"
             value="{{ csrf_token('authenticate') }}"
@@ -26,14 +31,14 @@
         <div class="login-form-options">
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" name="_remember_me">Remember me
+                    <input type="checkbox" name="_remember_me"> Remember me
                 </label>
             </div>
             
             <p>Need to <a href="{{ path('register') }}">register</a>?</p>
         </div>
 
-        <button id="login-form-submit" type="submit">
+        <button class="form-submit" type="submit">
             Log In
         </button>
     </form>
