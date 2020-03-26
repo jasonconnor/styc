@@ -2,6 +2,11 @@
 
 {% block title %}Highscores{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('assets/style/table.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block main %}
 
     <h1>Highscores</h1>
