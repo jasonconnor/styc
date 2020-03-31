@@ -177,7 +177,7 @@ class User implements UserInterface
 
     public function getHighestScore(): ?int
     {
-        return $this->highestLevel;
+        return $this->highestScore;
     }
 
     public function setHighestScore(int $highestScore): self
