@@ -70,7 +70,7 @@ class Game {
         }
 
         const runStatsUpdate = () => {
-            updateStats(score, player, enemy);
+            updateStats(score, highestScore, player, enemy);
         }
 
         const runPostBattle = () => {

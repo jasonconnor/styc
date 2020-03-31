@@ -95,9 +95,10 @@ function setNewGame() {
 // }
 
 // Function for displaying current game stats, ran at the beginning of the game loop.
-function updateStats(s, p, e) {
+function updateStats(s, hs, p, e) {
     let statsDisplay = document.getElementById("stats-display");
-    statsDisplay.innerHTML = `Score: ${s}`;
+    statsDisplay.innerHTML = `Current Score: ${s}`;
+    statsDisplay.innerHTML += `<br>Highest Score: ${hs}`
     statsDisplay.innerHTML += `<br>Level: ${p.lvl}`
     statsDisplay.innerHTML += `<br>Your HP: 
         <player-hp>${p.hp}</player-hp>/<player-hp>${p.maxHP}</player-hp>`;
