@@ -37,7 +37,7 @@ class SiteController extends AbstractController
      */
     public function highscores(ScoreRepository $repository)
     {
-        $highscores = $repository->findTop100Scores();
+        $highscores = $repository->findTop25Scores();
 
         return $this->render('site/highscores.html.twig', [
             'scores' => $highscores
@@ -52,6 +52,7 @@ class SiteController extends AbstractController
         $saveLevel = $request->headers->get('Level');
         $user = $this->getUser();
         $currentHighestLevel = $user->getHighestLevel();
+        $currentHighestScore = $user->getHighestScore();
 
         $score = new Score();
         $score->setUser($user)
@@ -62,6 +63,10 @@ class SiteController extends AbstractController
 
         if ($saveLevel > $currentHighestLevel) {
             $user->setHighestLevel($saveLevel);
+        }
+
+        if ($saveScore > $currentHighestScore) {
+            $user->setHighestScore($saveScore);
         }
 
         $em->persist($score, $user);

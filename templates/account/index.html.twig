@@ -4,37 +4,12 @@
 
 {% block main %}
 
-    <div class="account-highlight">
-        <h1>{{ app.user.username }}</h1>
+    <h1>{{ app.user.username }}</h1>
 
-        <div class="account-rankings">
+    <span>{{ app.user.highestLevel }}</span>
 
-            <span>{{ app.user.highestLevel }}</span>
-
-            {% for score in app.user.scores %}
-                <span>{{ score.score|first }}</span>
-            {% endfor %}
-
-        </div>
-    </div>
+    <span>{{ app.user.highestScore }}</span>
 
     <p>Change your password <a href="{{ path('change_password') }}">here</a>.</p>
-
-    <h2>Scores</h2>
-
-    <table>
-
-        <tr>
-            <th>Score</th>
-            <th>Date</th>
-        </tr>
-
-        {% for score in app.user.scores %}
-            <tr>
-                <td>{{ score.score }}</td>
-                <td>{{ score.date|date('m/d/Y') }}</td>
-            </tr>
-        {% endfor %}
-    </table>
 
 {% endblock %}
