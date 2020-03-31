@@ -1,5 +1,5 @@
 # STYC - Slash Til You Crash Web App
-<a href="https://styc.jasonc.dev">Visit Web Page</a> (NOT LIVE YET)
+<a href="https://styc.app">Visit Web Page</a> (NOT LIVE YET)
 <h2>Description</h2>
 <p>STYC is a hack-n-slash adventure game where you are trying to rip through as many enemies as you can before you fall in battle, leaving your village open to extinction.
 <br><br>
