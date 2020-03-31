@@ -1,5 +1,5 @@
 # Slash Til You Crash Web App
-<a href="https://styc.jasonc.dev">Visit Web Page</a> (NOT LIVE YET)
+<a href="https://styc.app">Visit Web Page</a>
 <h2>Description</h2>
 Slash Til You Crash, STYC, is an in-browser text based hack and slash adventure game. The objective of the game is to defeat as many enemies as you can before you yourself are slain. Potions keep you alive and are key to boosting your score!
 
