@@ -109,6 +109,7 @@ main > .wrapper {
 
 main > .wrapper > h1 {
     font-family: 'Bree Serif', serif;
+    padding: 15px 0;
     text-align: left;
 }
 
