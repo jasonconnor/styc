@@ -16,6 +16,7 @@
         {% include 'inc/header.html.twig' %}
 
         <main>
+
             <div class="wrapper">
                 {% for message in app.flashes('success') %}
                     <div class="">
@@ -24,6 +25,9 @@
                 {% endfor %}
                 {% block main %}{% endblock %}
             </div>
+
+            {% include 'inc/news.html.twig' %}
+
         </main>
 
         {% include 'inc/footer.html.twig' %}
