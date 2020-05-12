@@ -47,3 +47,8 @@
 </div>
 
 {% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('assets/script/news.js') }}"></script>
+{% endblock %}
