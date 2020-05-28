@@ -127,25 +127,4 @@ class SecurityController extends BaseController
             'changePasswordForm' => $form->createView()
         ]);
     }
-
-    /**
-     * @Route("/new-admin", name="new_admin")
-     * @IsGranted("ROLE_ADMIN")
-     */
-    public function newAdmin()
-    {
-        $user = new User();
-        $user->setUsername('admin2')
-            ->setRoles(['ROLE_ADMIN'])
-            ->setPassword($this->passwordEncoder->encodePassword(
-                $user,
-                'j4s0n3'
-            ))
-        ;
-
-        $this->em->persist($user);
-        $this->em->flush();
-
-        return new Response(sprintf('Successfully added user %s', $user->getUsername()));
-    }
 }

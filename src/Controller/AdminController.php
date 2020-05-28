@@ -34,7 +34,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/new-admin", name="admin_new_admin")
+     * @Route("/admin/new_admin", name="admin_new_admin")
      */
     public function newAdmin(EntityManagerInterface $em)
     {
