@@ -81,8 +81,8 @@ header > .wrapper a.playBtn {
 }
 
 header > .wrapper a.playBtn:hover {
-    color: #00f;
-    background: #fff;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.75);
+    color: yellow;
 }
 
 /* [ Main Styles ] */

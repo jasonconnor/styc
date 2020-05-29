@@ -15,20 +15,13 @@
 
         {% include 'inc/header.html.twig' %}
 
-        <main>
-
-            <div class="wrapper">
-                {% for message in app.flashes('success') %}
-                    <div class="">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-                {% block main %}{% endblock %}
+        {% for message in app.flashes('success') %}
+            <div class="">
+                {{ message }}
             </div>
+        {% endfor %}
 
-            {% include 'inc/news.html.twig' %}
-
-        </main>
+        {% block main %}{% endblock %}
 
         {% include 'inc/footer.html.twig' %}
 
