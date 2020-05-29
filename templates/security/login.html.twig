@@ -9,38 +9,42 @@
 
 {% block main %}
 
-    
+    <main>
+        <div class="wrapper">
 
-    <form method="post" id="loginForm" class="app-form">
-        <h1>Log In</h1>
+            <form method="post" id="loginForm" class="app-form">
+                <h1>Log In</h1>
 
-        {% if error %}
-            <div class="">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
+                {% if error %}
+                    <div class="">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
 
-        <label for="inputUsername" class="sr-only">Username</label>
-        <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control form-input" placeholder="Username" required autofocus>
-        
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control form-input" placeholder="Password" required>
+                <label for="inputUsername" class="sr-only">Username</label>
+                <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control form-input" placeholder="Username" required autofocus>
+                
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" name="password" id="inputPassword" class="form-control form-input" placeholder="Password" required>
 
-        <input type="hidden" name="_csrf_token"
-            value="{{ csrf_token('authenticate') }}"
-        >
+                <input type="hidden" name="_csrf_token"
+                    value="{{ csrf_token('authenticate') }}"
+                >
 
-        <div class="login-form-options">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="_remember_me"> Remember me
-                </label>
-            </div>
-            
-            <p>Need to <a href="{{ path('register') }}">register</a>?</p>
+                <div class="login-form-options">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="_remember_me"> Remember me
+                        </label>
+                    </div>
+                    
+                    <p>Need to <a href="{{ path('register') }}">register</a>?</p>
+                </div>
+
+                <button class="form-submit" type="submit">
+                    Log In
+                </button>
+            </form>
+
         </div>
-
-        <button class="form-submit" type="submit">
-            Log In
-        </button>
-    </form>
+    </main>
 
 {% endblock %}

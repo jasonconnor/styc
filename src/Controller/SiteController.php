@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
 use App\Entity\Score;
+use App\Repository\PostRepository;
 use App\Repository\ScoreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,9 +18,13 @@ class SiteController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function index()
+    public function index(PostRepository $repository)
     {
-        return $this->render('site/index.html.twig');
+        $news = $repository->findLatest10Posts();
+
+        return $this->render('site/index.html.twig', [
+            'news' => $news
+        ]);
     }
 
     /**
