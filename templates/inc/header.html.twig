@@ -9,16 +9,14 @@
             
             <div>
                 {% if is_granted('ROLE_USER') %}
-                    
-                    <a href="{{ path('account') }}">Account</a>
 
-                    {#
                     {% if is_granted('ROLE_ADMIN') %}
                     
-                        <li><a href="{{ path('admin_index') }}">Dashboard</a></li>
+                        <a href="{{ path('admin_index') }}">Dashboard</a>
 
                     {% endif %}
-                    #}
+                    
+                    <a href="{{ path('account') }}">Account</a>
 
                     <a href="{{ path('logout') }}">Log Out</a>
 

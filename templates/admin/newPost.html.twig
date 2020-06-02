@@ -1,0 +1,27 @@
+{% extends 'inc/base.html.twig' %}
+
+{% block title %}New Post{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('assets/style/form.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+
+    <main>
+        <div class="wrapper">
+
+            <h1>Create a New Post</h1>
+
+            {{ form_start(postForm) }}
+                {{ form_widget(postForm) }}
+
+                <button class="form-submit" type="submit">Submit</button>
+            {{ form_end(postForm) }}
+
+        </div>
+    </main>
+
+
+{% endblock %}

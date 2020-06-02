@@ -61,7 +61,7 @@
                     <div class="post-body">
                         <p class="post-content">{{ post.content }}</p>
 
-                        <p class="post-date">{{ post.createdAt }}</p>
+                        <p class="post-date">{{ post.createdAt|date('m/d/Y') }}</p>
                     </div>
                 </article>
 

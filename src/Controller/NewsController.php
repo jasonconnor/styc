@@ -15,14 +15,16 @@ class NewsController extends AbstractController
     /**
      * @Route("/news", name="news_index")
      */
-    public function index() {
-        return new Response('News Posts, here we will fetch all news items and paginate the results.');
+    public function index() 
+    {
+        return new Response('News Posts, here we will fetch all news items and paginate the results. Eventually, search');
     }
 
     /**
      * @Route("/news/{slug}", name="show_news")
      */
-    public function show($slug) {
+    public function show($slug) 
+    {
         return new Response(sprintf(ucwords(str_replace('-', ' ', $slug))));
     }
 }

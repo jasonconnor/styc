@@ -53,7 +53,8 @@ class SiteController extends AbstractController
     /**
      * @Route("/save", name="save")
      */
-    public function save(Request $request, EntityManagerInterface $em) {
+    public function save(Request $request, EntityManagerInterface $em) 
+    {
         $saveScore = $request->headers->get('Score');
         $saveLevel = $request->headers->get('Level');
         $user = $this->getUser();

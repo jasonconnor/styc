@@ -27,10 +27,10 @@ main > .news {
     width: 300px
 }
 
-.post-content {
-    display: none;
-}
-
 main > .wrapper {
     width: 640px
+}
+
+.post-body {
+    display: none;
 }
