@@ -16,8 +16,10 @@
         {% include 'inc/header.html.twig' %}
 
         {% for message in app.flashes('success') %}
-            <div class="">
-                {{ message }}
+            <div class="success-flash">
+                <span>{{ message }}</span>
+
+                <span class="close-flash">&times;</span>
             </div>
         {% endfor %}
 

@@ -74,7 +74,9 @@ class AdminController extends BaseController
             $em->persist($post);
             $em->flush();
 
-            return $this->redirectToRoute('news_index');
+            $this->addFlash('success', 'Your post was created!');
+
+            return $this->redirectToRoute('index');
         }
 
         return $this->render('admin/newPost.html.twig', [
