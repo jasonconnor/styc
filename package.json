@@ -1,0 +1,22 @@
+{
+  "name": "styc",
+  "version": "1.0.0",
+  "description": "Text-Based Hack & Slash Adventure Game",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonconnor/styc.git"
+  },
+  "author": "Jason Connor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jasonconnor/styc/issues"
+  },
+  "homepage": "https://github.com/jasonconnor/styc#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
