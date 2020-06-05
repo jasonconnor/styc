@@ -4,7 +4,8 @@
   "description": "Text-Based Hack & Slash Adventure Game",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app",
+    "server": "nodemon app"
   },
   "repository": {
     "type": "git",
