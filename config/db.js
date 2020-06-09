@@ -12,6 +12,7 @@ const connect = async function() {
         console.log('Connected to the styc database.')
     } catch(err) {
         console.log(err.message)
+        process.exit(1)
     }
 }
 
