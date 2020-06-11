@@ -1,6 +1,21 @@
 {% extends 'inc/base.html.twig' %}
+{% form_theme postForm _self %}
 
 {% block title %}New Post{% endblock %}
+
+{% block form_row %}
+    {%- set widget_attr = {} -%}
+    {%- if help is not empty -%}
+        {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
+    {%- endif -%}
+
+    {{- form_label(form) -}}
+    <br>
+    {{- form_errors(form) -}}
+    {{- form_widget(form, widget_attr) -}}
+    {{- form_help(form) -}}
+
+{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -12,12 +27,34 @@
     <main>
         <div class="wrapper">
 
-            <h1>Create a New Post</h1>
 
-            {{ form_start(postForm) }}
-                {{ form_widget(postForm) }}
+            {{ form_start(postForm, {
+                attr: {
+                    id: 'postForm',
+                    class: 'app-form'
+                    }
+            }) }}
+                
+                <h1>Create a New Post</h1>
+
+            
+                {{ form_row(postForm.title, {
+                    attr: {
+                        class: 'form-input',
+                        placeholder: 'Post Title'
+                    }
+                }) }}
+                <br>
+
+                {{ form_row(postForm.content, {
+                    attr: {
+                        class: 'form-textarea',
+                        placeholder: 'Post content'
+                    }
+                }) }}
 
                 <button class="form-submit" type="submit">Submit</button>
+
             {{ form_end(postForm) }}
 
         </div>

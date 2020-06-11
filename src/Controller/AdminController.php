@@ -65,10 +65,9 @@ class AdminController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-            $post = new Post();
-            $post->setTitle($data['title']);
-            $post->setContent($data['content']);
+
+            /** @var Post $post */
+            $post = $form->getData();
             $post->setAuthor($this->getUser());
 
             $em->persist($post);
