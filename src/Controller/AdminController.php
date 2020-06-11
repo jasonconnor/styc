@@ -86,8 +86,28 @@ class AdminController extends BaseController
     /**
      * @Route("/admin/edit/{slug}", name="edit_post")
      */
-    public function edit($slug)
+    public function edit(Post $post, Request $request, EntityManagerInterface $em)
     {
-        return new Response(sprintf('Editing ' . ucwords(str_replace('-', ' ', $slug))));
+        $form = $this->createForm(PostFormType::class, $post);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            /** @var Post $post */
+            $post = $form->getData();
+            $post->setAuthor($this->getUser());
+
+            $em->persist($post);
+            $em->flush();
+
+            $this->addFlash('success', 'Your post was created!');
+
+            return $this->redirectToRoute('index');
+        }
+
+        return $this->render('admin/newPost.html.twig', [
+            'postForm' => $form->createView(),
+        ]);
     }
 }
