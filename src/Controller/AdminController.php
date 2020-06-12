@@ -86,7 +86,7 @@ class AdminController extends BaseController
     /**
      * @Route("/admin/edit/{slug}", name="edit_post")
      */
-    public function edit(Post $post, Request $request, EntityManagerInterface $em)
+     public function edit(Post $post, Request $request, EntityManagerInterface $em)
     {
         $form = $this->createForm(PostFormType::class, $post);
 
@@ -101,7 +101,7 @@ class AdminController extends BaseController
             $em->persist($post);
             $em->flush();
 
-            $this->addFlash('success', 'Your post was created!');
+            $this->addFlash('success', 'Your post was edited!');
 
             return $this->redirectToRoute('index');
         }
