@@ -93,4 +93,19 @@ class AdminController extends BaseController
             'title' => 'Edit Post'
         ]);
     }
+
+    /**
+     * @Route("/admin/delete/{slug}", name="delete_post", methods={"GET", "DELETE"})
+     */
+    public function deletePost($slug, PostRepository $repository, EntityManagerInterface $em)
+    {
+        $post = $repository->findOneBy(['slug' => $slug]);
+
+        $em->remove($post);
+        $em->flush();
+        
+        $this->addFlash('success', 'Your post was deleted!');
+
+        return $this->redirectToRoute('index');
+    }
 }

@@ -43,7 +43,7 @@
                         {% if is_granted('ROLE_USER') %}
                             {% if is_granted('ROLE_ADMIN') %}
                                 <td><a href="{{ path('edit_post', {slug: post.slug}) }}">Edit</a></td>
-                                <td><a href="{{ path('edit_post', {slug: post.slug}) }}">Delete</a></td>
+                                <td><a href="{{ path('delete_post', {slug: post.slug}) }}">Delete</a></td>
                             {% endif %}
                         {% endif %}
                     </tr>
