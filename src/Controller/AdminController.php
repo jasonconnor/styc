@@ -80,6 +80,7 @@ class AdminController extends BaseController
 
         return $this->render('admin/newPost.html.twig', [
             'postForm' => $form->createView(),
+            'title' => 'Create a New Post'
         ]);
     }
 
@@ -108,6 +109,7 @@ class AdminController extends BaseController
 
         return $this->render('admin/newPost.html.twig', [
             'postForm' => $form->createView(),
+            'title' => 'Edit Post'
         ]);
     }
 }

@@ -1,0 +1,44 @@
+{% extends 'inc/base.html.twig' %}
+
+{% block title %}News{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('assets/style/table.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+    <main>
+        <div class="wrapper">
+
+            <h1>Latest News</h1>
+
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Author</th>
+                    <th>Date</th>
+                </tr>
+
+                {% for post in posts %}
+
+                    <tr>
+                        
+                            <td>
+                                <a href="{{ path('show_post', {slug: post.slug}) }}">
+                                    {{ post.title }}
+                                </a>
+                            </td>
+                            <td>Content</td>
+                            <td>{{ post.author.username }}</td>
+                            <td>{{ post.createdAt|date('m/d/Y') }}</td>
+                        </a>
+                    </tr>
+
+                {% endfor %}
+            </table>
+
+        </div>
+    </main>
+{% endblock %}

@@ -15,15 +15,19 @@ class NewsController extends AbstractController
     /**
      * @Route("/news", name="news_index")
      */
-    public function index() 
+    public function index(PostRepository $repository) 
     {
-        return new Response('News Posts, here we will fetch all news items and paginate the results. Eventually, search');
+        $posts = $repository->findAll();
+
+        return $this->render('/news/index.html.twig', [
+            'posts' => $posts
+        ]);
     }
 
     /**
-     * @Route("/news/{slug}", name="show_news")
+     * @Route("/news/{slug}", name="show_post")
      */
-    public function show($slug) 
+    public function show($slug)
     {
         return new Response(sprintf(ucwords(str_replace('-', ' ', $slug))));
     }
