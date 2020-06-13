@@ -30,7 +30,7 @@
                                     {{ post.title }}
                                 </a>
                             </td>
-                            <td>Content</td>
+                            <td>{{ post.content|u.truncate(25, '...') }}</td>
                             <td>{{ post.author.username }}</td>
                             <td>{{ post.createdAt|date('m/d/Y') }}</td>
                         </a>
