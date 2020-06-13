@@ -19,21 +19,33 @@
                     <th>Content</th>
                     <th>Author</th>
                     <th>Date</th>
+
+                    {% if is_granted('ROLE_USER') %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        {% endif %}
+                    {% endif %}
                 </tr>
 
                 {% for post in posts %}
 
                     <tr>
-                        
-                            <td>
-                                <a href="{{ path('show_post', {slug: post.slug}) }}">
-                                    {{ post.title }}
-                                </a>
-                            </td>
-                            <td>{{ post.content|u.truncate(25, '...') }}</td>
-                            <td>{{ post.author.username }}</td>
-                            <td>{{ post.createdAt|date('m/d/Y') }}</td>
-                        </a>
+                        <td>
+                            <a href="{{ path('show_post', {slug: post.slug}) }}">
+                                {{ post.title }}
+                            </a>
+                        </td>
+                        <td>{{ post.content|u.truncate(25, '...') }}</td>
+                        <td>{{ post.author.username }}</td>
+                        <td>{{ post.createdAt|date('m/d/Y') }}</td>
+
+                        {% if is_granted('ROLE_USER') %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <td><a href="{{ path('edit_post', {slug: post.slug}) }}">Edit</a></td>
+                                <td><a href="{{ path('edit_post', {slug: post.slug}) }}">Delete</a></td>
+                            {% endif %}
+                        {% endif %}
                     </tr>
 
                 {% endfor %}

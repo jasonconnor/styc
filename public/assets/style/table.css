@@ -2,24 +2,8 @@ table {
     border: 1px solid #000;
     border-collapse: collapse;
     border-radius: 2px;
-    width: 75%;
+    width: 85%;
     table-layout: fixed;
-}
-
-table th:nth-child(1) {
-    width: 30%;
-}
-
-table th:nth-child(2) {
-    width: 35%;
-}
-
-table th:nth-child(3) {
-    width: 20%
-}
-
-table th:nth-child(4) {
-    width: 15%;
 }
 
 th {

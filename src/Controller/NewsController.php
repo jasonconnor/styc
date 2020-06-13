@@ -28,8 +28,12 @@ class NewsController extends AbstractController
     /**
      * @Route("/news/{slug}", name="show_post")
      */
-    public function show($slug)
+    public function show($slug, PostRepository $repository)
     {
-        return new Response(sprintf(ucwords(str_replace('-', ' ', $slug))));
+        $post = $repository->findOneBy(['slug' => $slug]);
+
+        return $this->render('news/show.html.twig', [
+            'post' => $post
+        ]);
     }
 }

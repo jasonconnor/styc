@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Post;
 use App\Form\PostFormType;
+use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -36,29 +37,9 @@ class AdminController extends BaseController
     }
 
     /**
-     * @Route("/admin/new_admin", name="admin_new_admin")
+     * @Route("/admin/new-post", name="new_post", methods={"GET", "POST"})
      */
-    public function newAdmin(EntityManagerInterface $em)
-    {
-        $user = new User();
-        $user->setUsername('admin')
-            ->setRoles(['ROLE_ADMIN'])
-            ->setPassword($this->passwordEncoder->encodePassword(
-                $user,
-                'j4s0n3'
-            ))
-        ;
-
-        $em->persist($user);
-        $em->flush();
-
-        return new Response(sprintf('Successfully added user %s', $user->getUsername()));
-    }
-
-    /**
-     * @Route("/admin/new-post", name="new_post")
-     */
-    public function new(EntityManagerInterface $em, Request $request)
+    public function newPost(EntityManagerInterface $em, Request $request)
     {
         $form = $this->createForm(PostFormType::class);
 
@@ -85,9 +66,9 @@ class AdminController extends BaseController
     }
 
     /**
-     * @Route("/admin/edit/{slug}", name="edit_post")
+     * @Route("/admin/edit/{slug}", name="edit_post", methods={"GET", "POST"})
      */
-     public function edit(Post $post, Request $request, EntityManagerInterface $em)
+     public function editPost(Post $post, Request $request, EntityManagerInterface $em)
     {
         $form = $this->createForm(PostFormType::class, $post);
 
