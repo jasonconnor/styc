@@ -2,11 +2,29 @@
 
 {% block title %}Admin Dashboard{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('assets/style/admin.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block main %}
 
-    <h1>Admin Dashboard</h1>
+    <main>
+        <div class="wrapper">
 
-    <li><a href="{{ path('admin_new_user') }}">Create New User</a></li>
-    <li><a href="{{ path('admin_new_admin') }}">Create New Admin</a></li>
+            <h1>Admin Dashboard</h1>
+            <span>Welcome, {{ app.user.username }}</span>
+
+            <div class="dashboard">
+
+                <a href="{{ path('new_post') }}">Create a Post</a>
+
+                <a href="{{ path('news_index') }}">Review Posts</a>
+
+            </div>
+
+        </div>
+    </main>
+
 
 {% endblock %}

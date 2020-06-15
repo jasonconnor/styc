@@ -24,6 +24,30 @@ a:hover {
      
 }
 
+.success-flash {
+    background-color: limegreen;
+    border: 1px solid green;
+    border-radius: 5px;
+    color: #fff;
+    display: flex;
+    font-size: 18px;
+    justify-content: space-between;
+    margin: 10px auto -20px;
+    padding: 5px;
+    text-align: center;
+    width: 65%;
+    z-index: 5;
+}
+
+.close-flash {
+    cursor: pointer;
+    margin: auto 10px;
+}
+
+.close-flash:hover {
+    color: red;
+}
+
 /* [ Header Styles ] */
 
 header {

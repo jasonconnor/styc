@@ -19,8 +19,23 @@
     width: 400px;
 }
 
+.form-textarea {
+    border: 1px solid #888;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    height: 100px;
+    padding: 10px;
+    resize: none;
+    width: 400px;
+}
+
 .form-input:focus {
     border-color: #00f;
+}
+
+.form-textarea:focus {
+    border-color: #00f
 }
 
 .form-submit {

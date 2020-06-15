@@ -10,6 +10,30 @@
 {% block main %}
 
     <main>
+
+        <aside class="news">
+
+            {% for post in news %}
+
+                <article class="news-post">
+                    <h2 class="post-title">{{ post.title }}</h2>
+
+                    <div class="post-body">
+                        <p class="post-content">{{ post.content|u.truncate(100, '...') }}</p>
+
+                        <p class="post-date">{{ post.createdAt|ago }}</p>
+                    </div>
+                </article>
+
+            {% else %}
+
+                <p>No News Posts Found :( </p>
+
+            {% endfor %}
+
+        </aside>
+
+
         <div class="wrapper">
 
             <div class="intro">
@@ -50,28 +74,6 @@
             </div>
 
         </div>
-
-        <aside class="news">
-
-            {% for post in news %}
-
-                <article class="news-post">
-                    <h2 class="post-title">{{ post.title }}</h2>
-
-                    <div class="post-body">
-                        <p class="post-content">{{ post.content }}</p>
-
-                        <p class="post-date">{{ post.createdAt }}</p>
-                    </div>
-                </article>
-
-            {% else %}
-
-                <p>No News Posts Found :( </p>
-
-            {% endfor %}
-
-        </aside>
         
     </main>
 
