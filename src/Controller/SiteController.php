@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SiteController extends AbstractController
 {
     /**
-     * @Route("/", name="index")
+     * @Route("/", name="index", methods={"GET"})
      */
     public function index()
     {
@@ -22,7 +22,7 @@ class SiteController extends AbstractController
     }
 
     /**
-     * @Route("/play", name="play")
+     * @Route("/play", name="play", methods={"GET"})
      * @IsGranted("ROLE_USER")
      */
     public function play()
@@ -33,7 +33,7 @@ class SiteController extends AbstractController
     }
 
     /**
-     * @Route("/highscores", name="highscores")
+     * @Route("/highscores", name="highscores", methods={"GET"})
      */
     public function highscores(ScoreRepository $repository)
     {
@@ -45,7 +45,7 @@ class SiteController extends AbstractController
     }
 
     /**
-     * @Route("/save", name="save")
+     * @Route("/save", name="save", methods={"GET", "POST"})
      */
     public function save(Request $request, EntityManagerInterface $em) {
         $saveScore = $request->headers->get('Score');

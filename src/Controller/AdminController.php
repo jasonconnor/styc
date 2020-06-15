@@ -24,32 +24,12 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin", name="admin_index")
+     * @Route("/admin", name="admin_index", methods={"GET"})
      */
     public function index()
     {
         return $this->render('admin/index.html.twig', [
             
         ]);
-    }
-
-    /**
-     * @Route("/admin/new-admin", name="admin_new_admin")
-     */
-    public function newAdmin(EntityManagerInterface $em)
-    {
-        $user = new User();
-        $user->setUsername('admin')
-            ->setRoles(['ROLE_ADMIN'])
-            ->setPassword($this->passwordEncoder->encodePassword(
-                $user,
-                'j4s0n3'
-            ))
-        ;
-
-        $em->persist($user);
-        $em->flush();
-
-        return new Response(sprintf('Successfully added user %s', $user->getUsername()));
     }
 }
