@@ -2,6 +2,11 @@
 
 {% block title %}Admin Dashboard{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('assets/style/admin.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block main %}
 
     <main>
