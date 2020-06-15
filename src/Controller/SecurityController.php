@@ -27,7 +27,7 @@ class SecurityController extends BaseController
     }
 
     /**
-     * @Route("/login", name="login")
+     * @Route("/login", name="login", methods={"GET","POST"})
      */
     public function login(AuthenticationUtils $authenticationUtils)
     {
@@ -43,7 +43,7 @@ class SecurityController extends BaseController
     }
 
     /**
-     * @Route("/logout", name="logout")
+     * @Route("/logout", name="logout", methods={"GET"})
      */
     public function logout()
     {
@@ -51,7 +51,7 @@ class SecurityController extends BaseController
     }
 
     /**
-     * @Route("/register", name="register")
+     * @Route("/register", name="register", methods={"GET","POST"})
      */
     public function register(Request $request, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator)
     {
@@ -90,7 +90,7 @@ class SecurityController extends BaseController
 
 
     /**
-     * @Route("/account/password", name="change_password")
+     * @Route("/account/password", name="change_password", methods={"GET", "POST"})
      * @IsGranted("ROLE_USER")
      */
     public function changePassword(Request $request, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator)
@@ -126,25 +126,5 @@ class SecurityController extends BaseController
         return $this->render('security/changePassword.html.twig', [
             'changePasswordForm' => $form->createView()
         ]);
-    }
-
-    /**
-     * @Route("/admin/new-admin", name="admin_new_admin")
-     */
-    public function newAdmin(EntityManagerInterface $em)
-    {
-        $user = new User();
-        $user->setUsername('admin')
-            ->setRoles(['ROLE_ADMIN'])
-            ->setPassword($this->passwordEncoder->encodePassword(
-                $user,
-                'j4s0n3'
-            ))
-        ;
-
-        $em->persist($user);
-        $em->flush();
-
-        return new Response(sprintf('Successfully added user %s', $user->getUsername()));
     }
 }

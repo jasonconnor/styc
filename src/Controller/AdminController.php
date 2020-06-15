@@ -27,7 +27,7 @@ class AdminController extends BaseController
     }
 
     /**
-     * @Route("/admin", name="admin_index")
+     * @Route("/admin", name="admin_index", methods={"GET"})
      */
     public function index()
     {

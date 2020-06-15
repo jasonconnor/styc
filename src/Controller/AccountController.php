@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AccountController extends BaseController
 {
     /**
-     * @Route("/account", name="account")
+     * @Route("/account", name="account", methods={"GET"})
      */
     public function index()
     {

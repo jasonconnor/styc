@@ -55,6 +55,71 @@ class User implements UserInterface
     private $highestScore = 0;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $timesRan = 0;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $enemiesSlain = 0;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $potionsUsed = 0;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $attacksDealt = 0;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $criticalsDealt = 0;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $attacksTaken = 0;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $attacksDodged = 0;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $currencySpent = 0;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $damageDealt = 0;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $damageTaken = 0;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $healthReplenished = 0;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $highestDamageDealt = 0;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $highestDamageTaken = 0;
+  
+    /*
      * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="author")
      */
     private $posts;
@@ -193,6 +258,160 @@ class User implements UserInterface
         return $this;
     }
 
+    public function getTimesRan(): ?int
+    {
+        return $this->timesRan;
+    }
+
+    public function setTimesRan(int $timesRan): self
+    {
+        $this->timesRan = $timesRan;
+    }
+  
+  public function getEnemiesSlain(): ?int
+    {
+        return $this->enemiesSlain;
+    }
+
+    public function setEnemiesSlain(int $enemiesSlain): self
+    {
+        $this->enemiesSlain = $enemiesSlain;
+
+        return $this;
+    }
+
+    public function getPotionsUsed(): ?int
+    {
+        return $this->potionsUsed;
+    }
+
+    public function setPotionsUsed(int $potionsUsed): self
+    {
+        $this->potionsUsed = $potionsUsed;
+
+        return $this;
+    }
+
+    public function getAttacksDealt(): ?int
+    {
+        return $this->attacksDealt;
+    }
+
+    public function setAttacksDealt(int $attacksDealt): self
+    {
+        $this->attacksDealt = $attacksDealt;
+
+        return $this;
+    }
+
+    public function getCriticalsDealt(): ?int
+    {
+        return $this->criticalsDealt;
+    }
+
+    public function setCriticalsDealt(int $criticalsDealt): self
+    {
+        $this->criticalsDealt = $criticalsDealt;
+
+        return $this;
+    }
+
+    public function getAttacksTaken(): ?int
+    {
+        return $this->attacksTaken;
+    }
+
+    public function setAttacksTaken(int $attacksTaken): self
+    {
+        $this->attacksTaken = $attacksTaken;
+
+        return $this;
+    }
+
+    public function getAttacksDodged(): ?int
+    {
+        return $this->attacksDodged;
+    }
+
+    public function setAttacksDodged(int $attacksDodged): self
+    {
+        $this->attacksDodged = $attacksDodged;
+
+        return $this;
+    }
+
+    public function getCurrencySpent(): ?int
+    {
+        return $this->currencySpent;
+    }
+
+    public function setCurrencySpent(int $currencySpent): self
+    {
+        $this->currencySpent = $currencySpent;
+
+        return $this;
+    }
+
+    public function getDamageDealt(): ?int
+    {
+        return $this->damageDealt;
+    }
+
+    public function setDamageDealt(int $damageDealt): self
+    {
+        $this->damageDealt = $damageDealt;
+
+        return $this;
+    }
+
+    public function getDamageTaken(): ?int
+    {
+        return $this->damageTaken;
+    }
+
+    public function setDamageTaken(int $damageTaken): self
+    {
+        $this->damageTaken = $damageTaken;
+
+        return $this;
+    }
+
+    public function getHealthReplenished(): ?int
+    {
+        return $this->healthReplenished;
+    }
+
+    public function setHealthReplenished(int $healthReplenished): self
+    {
+        $this->healthReplenished = $healthReplenished;
+
+        return $this;
+    }
+
+    public function getHighestDamageDealt(): ?int
+    {
+        return $this->highestDamageDealt;
+    }
+
+    public function setHighestDamageDealt(int $highestDamageDealt): self
+    {
+        $this->highestDamageDealt = $highestDamageDealt;
+
+        return $this;
+    }
+
+    public function getHighestDamageTaken(): ?int
+    {
+        return $this->highestDamageTaken;
+    }
+
+    public function setHighestDamageTaken(int $highestDamageTaken): self
+    {
+        $this->highestDamageTaken = $highestDamageTaken;
+      
+        return $this;
+    }
+  
     /**
      * @return Collection|Post[]
      */

@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SiteController extends AbstractController
 {
     /**
-     * @Route("/", name="index")
+     * @Route("/", name="index", methods={"GET"})
      */
     public function index(PostRepository $repository)
     {
@@ -28,7 +28,7 @@ class SiteController extends AbstractController
     }
 
     /**
-     * @Route("/play", name="play")
+     * @Route("/play", name="play", methods={"GET"})
      * @IsGranted("ROLE_USER")
      */
     public function play()
@@ -39,7 +39,7 @@ class SiteController extends AbstractController
     }
 
     /**
-     * @Route("/highscores", name="highscores")
+     * @Route("/highscores", name="highscores", methods={"GET"})
      */
     public function highscores(ScoreRepository $repository)
     {
