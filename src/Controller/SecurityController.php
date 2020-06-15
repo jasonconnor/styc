@@ -123,7 +123,7 @@ class SecurityController extends BaseController
             );
         }        
 
-        return $this->render('account/changePassword.html.twig', [
+        return $this->render('security/changePassword.html.twig', [
             'changePasswordForm' => $form->createView()
         ]);
     }

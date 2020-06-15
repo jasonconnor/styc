@@ -1,7 +1,7 @@
 {% extends 'inc/base.html.twig' %}
-{% form_theme registrationForm _self %}
+{% form_theme postForm _self %}
 
-{% block title %}Register{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block form_row %}
     {%- set widget_attr = {} -%}
@@ -22,40 +22,43 @@
     <link href="{{ asset('assets/style/form.css') }}" rel="stylesheet">
 {% endblock %}
 
-
 {% block main %}
 
     <main>
         <div class="wrapper">
 
-            {{ form_start(registrationForm, {
-                attr: { 
-                    id: 'registrationForm',
+
+            {{ form_start(postForm, {
+                attr: {
+                    id: 'postForm',
                     class: 'app-form'
                     }
             }) }}
-
-                <h1>Register Your Account</h1>
                 
-                {{ form_row(registrationForm.username, {
+                <h1>{{ title }}</h1>
+
+            
+                {{ form_row(postForm.title, {
                     attr: {
-                            class: 'form-input',
-                            placeholder: 'Username'
-                        }
+                        class: 'form-input',
+                        placeholder: 'Post Title'
+                    }
+                }) }}
+                <br>
+
+                {{ form_row(postForm.content, {
+                    attr: {
+                        class: 'form-textarea',
+                        placeholder: 'Post content'
+                    }
                 }) }}
 
-                {{ form_row(registrationForm.plainPassword, {
-                    attr: {
-                            class: 'form-input',
-                            placeholder: 'Password'
-                        }
-                }) }}
+                <button class="form-submit" type="submit">Submit</button>
 
-                <button class="form-submit" type="submit">Register</button>
-
-            {{ form_end(registrationForm) }}
+            {{ form_end(postForm) }}
 
         </div>
     </main>
+
 
 {% endblock %}

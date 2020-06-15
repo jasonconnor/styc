@@ -118,10 +118,16 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $highestDamageTaken = 0;
+  
+    /*
+     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="author")
+     */
+    private $posts;
 
     public function __construct()
     {
         $this->scores = new ArrayCollection();
+        $this->posts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -260,11 +266,9 @@ class User implements UserInterface
     public function setTimesRan(int $timesRan): self
     {
         $this->timesRan = $timesRan;
-
-        return $this;
     }
-
-    public function getEnemiesSlain(): ?int
+  
+  public function getEnemiesSlain(): ?int
     {
         return $this->enemiesSlain;
     }
@@ -404,6 +408,37 @@ class User implements UserInterface
     public function setHighestDamageTaken(int $highestDamageTaken): self
     {
         $this->highestDamageTaken = $highestDamageTaken;
+      
+        return $this;
+    }
+  
+    /**
+     * @return Collection|Post[]
+     */
+    public function getPosts(): Collection
+    {
+        return $this->posts;
+    }
+
+    public function addPost(Post $post): self
+    {
+        if (!$this->posts->contains($post)) {
+            $this->posts[] = $post;
+            $post->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removePost(Post $post): self
+    {
+        if ($this->posts->contains($post)) {
+            $this->posts->removeElement($post);
+            // set the owning side to null (unless already changed)
+            if ($post->getAuthor() === $this) {
+                $post->setAuthor(null);
+            }
+        }
 
         return $this;
     }

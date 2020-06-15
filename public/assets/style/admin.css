@@ -1,0 +1,18 @@
+.dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 25px 0;
+    width: 100%;
+}
+
+.dashboard > a {
+    background: #00f;
+    border-radius: 5px;
+    color: #fff;
+    margin: auto;
+    padding: 10px 20px;
+}
+
+.dashboard > a:hover {
+    background: pink;
+}

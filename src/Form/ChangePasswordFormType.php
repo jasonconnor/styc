@@ -17,17 +17,19 @@ class ChangePasswordFormType extends AbstractType
             ->add('currentPassword', PasswordType::class, [
                 'label' => 'Current Password',
                 'attr' => [
-                    'class' => 'form-input'
+                    'class' => 'form-input',
                 ]
             ])
             ->add('newPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'first_options' => ['label' => 'New Password',
+                'first_options' => [
+                                    'label' => 'New Password',
                                     'attr' => [
                                         'class' => 'form-input',
                                         'placeholder' => 'New Password'
                                     ]      
-            ], 'second_options' => ['label' => 'Confirm New Password',
+            ], 'second_options' => [
+                                    'label' => 'Confirm New Password',
                                     'attr' => [
                                         'class' => 'form-input',
                                         'placeholder' => 'Confirm New Password'

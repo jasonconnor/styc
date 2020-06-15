@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
 use App\Entity\Score;
+use App\Repository\PostRepository;
 use App\Repository\ScoreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,9 +18,13 @@ class SiteController extends AbstractController
     /**
      * @Route("/", name="index", methods={"GET"})
      */
-    public function index()
+    public function index(PostRepository $repository)
     {
-        return $this->render('site/index.html.twig');
+        $news = $repository->findLatest10Posts();
+
+        return $this->render('site/index.html.twig', [
+            'news' => $news
+        ]);
     }
 
     /**
@@ -47,10 +53,15 @@ class SiteController extends AbstractController
     /**
      * @Route("/save", name="save", methods={"GET", "POST"})
      */
-    public function save(Request $request, EntityManagerInterface $em) {
+    public function save(Request $request, EntityManagerInterface $em) 
+    {
+        $user = $this->getUser();
+
+        // Fetch new scores from playthrough
         $saveScore = $request->headers->get('Score');
         $saveLevel = $request->headers->get('Level');
-        $user = $this->getUser();
+
+        // Fetch user's current best scores
         $currentHighestLevel = $user->getHighestLevel();
         $currentHighestScore = $user->getHighestScore();
 
@@ -58,7 +69,6 @@ class SiteController extends AbstractController
         $score->setUser($user)
             ->setScore($saveScore)
             ->setLevel($saveLevel)
-            ->setDate(new \DateTime)
         ;
 
         if ($saveLevel > $currentHighestLevel) {

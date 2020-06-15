@@ -16,16 +16,15 @@
 
         {% include 'inc/header.html.twig' %}
 
-        <main>
-            <div class="wrapper">
-                {% for message in app.flashes('success') %}
-                    <div class="">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-                {% block main %}{% endblock %}
+        {% for message in app.flashes('success') %}
+            <div class="success-flash">
+                <span>{{ message }}</span>
+
+                <span class="close-flash">&times;</span>
             </div>
-        </main>
+        {% endfor %}
+
+        {% block main %}{% endblock %}
 
         {% include 'inc/footer.html.twig' %}
 

@@ -10,3 +10,27 @@ header > .wrapper > h1 {
 header > .wrapper > a.playBtn {
     display: block;
 }
+
+main {
+    flex: unset;
+    justify-content: space-evenly;
+}
+
+main > .news {
+    border-radius: 6px;
+    box-shadow: 1px 4px 10px 0px rgba(0,0,0,0.75);
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin: 50px 0;
+    padding: 20px;
+    width: 300px
+}
+
+main > .wrapper {
+    width: 640px
+}
+
+.post-body {
+    display: none;
+}
