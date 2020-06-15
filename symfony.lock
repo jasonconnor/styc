@@ -84,6 +84,9 @@
     "gedmo/doctrine-extensions": {
         "version": "v2.4.41"
     },
+    "knplabs/knp-time-bundle": {
+        "version": "v1.11.0"
+    },
     "nikic/php-parser": {
         "version": "v4.3.0"
     },
@@ -331,6 +334,9 @@
         "version": "v5.0.1"
     },
     "symfony/string": {
+        "version": "v5.0.10"
+    },
+    "symfony/templating": {
         "version": "v5.0.10"
     },
     "symfony/translation": {

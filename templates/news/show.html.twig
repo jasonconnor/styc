@@ -4,20 +4,30 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <link href="{{ asset('assets/style/post.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block main %}
     <main>
         <div class="wrapper">
 
-            <h1>{{ post.title }}</h1>
+            <div class="post">
+                <div class="post-header">
+                    
+                    <h1>{{ post.title }}</h1>
+                    
+                    <span>{{ post.createdAt|ago }}</span><br>
+                    <span>by {{ post.author.username }}</span>                    
 
-            <p>{{ post.content }}<p>
+                </div>
+                <div class="post-body">
 
-            <p>by {{ post.author.username }}</p>
-            
-            <p>{{ post.createdAt|date('m/d/Y')}}</p>
+                    
 
+                    <p>{{ post.content }}<p>
+
+                </div>
+            </div>
 
         </div>
     </main>
