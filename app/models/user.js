@@ -13,7 +13,16 @@ const UserSchema = new Schema({
         required: true,
         max: 20,
         min: 5
+    },
+    topScore: {
+        type: Number,
+        default: 0
+    },
+    topLevel: {
+        type: Number,
+        default: 0
     }
+
 })
 
 module.exports = mongoose.model('User', UserSchema)
