@@ -1,4 +1,4 @@
-const Post = require('./src/models/post')
+const Post = require('../models/post')
 
 
 // GET all Posts

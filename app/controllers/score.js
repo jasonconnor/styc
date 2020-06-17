@@ -1,4 +1,4 @@
-const Score = require('./src/models/score')
+const Score = require('./app/models/score')
 
 // GET all Scores desc by score
 exports.get_top_scores = function(req, res) {

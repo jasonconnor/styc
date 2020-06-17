@@ -2,10 +2,10 @@
   "name": "styc",
   "version": "1.0.0",
   "description": "Text-Based Hack & Slash Adventure Game",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node app",
-    "server": "nodemon app"
+    "start": "node index",
+    "server": "nodemon index"
   },
   "repository": {
     "type": "git",
