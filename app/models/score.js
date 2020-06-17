@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-const ScoreSchema = new mongoose.Schema({
+const ScoreSchema = new Schema({
     score: {
         type: Number,
         required: true,
