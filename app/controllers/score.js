@@ -1,7 +1,7 @@
-const Score = require('./app/models/score')
+const Score = require('../models/score')
 
 // GET all Scores desc by score
-exports.get_top_scores = function(req, res) {
+exports.get_highscores = function(req, res) {
     res.send('Coming Soon: Highschores desc by score')
 }
 

@@ -1,4 +1,4 @@
-const User = require('./app/models/user')
+const User = require('../models/user')
 
 
 // GET all Users
