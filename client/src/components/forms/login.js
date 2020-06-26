@@ -1,4 +1,6 @@
 import React from 'react'
+import '../../style/form.scss'
+
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -8,6 +10,12 @@ class LoginForm extends React.Component {
         value: ''
       },
       password: {
+        value: ''
+      },
+      usernameError: {
+        value: ''
+      },
+      passwordError: {
         value: ''
       }
     }
@@ -38,6 +46,7 @@ class LoginForm extends React.Component {
         <input
           type='text'
           name='username'
+          placeholder='username'
           value={this.state.username.value}
           onChange={this.handleChange}
         />
@@ -46,6 +55,7 @@ class LoginForm extends React.Component {
         <input
           type='text'
           name='password'
+          placeholder='password'
           value={this.state.password.value}
           onChange={this.handleChange}
         />
