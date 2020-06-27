@@ -1,27 +1,19 @@
 import React from 'react'
 import '../../style/form.scss'
 
+const initialState = {
+  username: '',
+  password: ''
+}
 
 class LoginForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      username: {
-        value: ''
-      },
-      password: {
-        value: ''
-      },
-      usernameError: {
-        value: ''
-      },
-      passwordError: {
-        value: ''
-      }
-    }
+    this.state = initialState
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.validateForm = this.validateForm.bind(this)
   }
 
   handleChange(event) {
@@ -30,13 +22,22 @@ class LoginForm extends React.Component {
     const value = target.value
 
     this.setState({
-        [name]: value
+      [name]: value
     })
   }
 
+  validateForm() {
+    return true
+  }
+
   handleSubmit(event) {
-    alert('You submitted: ' + this.state.username + ' || ' + this.state.password)
     event.preventDefault()
+    const isValid = this.validateForm()
+
+    if (isValid) {
+      console.log(this.state)
+      this.setState(initialState)
+    }
   }
 
   render() {
@@ -47,7 +48,7 @@ class LoginForm extends React.Component {
           type='text'
           name='username'
           placeholder='username'
-          value={this.state.username.value}
+          value={this.state.username}
           onChange={this.handleChange}
         />
 
@@ -56,7 +57,7 @@ class LoginForm extends React.Component {
           type='text'
           name='password'
           placeholder='password'
-          value={this.state.password.value}
+          value={this.state.password}
           onChange={this.handleChange}
         />
 
