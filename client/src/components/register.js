@@ -1,5 +1,6 @@
 import React from 'react'
 import TextInput from './forms/input'
+import validator from './forms/validator'
 import '../style/form.scss'
 
 const initialState = {
@@ -24,10 +25,10 @@ const initialState = {
       value: '',
       placeholder: 'Email (Optional)',
       touched: false,
-      valid: false,
+      valid: true,
       error: '',
       validation: {
-        required: true,
+        required: false,
         email: true
       }
     },
@@ -55,15 +56,38 @@ class RegisterForm extends React.Component {
     this.state = initialState
     
     this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange(event) {
+    const name = event.target.name
+    const value = event.target.value
 
+    const updatedForm = {...this.state.form}
+    const updatedField = {...updatedForm[name]}
+
+    updatedField.value = value
+    updatedField.touched = true
+    updatedField.valid = validator.validate(value, updatedField.validation)
+
+    !updatedField.valid ? updatedField.error = updatedField.name + ' is invalid' : updatedField.error = ''
+
+    updatedForm[name] = updatedField
+
+    this.setState({
+      form: updatedForm
+    })
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()
+    console.log(this.state)
   }
 
   render() {
     return (
-      <form noValidate>
+
+      <form onSubmit={this.handleSubmit} noValidate>
         <h1>Register</h1>
 
         <TextInput
@@ -77,6 +101,8 @@ class RegisterForm extends React.Component {
           onChange={this.handleChange}
         />
 
+        <p>{this.state.form.username.valid.toString()}</p>
+
         <TextInput
           type={this.state.form.email.type}
           name={this.state.form.email.name}
@@ -88,6 +114,8 @@ class RegisterForm extends React.Component {
           onChange={this.handleChange}
         />
 
+        <p>{this.state.form.email.valid.toString()}</p>
+
         <TextInput
           type={this.state.form.password.type}
           name={this.state.form.password.name}
@@ -98,6 +126,8 @@ class RegisterForm extends React.Component {
           error={this.state.form.password.error}
           onChange={this.handleChange}
         />
+
+        <p>{this.state.form.password.valid.toString()}</p>
 
         <input
           type='submit'

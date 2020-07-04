@@ -1,7 +1,16 @@
 form {
+  align-content: center;
   background: #ccc;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
 
   .form-group {
-    background: green;
+    display: flex;
+    flex-direction: column;
+
+    .input-error {
+      border: 1px solid red;
+    }
   }
 }
