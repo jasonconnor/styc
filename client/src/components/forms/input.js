@@ -11,9 +11,14 @@ function TextInput(props) {
         name={props.name}
         value={props.value}
         placeholder={props.placeholder}
+        className={props.className}
+        touched={props.touched}
+        valid={props.value}
+        error={props.error}
+        onChange={props.onChange}
       />
 
-      <span></span>
+      <span className='error-msg'>{props.error}</span>
 
     </div>
   )
