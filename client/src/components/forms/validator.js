@@ -9,8 +9,6 @@ class Validator {
     if (validation.hasOwnProperty('required')) {
       if (validation.required) {
         isValid = this.requiredValidator(value)
-      } else {
-        isValid = true
       }
     }
 
