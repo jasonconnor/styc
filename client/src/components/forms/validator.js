@@ -12,11 +12,19 @@ class Validator {
       }
     }
 
+    if (validation.hasOwnProperty('minLength')) {
+      isValid = this.minLengthValidator(value, validation.minLength)
+    }
+
     return isValid
   }
 
   requiredValidator(value) {
     return value.trim() !== ''
+  }
+
+  minLengthValidator(value, minLength) {
+    return value.length >= minLength
   }
 }
 

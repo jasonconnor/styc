@@ -15,7 +15,7 @@ const initialState = {
       error: '',
       validation: {
         required: true,
-        minLength: 2,
+        minLength: 3,
         maxLength: 15
       }
     },
