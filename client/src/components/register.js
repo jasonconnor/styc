@@ -28,7 +28,6 @@ const initialState = {
       valid: true,
       error: '',
       validation: {
-        required: false,
         email: true
       }
     },
@@ -73,7 +72,7 @@ class RegisterForm extends React.Component {
 
     updatedField.valid = validation.isValid
 
-    updatedField.error = !updatedField.valid ? updatedField.name + validation.error : ''
+    updatedField.error = !updatedField.valid ? `${updatedField.name} ${validation.error}`  : ''
 
     updatedForm[name] = updatedField
 
