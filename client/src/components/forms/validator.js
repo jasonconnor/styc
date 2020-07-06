@@ -61,7 +61,7 @@ class Validator {
    * @param value - user input `value` in form input
    */
   isInvalidRequired(value) {
-    return value.trim() == "";
+    return value.trim() === "";
   }
 
   isInvalidMinLength(value, minLength) {

@@ -1,5 +1,6 @@
 form {
   align-content: center;
+  border: 1px solid blue;
   background: #ccc;
   display: flex;
   flex-direction: column;
@@ -11,6 +12,11 @@ form {
 
     .input-error {
       border: 1px solid red;
+    }
+
+    .error-msg {
+      color: red;
+      font-size: small;
     }
   }
 }
