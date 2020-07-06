@@ -4,11 +4,13 @@ import validator from './forms/validator'
 import '../style/form.scss'
 
 const initialState = {
+  formIsValid: false,
   form: {
     username: {
       type: 'text',
       name: 'username',
       value: '',
+      label: 'Username',
       placeholder: 'Username',
       touched: false,
       valid: false,
@@ -24,6 +26,7 @@ const initialState = {
       type: 'email',
       name: 'email',
       value: '',
+      label: 'Email',
       placeholder: 'Email (Optional)',
       touched: false,
       valid: true,
@@ -36,6 +39,7 @@ const initialState = {
       type: 'password',
       name: 'password',
       value: '',
+      label: 'Password',
       placeholder: 'Password',
       touched: false,
       valid: false,
@@ -73,19 +77,27 @@ class RegisterForm extends React.Component {
     const validation = validator.isValid(value, updatedField.validation)
 
     updatedField.valid = validation.isValid
-
-    updatedField.error = !updatedField.valid ? `${updatedField.name} ${validation.error}`  : ''
+    updatedField.error = !updatedField.valid ? `${updatedField.label} ${validation.error}`  : ''
 
     updatedForm[name] = updatedField
 
+    let isFormValid = true
+    for (let input in updatedForm) {
+      if (!updatedForm[input].valid){
+        isFormValid = false
+      }
+    }
+
     this.setState({
-      form: updatedForm
+      form: updatedForm,
+      formIsValid: isFormValid
     })
   }
 
   handleSubmit(event) {
     event.preventDefault()
     console.log(this.state)
+    this.setState(initialState)
   }
 
   render() {
@@ -98,6 +110,7 @@ class RegisterForm extends React.Component {
           type={this.state.form.username.type}
           name={this.state.form.username.name}
           value={this.state.form.username.value}
+          label={this.state.form.username.label}
           placeholder={this.state.form.username.placeholder}
           touched={this.state.form.username.touched}
           valid={this.state.form.username.valid}
@@ -105,12 +118,11 @@ class RegisterForm extends React.Component {
           onChange={this.handleChange}
         />
 
-        <p>{this.state.form.username.valid.toString()}</p>
-
         <TextInput
           type={this.state.form.email.type}
           name={this.state.form.email.name}
           value={this.state.form.email.value}
+          label={this.state.form.email.label}
           placeholder={this.state.form.email.placeholder}
           touched={this.state.form.email.touched}
           valid={this.state.form.email.valid}
@@ -118,12 +130,11 @@ class RegisterForm extends React.Component {
           onChange={this.handleChange}
         />
 
-        <p>{this.state.form.email.valid.toString()}</p>
-
         <TextInput
           type={this.state.form.password.type}
           name={this.state.form.password.name}
           value={this.state.form.password.value}
+          label={this.state.form.password.label}
           placeholder={this.state.form.password.placeholder}
           touched={this.state.form.password.touched}
           valid={this.state.form.password.valid}
@@ -131,11 +142,10 @@ class RegisterForm extends React.Component {
           onChange={this.handleChange}
         />
 
-        <p>{this.state.form.password.valid.toString()}</p>
-
         <input
           type='submit'
           value='Register'
+          disabled={!this.state.formIsValid}
         />
 
       </form>

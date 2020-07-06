@@ -10,12 +10,13 @@ function TextInput(props) {
   return (
     <div className='form-group'>
 
-      <label>{props.name}</label>
+      <label>{props.label}</label>
 
       <input
         type={props.type}
         name={props.name}
         value={props.value}
+        label={props.label}
         placeholder={props.placeholder}
         className={className}
         touched={props.touched}
