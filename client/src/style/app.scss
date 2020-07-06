@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  border: 1px solid yellow;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  .wrapper {
+    align-items: center;
+    border: 1px solid green;
+    display: flex;
+    flex-direction: column;
+    width: 1080px
+  }
+}

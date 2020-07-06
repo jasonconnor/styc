@@ -1,17 +1,22 @@
 form {
+  align-content: center;
+  border: 1px solid blue;
+  background: #ccc;
   display: flex;
   flex-direction: column;
-  width: 150px;
-  margin: 0 auto;
+  width: 25%;
 
-  input[type='text'] {
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    padding: 5px;
-  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
 
-  .form-error {
-    color: red;
-    font-size: small;
+    .input-error {
+      border: 1px solid red;
+    }
+
+    .error-msg {
+      color: red;
+      font-size: small;
+    }
   }
 }

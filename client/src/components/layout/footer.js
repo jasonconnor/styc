@@ -4,7 +4,9 @@ function Footer() {
   return (
     <footer>
       <div className='wrapper'>
+
         (footer)
+
       </div>
     </footer>
   )
