@@ -68,9 +68,12 @@ class RegisterForm extends React.Component {
 
     updatedField.value = value
     updatedField.touched = true
-    updatedField.valid = validator.validate(value, updatedField.validation)
 
-    !updatedField.valid ? updatedField.error = updatedField.name + ' is invalid' : updatedField.error = ''
+    const validation = validator.isValid(value, updatedField.validation)
+
+    updatedField.valid = validation.isValid
+
+    updatedField.error = !updatedField.valid ? updatedField.name + validation.error : ''
 
     updatedForm[name] = updatedField
 

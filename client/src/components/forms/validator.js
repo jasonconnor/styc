@@ -1,30 +1,44 @@
 class Validator {
-  constructor() {
-    this.requiredValidator = this.requiredValidator.bind(this)
-  }
 
-  validate(value, validation) {
-    let isValid = true
+  isValid(value, validation) {
+    let requiredError, 
+        minLengthError,
+        maxLengthError = false
+    let error = ''
 
     if (validation.hasOwnProperty('required')) {
       if (validation.required) {
-        isValid = this.requiredValidator(value)
+        requiredError = this.isInvalidRequired(value)
+        error =  requiredError ? ' is required.' : ''
       }
     }
 
     if (validation.hasOwnProperty('minLength')) {
-      isValid = this.minLengthValidator(value, validation.minLength)
+      minLengthError = this.isInvalidMinLength(value, validation.minLength)
+      error = minLengthError ? ' must be at least ' + validation.minLength + ' characters long.' :  ''
     }
 
-    return isValid
+    if (validation.hasOwnProperty('maxLength')) {
+      maxLengthError = this.isInvalidMaxLength(value, validation.maxLength)
+      error = maxLengthError ? ' can only be ' + validation.maxLength + ' characters long.' : ''
+    }
+
+    return {
+      isValid: !(requiredError || minLengthError || maxLengthError),
+      error: error
+    }
   }
 
-  requiredValidator(value) {
-    return value.trim() !== ''
+  isInvalidRequired(value) {
+    return value.trim() == ''
   }
 
-  minLengthValidator(value, minLength) {
-    return value.length >= minLength
+  isInvalidMinLength(value, minLength) {
+    return value.length < minLength
+  }
+
+  isInvalidMaxLength(value, maxLength) {
+    return value.length > maxLength
   }
 }
 
