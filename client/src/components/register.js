@@ -16,7 +16,8 @@ const initialState = {
       validation: {
         required: true,
         minLength: 3,
-        maxLength: 15
+        maxLength: 15,
+        specialChars: true
       }
     },
     email: {
@@ -42,7 +43,8 @@ const initialState = {
       validation: {
         required: true,
         minLength: 5,
-        maxLength: 20
+        maxLength: 20,
+        specialChars: true
       }
     }
   }

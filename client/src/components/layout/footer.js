@@ -5,7 +5,7 @@ function Footer() {
     <footer>
       <div className='wrapper'>
 
-        (header)
+        (footer)
 
       </div>
     </footer>
