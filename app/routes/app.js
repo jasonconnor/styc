@@ -19,9 +19,16 @@ router.post('/register', [
     }).bail()
     .escape(),
   body('email')
-    .optional({ checkFalsy: true }),
+    .optional({ nullable: true }).bail()
+    .custom(async value => {
+      const user = await User.findOne({ email: value })
+      if (user) {
+        return Promise.reject('Email is already registered')
+      }
+    }).bail()
+    .normalizeEmail(),
   body('password')
     .escape()
-],userController.register)
+], userController.register)
 
 module.exports = router;
