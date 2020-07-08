@@ -98,11 +98,11 @@ class RegisterForm extends React.Component {
   async handleSubmit(event) {
     event.preventDefault()
 
-    const email = this.state.form.email.value !== ''
+    let email = this.state.form.email.value
       ? this.state.form.email.value
       : undefined
 
-    const user = {
+    let user = {
       username: this.state.form.username.value,
       email: email,
       password: this.state.form.password.value
@@ -115,11 +115,11 @@ class RegisterForm extends React.Component {
         body: JSON.stringify(user)
       }
 
-      const result = await fetch('/register', settings)
+      let result = await fetch('/register', settings)
 
       console.log(result)
     } catch(error) {
-      console.log(error.response)
+      console.log(error)
     }
 
     this.setState(initialState)

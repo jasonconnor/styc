@@ -5,14 +5,14 @@ const { body } = require('express-validator')
 const User = require('../models/user')
 const userController = require('../controllers/user')
 
-router.get('/', function(req, res) {
+router.get('/', (req, res) => {
   res.send('App Index')
 })
 
 router.post('/register', [
   body('username')
     .custom(async value => {
-      const user = await User.findOne({ username: value })
+      let user = await User.findOne({ username: value })
       if (user) {
         return Promise.reject('Username is already registered')
       }
@@ -21,7 +21,7 @@ router.post('/register', [
   body('email')
     .optional({ nullable: true }).bail()
     .custom(async value => {
-      const user = await User.findOne({ email: value })
+      let user = await User.findOne({ email: value })
       if (user) {
         return Promise.reject('Email is already registered')
       }
