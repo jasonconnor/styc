@@ -1,43 +1,50 @@
+const { body, validationResult } = require('express-validator')
+
+
 const User = require('../models/user')
 
+exports.register = [
+  body('username')
+    .isLength({ min: 3 }).trim()
+      .withMessage('Username must be at least 3 characters long.')
+    .isLength({ max: 15 }).trim()
+      .withMessage('Username can only be 15 characters long')
+    .isAlphanumeric()
+      .withMessage('Username cannot contain any special characters')
+    .custom(async value => {
+      const user = await User.findOne({ username: value })
+      if (user) {
+        return Promise.reject('Username is already registered')
+      }
+    })
+    .escape(),
+  body('email')
+    .optional({ checkFalsy: true })
+    .isEmail()
+      .withMessage('Email is invalid')
+    .custom(async value => {
+      const user = await User.findOne({ email: value })
+      if (user) {
+        return Promise.reject('Email is already registered')
+      }
+    })
+    .normalizeEmail(),
+  body('password')
+    .isLength({ min: 5 }).trim()
+      .withMessage('Password must be at least 5 characters long.')
+    .isLength({ max: 20 }).trim()
+      .withMessage('Password can only be 20 characters long.')
+    .isAlphanumeric()
+      .withMessage('Password cannot contain any special characters')
+    .escape(),
+], async function(req, res) {
+  const errors = validationResult(req)
 
-// GET all Users
-exports.user_list = function(req, res) {
-    res.send('Coming Soon: user List')
-}
+  if(!errors.isEmpty()) {
+    console.log(errors.array())
+  } else {
 
+  }
 
-// GET User by username
-exports.user_details = function(req, res) {
-    res.send('Coming Soon: user Details')
-}
-
-
-// GET and POST methods for Creating New Users
-exports.get_new_user = function(req, res) {
-    res.send('Coming Soon: GET function for new users')
-}
-
-exports.submit_new_user = function(req, res) {
-    res.send('Coming Soon: POST function for new users')
-}
-
-
-// Get + POST methods for Editing Users
-exports.get_user_edit = function(req, res) {
-    res.send('Coming Soon: GET function for editing users')
-}
-
-exports.submit_user_edit = function(req, res) {
-    res.send('Coming Soon: POST function for editing users')
-}
-
-
-// GET + POST methods for Deleting Users
-exports.get_user_delete = function(req, res) {
-    res.send('Coming Soon: GET function for deleting users')
-}
-
-exports.submit_user_delete = function(req, res) {
-    res.send('Coming Soon: POST function for deleting users')
+  res.send('Coming Soon: POST function for new users')
 }
