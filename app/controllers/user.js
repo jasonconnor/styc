@@ -1,43 +1,27 @@
+const bcrypt = require('bcrypt')
+const { validationResult } = require('express-validator')
+
 const User = require('../models/user')
 
+exports.register = async (req, res) => {
+  let errors = validationResult(req)
 
-// GET all Users
-exports.user_list = function(req, res) {
-    res.send('Coming Soon: user List')
-}
+  if(!errors.isEmpty()) {
+   return res.status(422).json({ errors: errors.array() })
+  } else {
+    try {
+      let { username, email, password } = req.body
+      let user = new User({ username, email, password })
 
-
-// GET User by username
-exports.user_details = function(req, res) {
-    res.send('Coming Soon: user Details')
-}
-
-
-// GET and POST methods for Creating New Users
-exports.get_new_user = function(req, res) {
-    res.send('Coming Soon: GET function for new users')
-}
-
-exports.submit_new_user = function(req, res) {
-    res.send('Coming Soon: POST function for new users')
-}
-
-
-// Get + POST methods for Editing Users
-exports.get_user_edit = function(req, res) {
-    res.send('Coming Soon: GET function for editing users')
-}
-
-exports.submit_user_edit = function(req, res) {
-    res.send('Coming Soon: POST function for editing users')
-}
-
-
-// GET + POST methods for Deleting Users
-exports.get_user_delete = function(req, res) {
-    res.send('Coming Soon: GET function for deleting users')
-}
-
-exports.submit_user_delete = function(req, res) {
-    res.send('Coming Soon: POST function for deleting users')
+      let salt = await bcrypt.genSalt(10)
+      user.password = await bcrypt.hash(password, salt)
+    
+      await user.save()
+      
+      res.send('User registered.')
+    } catch(error) {
+      console.error(error)
+      return res.status(422).json(error)
+    }
+  }
 }

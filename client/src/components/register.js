@@ -3,6 +3,7 @@ import TextInput from './forms/input'
 import validator from './forms/validator'
 import '../style/form.scss'
 
+
 const initialState = {
   formIsValid: false,
   form: {
@@ -94,9 +95,33 @@ class RegisterForm extends React.Component {
     })
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault()
-    console.log(this.state)
+
+    let email = this.state.form.email.value
+      ? this.state.form.email.value
+      : undefined
+
+    let user = {
+      username: this.state.form.username.value,
+      email: email,
+      password: this.state.form.password.value
+    }
+    
+    try {
+      const settings = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(user)
+      }
+
+      let result = await fetch('/register', settings)
+
+      console.log(result)
+    } catch(error) {
+      console.log(error)
+    }
+
     this.setState(initialState)
   }
 
