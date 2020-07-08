@@ -1,12 +1,27 @@
 const express = require('express')
 const router = express.Router()
+const { body } = require('express-validator')
 
+const User = require('../models/user')
 const userController = require('../controllers/user')
 
 router.get('/', function(req, res) {
-    res.send('App Index')
+  res.send('App Index')
 })
 
-router.post('/register', userController.register)
+router.post('/register', [
+  body('username')
+    .custom(async value => {
+      const user = await User.findOne({ username: value })
+      if (user) {
+        return Promise.reject('Username is already registered')
+      }
+    }).bail()
+    .escape(),
+  body('email')
+    .optional({ checkFalsy: true }),
+  body('password')
+    .escape()
+],userController.register)
 
 module.exports = router;

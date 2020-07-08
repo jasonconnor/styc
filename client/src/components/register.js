@@ -98,9 +98,13 @@ class RegisterForm extends React.Component {
   async handleSubmit(event) {
     event.preventDefault()
 
+    const email = this.state.form.email.value !== ''
+      ? this.state.form.email.value
+      : undefined
+
     const user = {
       username: this.state.form.username.value,
-      email: this.state.form.email.value,
+      email: email,
       password: this.state.form.password.value
     }
     
