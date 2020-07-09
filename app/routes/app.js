@@ -31,4 +31,4 @@ router.post('/register', [
     .escape()
 ], userController.register)
 
-module.exports = router;
+module.exports = router
