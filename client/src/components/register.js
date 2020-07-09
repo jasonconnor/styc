@@ -3,7 +3,6 @@ import TextInput from './forms/input'
 import validator from './forms/validator'
 import '../style/form.scss'
 
-
 const initialState = {
   formIsValid: false,
   form: {
@@ -66,16 +65,16 @@ class RegisterForm extends React.Component {
   }
 
   handleChange(event) {
-    const name = event.target.name
-    const value = event.target.value
+    let name = event.target.name
+    let value = event.target.value
 
-    const updatedForm = {...this.state.form}
-    const updatedField = {...updatedForm[name]}
+    let updatedForm = {...this.state.form}
+    let updatedField = {...updatedForm[name]}
 
     updatedField.value = value
     updatedField.touched = true
 
-    const validation = validator.isValid(value, updatedField.validation)
+    let validation = validator.isValid(value, updatedField.validation)
 
     updatedField.valid = validation.isValid
     updatedField.error = !updatedField.valid ? `${updatedField.label} ${validation.error}`  : ''
