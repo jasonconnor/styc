@@ -15,7 +15,8 @@ const initialState = {
       valid: false,
       error: '',
       validation: {
-        required: true
+        required: true,
+        login: true
       }
     },
     password: {
@@ -28,7 +29,8 @@ const initialState = {
       valid: false,
       error: '',
       validation: {
-        required: true
+        required: true,
+        specialChars: true
       }
     }
   }

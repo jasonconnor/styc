@@ -103,8 +103,8 @@ class RegisterForm extends React.Component {
 
     let user = {
       username: this.state.form.username.value,
-      email: email,
-      password: this.state.form.password.value
+      password: this.state.form.password.value,
+      email: email
     }
     
     try {
