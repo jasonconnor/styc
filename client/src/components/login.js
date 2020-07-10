@@ -1,5 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import TextInput from './forms/input'
+import validator from './forms/validator'
 import '../style/form.scss'
 
 const initialState = {
@@ -55,17 +57,32 @@ class LoginForm extends React.Component {
 
     updatedField.value = value
     updatedField.touched = true
-    updatedField.valid = true
+    
+    let validation = validator.isValid(value, updatedField.validation)
+
+    updatedField.valid = validation.isValid
+    updatedField.error = !updatedField.valid
+      ? `${updatedField.label} ${validation.error}`
+      : ''
 
     updatedForm[name] = updatedField
 
+    let isFormValid = true
+    for(let input in updatedForm) {
+      if (!updatedForm[input].valid) {
+        isFormValid = false
+      }
+    }
+
     this.setState({
-      form: updatedForm
+      form: updatedForm,
+      formIsValid: isFormValid
     })
   }
 
   handleSubmit(event) {
-
+    event.preventDefault()
+    this.setState(initialState)
   }
 
   render() {
@@ -85,8 +102,6 @@ class LoginForm extends React.Component {
           onChange={this.handleChange}
         />
 
-        <p>{this.state.form.username.valid.toString()}</p>
-
         <TextInput
           type={this.state.form.password.type}
           name={this.state.form.password.name}
@@ -99,11 +114,12 @@ class LoginForm extends React.Component {
           onChange={this.handleChange}
         />
 
-        <p>{this.state.form.password.valid.toString()}</p>
+        <Link to='/register'>Register</Link>
 
         <input
           type='submit'
           value='Log In'
+          disabled={!this.state.formIsValid}
         />
 
       </form>
