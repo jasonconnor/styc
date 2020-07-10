@@ -4,6 +4,7 @@ class Validator {
       minLengthError,
       maxLengthError,
       emailError,
+      loginError,
       specialCharsError = false;
     let error = ''
 
@@ -65,6 +66,21 @@ class Validator {
       }
     }
 
+    if (validation.hasOwnProperty('login')) {
+      loginError = this.isInvalidLogin(value)
+
+      error = loginError
+        ? ' is invalid.'
+        : ''
+
+        if (loginError) {
+          return {
+            isValid: !loginError,
+            error: error
+          }
+        }
+    }
+
     if (validation.hasOwnProperty('specialChars')) {
       specialCharsError = this.hasSpecialChars(value)
 
@@ -103,9 +119,16 @@ class Validator {
   }
 
   isInvalidEmail(value) {
-    if (value !== '') {
+    if (value) {
       let regexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
       return !regexp.test(String(value).toLowerCase())
+    }
+  }
+
+  isInvalidLogin(value) {
+    if (value) {
+      let regexp = /^[0-9a-zA-Z_@.]+$/
+      return !regexp.test(String(value))
     }
   }
 

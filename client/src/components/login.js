@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import TextInput from './forms/input'
 import validator from './forms/validator'
 import '../style/form.scss'
@@ -11,28 +12,13 @@ const initialState = {
       name: 'username',
       value: '',
       label: 'Username',
-      placeholder: 'Username',
+      placeholder: 'username/email',
       touched: false,
       valid: false,
       error: '',
       validation: {
         required: true,
-        minLength: 3,
-        maxLength: 15,
-        specialChars: true
-      }
-    },
-    email: {
-      type: 'email',
-      name: 'email',
-      value: '',
-      label: 'Email',
-      placeholder: 'Email (Optional)',
-      touched: false,
-      valid: true,
-      error: '',
-      validation: {
-        email: true
+        login: true
       }
     },
     password: {
@@ -46,20 +32,18 @@ const initialState = {
       error: '',
       validation: {
         required: true,
-        minLength: 5,
-        maxLength: 20,
         specialChars: true
       }
     }
   }
 }
 
-class RegisterForm extends React.Component {
+class LoginForm extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = initialState
-    
+
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -73,18 +57,18 @@ class RegisterForm extends React.Component {
 
     updatedField.value = value
     updatedField.touched = true
-
+    
     let validation = validator.isValid(value, updatedField.validation)
 
     updatedField.valid = validation.isValid
-    updatedField.error = !updatedField.valid 
-      ? `${updatedField.label} ${validation.error}` 
+    updatedField.error = !updatedField.valid
+      ? `${updatedField.label} ${validation.error}`
       : ''
 
     updatedForm[name] = updatedField
 
     let isFormValid = true
-    for (let input in updatedForm) {
+    for(let input in updatedForm) {
       if (!updatedForm[input].valid) {
         isFormValid = false
       }
@@ -96,41 +80,15 @@ class RegisterForm extends React.Component {
     })
   }
 
-  async handleSubmit(event) {
+  handleSubmit(event) {
     event.preventDefault()
-
-    let email = this.state.form.email.value
-      ? this.state.form.email.value
-      : undefined
-
-    let user = {
-      username: this.state.form.username.value,
-      password: this.state.form.password.value,
-      email: email
-    }
-    
-    try {
-      const settings = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
-      }
-
-      let result = await fetch('/register', settings)
-
-      console.log(result)
-    } catch(error) {
-      console.log(error)
-    }
-
     this.setState(initialState)
   }
 
   render() {
     return (
-
-      <form onSubmit={this.handleSubmit} noValidate>
-        <h1>Register</h1>
+      <form noValidate>
+        <h1>Log In</h1>
 
         <TextInput
           type={this.state.form.username.type}
@@ -141,18 +99,6 @@ class RegisterForm extends React.Component {
           touched={this.state.form.username.touched}
           valid={this.state.form.username.valid}
           error={this.state.form.username.error}
-          onChange={this.handleChange}
-        />
-
-        <TextInput
-          type={this.state.form.email.type}
-          name={this.state.form.email.name}
-          value={this.state.form.email.value}
-          label={this.state.form.email.label}
-          placeholder={this.state.form.email.placeholder}
-          touched={this.state.form.email.touched}
-          valid={this.state.form.email.valid}
-          error={this.state.form.email.error}
           onChange={this.handleChange}
         />
 
@@ -168,9 +114,11 @@ class RegisterForm extends React.Component {
           onChange={this.handleChange}
         />
 
+        <Link to='/register'>Register</Link>
+
         <input
           type='submit'
-          value='Register'
+          value='Log In'
           disabled={!this.state.formIsValid}
         />
 
@@ -179,4 +127,4 @@ class RegisterForm extends React.Component {
   }
 }
 
-export default RegisterForm
+export default LoginForm
