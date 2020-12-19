@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 
-import User from '../models/user.js';
+import User from '../models/UserModel.js';
 
 export const register = async (req, res) => {
   let userExists = null;
@@ -54,5 +54,13 @@ export const register = async (req, res) => {
 }
 
 export const login = async (req, res) => {
+
+}
+
+export const logout = (req, res) => {
+
+}
+
+export const refreshToken = (req, res) => {
 
 }

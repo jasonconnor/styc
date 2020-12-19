@@ -2,7 +2,7 @@ import express from 'express';
 
 import connect from './conf/db.js';
 
-import AuthRouter from './src/routes/auth.js';
+import AuthRouter from './src/routes/AuthRouter.js';
 
 const app = express();
 
