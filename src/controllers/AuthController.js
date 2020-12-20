@@ -1,8 +1,20 @@
 import bcrypt from 'bcryptjs';
+import {validationResult} from 'express-validator';
 
 import User from '../models/UserModel.js';
 
 export const register = async (req, res) => {
+  // Check for validation errors
+  let registrationError = validationResult(req);
+
+  if (!registrationError.isEmpty()) {
+    return res.status(422).json({
+      message: 'Unable to validate new user.',
+      error: registrationError.array()[0].msg 
+    });
+  }
+
+  // Check if username is already in use
   let userExists = null;
 
   try {
@@ -10,7 +22,7 @@ export const register = async (req, res) => {
   } catch(error) {
     return res.status(500).json({
       message: 'Encountered an error while checking if that user exists.',
-      error: error
+      error: error.message
     });
   }
 
@@ -20,18 +32,19 @@ export const register = async (req, res) => {
     });
   }
 
+  // Hash the password from the request body
   let hashedPassword = null;
 
   try {
     hashedPassword = await bcrypt.hash(req.body.password, 10);
   } catch(error) {
-    console.log(error)
     return res.status(500).json({
       message: 'Encountered an error while hashing the password.',
-      error: error
+      error: error.message
     });
   }
 
+  // Create new user and save to database
   const newUser = new User({
     username: req.body.username,
     password: hashedPassword
@@ -44,7 +57,7 @@ export const register = async (req, res) => {
   } catch(error) {
     return res.status(500).json({
       message: 'Encountered an error while trying to save new user.',
-      error: error
+      error: error.message
     });
   }
 
