@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs';
 import {validationResult} from 'express-validator';
 
 import User from '../models/UserModel.js';
+import AccessToken from '../utils/AccessToken.js';
 
 // TODO: Assign appropriate HTTP Response Codes
 export const register = async (req, res) => {
@@ -116,9 +117,27 @@ export const login = async (req, res) => {
     });
   }
 
-  return res.status(200).json({
-    message: 'Successfully logged in.'
-  });
+  const userToken = {
+    id: user.id,
+    role: user.role
+  }
+
+  let accessToken = null;
+
+  try {
+    accessToken = await AccessToken.create(userToken)
+  } catch(error) {
+    return res.status(500).json({
+      message: 'Failed to create access token',
+      error: error.message
+    })
+  }
+
+  return res.status(200)
+    .header('Authentication', accessToken)
+    .json({
+      message: 'Successfully logged in.'
+    });
 }
 
 export const logout = (req, res) => {

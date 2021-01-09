@@ -1,5 +1,6 @@
 import {body} from 'express-validator';
 
+// TODO: Merge validators
 const validateRegistration = [
   body('username')
     .exists({checkFalsy: true})
