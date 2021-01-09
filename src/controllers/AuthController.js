@@ -10,7 +10,7 @@ export const register = async (req, res) => {
 
   if (!registrationError.isEmpty()) {
     return res.status(422).json({
-      message: 'Unable to validate new user.',
+      message: 'Unable to validate request.',
       error: registrationError.array()[0].msg 
     });
   }
@@ -69,6 +69,16 @@ export const register = async (req, res) => {
 
 // TODO: Assign appropriate HTTP Response Codes
 export const login = async (req, res) => {
+  // Check for validation errors
+  let loginErrors = validationResult(req);
+
+  if (!loginErrors.isEmpty()) {
+    return res.status(422).json({
+      message: 'Unable to validate request.',
+      error: loginErrors.array()[0].msg 
+    });
+  }
+  
   let user = null;
 
   // TODO: make this look nicer
@@ -91,25 +101,24 @@ export const login = async (req, res) => {
   let password = null;
 
   try {
-    password = await bcrypt.compare(req.body.password, user.password)
+    password = await bcrypt.compare(req.body.password, user.password);
   } catch(error) {
-    console.log(error)
     return res.status(500).json({
       message: 'Failed to verify password.',
       error: error.message
-    })
+    });
   }
 
   // TODO: Switch message to 'Invalid username or password.'
   if (!password) {
     return res.status(400).json({
       message: 'Invalid Password.'
-    })
+    });
   }
 
   return res.status(200).json({
     message: 'Successfully logged in.'
-  })
+  });
 }
 
 export const logout = (req, res) => {
