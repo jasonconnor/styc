@@ -3,6 +3,7 @@ import {validationResult} from 'express-validator';
 
 import User from '../models/UserModel.js';
 
+// TODO: Assign appropriate HTTP Response Codes
 export const register = async (req, res) => {
   // Check for validation errors
   let registrationError = validationResult(req);
@@ -66,8 +67,49 @@ export const register = async (req, res) => {
   });
 }
 
+// TODO: Assign appropriate HTTP Response Codes
 export const login = async (req, res) => {
+  let user = null;
 
+  // TODO: make this look nicer
+  try {
+    user = await User.findOne({username: req.body.username}).select('+password');
+  } catch(error) {
+    return res.status(500).json({
+      message: 'Failed to search database for user.',
+      error: error.message
+    });
+  }
+
+  // TODO: Switch message to 'Invalid username or password.'
+  if (!user) {
+    return res.status(400).json({
+      message: 'Invalid username.'
+    })
+  }
+
+  let password = null;
+
+  try {
+    password = await bcrypt.compare(req.body.password, user.password)
+  } catch(error) {
+    console.log(error)
+    return res.status(500).json({
+      message: 'Failed to verify password.',
+      error: error.message
+    })
+  }
+
+  // TODO: Switch message to 'Invalid username or password.'
+  if (!password) {
+    return res.status(400).json({
+      message: 'Invalid Password.'
+    })
+  }
+
+  return res.status(200).json({
+    message: 'Successfully logged in.'
+  })
 }
 
 export const logout = (req, res) => {
