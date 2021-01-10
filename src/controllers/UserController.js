@@ -1,7 +1,6 @@
 import User from '../models/UserModel.js';
 
 export default class UserController {
-
   static getCurrentUser = async (req, res) => {
     let user = null;
 

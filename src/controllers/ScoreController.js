@@ -1,9 +1,11 @@
 import Score from '../models/ScoreModel';
 
-export const saveScore = (req, res) => {
+export default class ScoreController {
+  static saveScore = (req, res) => {
 
-}
+  }
+  
+  static getHighScores = (req, res) => {
 
-export const getHighScores = (req, res) => {
-
+  }
 }
