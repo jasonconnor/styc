@@ -65,7 +65,7 @@ export default class AuthController {
     }
   
     return res.status(200).json({
-      message: `Successful registered user: ${user.username}`
+      message: `Successfully registered user: ${user.username}`
     });
   }
 
@@ -118,22 +118,17 @@ export default class AuthController {
       });
     }
 
-    const userToken = {
-      id: user.id,
-      role: user.role
-    }
-
     let accessToken = null;
 
     try {
-      accessToken = await AccessToken.create(userToken)
+      accessToken = await AccessToken.create(user)
     } catch(error) {
       return res.status(500).json({
         message: 'Failed to create access token',
         error: error.message
       })
     }
-
+    
     return res.status(200)
       .header('Authentication', accessToken)
       .json({

@@ -1,17 +1,15 @@
 import jwt from 'jsonwebtoken';
 
-
 export default class AccessToken {
-  now = Math.floor(Date.now() / 1000);
-  issuedAt = now;
-  expiresIn = now + 60;
-  
+  // TODO: Move true jwt secret to .env
   static create = (user) => {
     return new Promise((resolve, reject) => {
+      const currentTime = Math.floor(Date.now() / 1000);
+
       jwt.sign({
-        iat: issuedAt,
-        exp: expiresIn,
         iss: 'localhost',
+        iat: currentTime,
+        exp: currentTime + (60 * 60),
         sub: user.id,
         aud: user.role
       }, 'secret', (error, token) => {
@@ -24,10 +22,10 @@ export default class AccessToken {
     });
   }
 
+  // TODO: Move true jwt secret to .env
   static validate = (token) => {
     return new Promise((resolve, reject) => {
-      jwt.verify(token, 'secretx', (error, decoded) => {
-        // TODO: Handle token errors
+      jwt.verify(token, 'secret', (error, decoded) => {
         if (error) {
           reject(error);
         }
@@ -37,4 +35,3 @@ export default class AccessToken {
     });
   }
 }
-

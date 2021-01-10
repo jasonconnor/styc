@@ -1,6 +1,7 @@
 import express from 'express';
 
-import * as ScoreController from '../controllers/ScoreController.js';
+import ScoreController from '../controllers/ScoreController.js';
+import Authenticate from '../middleware/Authenticate.js';
 
 const ScoreRouter = express.Router();
 
@@ -8,6 +9,6 @@ const ScoreRouter = express.Router();
 ScoreRouter.get('/highscores', ScoreController.getHighScores);
 
 // POST Routes
-ScoreRouter.post('/save', ScoreContorller.saveScore);
+ScoreRouter.post('/save', Authenticate.checkToken, ScoreController.saveScore);
 
 export default ScoreRouter;

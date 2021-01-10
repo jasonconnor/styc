@@ -5,8 +5,7 @@ export default class UserController {
     let user = null;
 
     try {
-      user = await User.findOne({id: req.user.sub});
-      return res.status(200).json(user);
+      user = await User.findOne({_id: req.token.sub});
     } catch(error) {
       console.log(error);
       return res.status(500).json({
@@ -14,5 +13,7 @@ export default class UserController {
         error: error.message
       });
     }
+
+    return res.status(200).json(user);
   }
 }
