@@ -1,8 +1,10 @@
 import express from 'express';
 
 import AuthController from '../controllers/AuthController.js';
-import validateLogin from '../middleware/validateLogin.js';
-import validateRegistration from '../middleware/validateRegistration.js';
+import Validate from '../middleware/Validate.js'
+
+// import validateLogin from '../middleware/validateLogin.js';
+// import validateRegistration from '../middleware/validateRegistration.js';
 
 const AuthRouter = express.Router();
 
@@ -10,7 +12,7 @@ const AuthRouter = express.Router();
 AuthRouter.get('/logout', AuthController.logout);
 
 // POST Routes
-AuthRouter.post('/login', validateLogin, AuthController.login);
-AuthRouter.post('/register', validateRegistration, AuthController.register);
+AuthRouter.post('/login', Validate.login, AuthController.login);
+AuthRouter.post('/register', Validate.register, AuthController.register);
 
 export default AuthRouter;

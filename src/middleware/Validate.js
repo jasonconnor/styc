@@ -1,8 +1,29 @@
-import {body} from 'express-validator';
+import {body} from 'express-validator'
 
-// TODO: Merge validators
-const validateRegistration = [
-  body('username')
+export default class Validate {
+  static login = [
+    body('username')
+    .exists({checkFalsy: true})
+    .withMessage('Username is required.')
+    .bail()
+    .isString()
+    .withMessage('Invalid data type submitted for Username.')
+    .bail()
+    .trim()
+    .escape(),
+    body('password')
+    .exists({checkFalsy: true})
+    .withMessage('Password is required.')
+    .bail()
+    .isString()
+    .withMessage('Invalid data type submitted for Password.')
+    .bail()
+    .trim()
+    .escape()
+  ];
+  
+  static register = [
+    body('username')
     .exists({checkFalsy: true})
       .withMessage('Username is required to create an account.')
       .bail()
@@ -38,6 +59,5 @@ const validateRegistration = [
     .matches(/^[A-Za-z0-9!@#$%^&*()]+$/)
       .withMessage('Password can only contain certain special characters.')
       .bail()
-];
-
-export default validateRegistration;
+  ];
+}
