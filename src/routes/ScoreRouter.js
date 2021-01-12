@@ -6,7 +6,7 @@ import Authenticate from '../middleware/Authenticate.js';
 const ScoreRouter = express.Router();
 
 // GET Routes
-ScoreRouter.get('/highscores', ScoreController.getHighScores);
+ScoreRouter.get('/highscores', ScoreController.getHighscores);
 
 // POST Routes
 ScoreRouter.post('/save', Authenticate.checkToken, ScoreController.saveScore);

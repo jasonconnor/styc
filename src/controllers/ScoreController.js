@@ -6,8 +6,8 @@ export default class ScoreController {
 
     const newScore = new Score({
       user: req.token.sub,
-      score: 10000,
-      level: 50
+      score: req.body.score,
+      level: req.body.level
     });
 
     let score = null;
@@ -21,14 +21,31 @@ export default class ScoreController {
       });
     }
 
-    console.log(score)
-
     return res.status(200).json({
-      message: 'Successfully save new score'
+      message: 'Successfully save new score.'
     })
   }
   
-  static getHighScores = (req, res) => {
+  static getHighscores = async (req, res) => {
+    let scores = null
 
+    try {
+      // TODO: Make this look nicer
+      // NOTE: Front-end will be responsible for sorting data
+      scores = await Score.find().select('score level date user').populate('user', 'username');
+    } catch(error) {
+      return res.status(500).json({
+        message: 'Encountered an error while trying to fetch scores.',
+        error: error.message
+      });
+    }
+
+    if (!scores) {
+      return res.status(200).json({
+        message: 'No scores have been submitted yet.'
+      });
+    }
+
+    return res.status(200).json(scores);
   }
 }
