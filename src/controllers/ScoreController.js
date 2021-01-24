@@ -1,4 +1,5 @@
 import Score from '../models/ScoreModel.js';
+import ScoreService from '../services/ScoreService.js';
 
 export default class ScoreController {
   static saveScore = async (req, res) => {

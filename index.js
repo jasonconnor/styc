@@ -16,6 +16,7 @@ app.use('/', AuthRouter);
 app.use('/', ScoreRouter);
 app.use('/', UserRouter);
 
+//TODO: Setup HTTPS Server
 app.listen(80, () => {
   connect();
   console.log('Server started.');
