@@ -1,8 +1,7 @@
 import mongoose from 'mongoose';
 
-const uri = 'mongodb://localhost:27017/styc';
-
-const connect = async () => {
+const connect = async (uri) => {
+  // TODO: clean up connection code
   try {
     await mongoose.connect(uri, {
       useNewUrlParser: true,
