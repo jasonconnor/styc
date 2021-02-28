@@ -1,16 +1,30 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { makeStyles, Grid } from "@material-ui/core"
+import { makeStyles } from '@material-ui/core'
+import React from 'react';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
-export default function Header() {
+const useStyles = makeStyles(theme => ({
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
+
+export default function Home() {
+  const classes = useStyles();
+
   return (
-    <header>
-      <h1>Slash Till You Crash</h1>
-
-      <nav>
-        <Link to='/'>Home</Link>
-        <Link to='/login'>login</Link>
-      </nav>
-    </header>
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h6" className={classes.title}>
+          Slash til You Crash
+        </Typography>
+        <Button color="inherit">Login</Button>
+      </Toolbar>
+    </AppBar>
   )
 }

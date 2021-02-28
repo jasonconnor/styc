@@ -1,29 +1,16 @@
-import React from 'react'
+import { makeStyles } from '@material-ui/core'
+import React from 'react';
 
-import { makeStyles, Grid, Typography } from "@material-ui/core"
-
-
+const useStyles = makeStyles(theme => ({
+  root: {
+    minHeight: 'calc(100vh - 120px)',
+  }
+}));
 
 export default function Home() {
-    const useStyles = makeStyles(theme => ({
-        homeBody: {
-
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-
-            margin: 15,
-
-            background: 'white'
-        }
-    }));
-
-    const classes = useStyles();
+  const classes = useStyles();
 
   return (
-    <div className={classes.homeBody}>
-        <h1>Home</h1>
-
-    </div>
+    <div className={classes.root}>Home page stuff</div>
   )
 }

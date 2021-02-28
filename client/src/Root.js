@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Home from "./components/Home/Home";
@@ -9,21 +9,21 @@ import Login from './components/Login/Login';
 function Root() {
   return (
     <div>
-      <Router>
 
         {/* HEADER */}
         <Header />
 
         {/* ROUTES */}
-        <Switch>
-          <Route exact path='/' component={Home}/>
-          <Route exact path='/login' component={Login} />
-        </Switch>
+        <Router>
+          <Switch>
+            <Route exact path='/' component={Home}/>
+            <Route exact path='/login' component={Login} />
+          </Switch>
+        </Router>
 
         {/* FOOTER */}
         <Footer />
 
-      </Router>
     </div>
   );
 }
