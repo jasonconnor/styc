@@ -1,6 +1,7 @@
-import { Button, Grid, makeStyles, Typography } from '@material-ui/core'
 import React from 'react';
+import { Link } from 'react-router-dom'
 import backgroundImage from '../../assets/images/jumbobg.png'
+import { Button, Grid, makeStyles, Typography } from '@material-ui/core'
 import { amber } from '@material-ui/core/colors'
 
 const useStyles = makeStyles(theme => ({
@@ -26,7 +27,11 @@ export default function Home() {
       {/* Jumbotron */}
       <Grid container className={classes.jumbo}>
         <Grid container item justify="center" alignItems="center">
-          <Button size="large" variant="contained" color="primary">Play</Button>
+          <Link to='/play'>
+            <Button size="large" variant="contained" color="primary">
+              Play
+            </Button>
+          </Link>
         </Grid>
       </Grid>
 

@@ -1,6 +1,6 @@
-import { Grid, makeStyles } from '@material-ui/core'
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom'
+import { Grid, makeStyles, Button } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
   root:{
@@ -17,7 +17,7 @@ export default function Home() {
     <Grid container alignItems="center" justify="space-between" className={classes.root}>
       <Grid container item xs={6} justify="flex-start">
         <Grid item>
-          <h2>Slash til You Crash</h2>
+          <Link to='/'><Button><h2>Slash til You Crash</h2></Button></Link>
         </Grid>
       </Grid>
       <Grid container item xs={6} justify="flex-end">
