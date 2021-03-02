@@ -1,16 +1,12 @@
-import { makeStyles } from '@material-ui/core'
+import { Grid, makeStyles } from '@material-ui/core'
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
+  root:{
+    position: 'absolute',
+    paddingLeft: theme.spacing(5),
+    paddingRight: theme.spacing(5),
   },
 }));
 
@@ -18,13 +14,17 @@ export default function Home() {
   const classes = useStyles();
 
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <Typography variant="h6" className={classes.title}>
-          Slash til You Crash
-        </Typography>
-        <Button color="inherit">Login</Button>
-      </Toolbar>
-    </AppBar>
+    <Grid container alignItems="center" justify="space-between" className={classes.root}>
+      <Grid container item xs={6} justify="flex-start">
+        <Grid item>
+          <h2>Slash til You Crash</h2>
+        </Grid>
+      </Grid>
+      <Grid container item xs={6} justify="flex-end">
+        <Grid item>
+          <Button><h4>Login</h4></Button>
+        </Grid>
+      </Grid>
+    </Grid>
   )
 }
