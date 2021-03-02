@@ -1,35 +1,25 @@
-const connect = require('./config/db')
-const express = require('express')
+import dotenv from 'dotenv';
+import express from 'express';
 
-// Import Routes
-const appRouter = require('./app/routes/app')
-const adminRouter = require('./app/routes/admin')
-const accountRouter = require('./app/routes/account')
-const newsRouter = require('./app/routes/news')
+import connect from './conf/db.js';
 
+import AuthRouter from './src/routes/AuthRouter.js';
+import ScoreRouter from './src/routes/ScoreRouter.js';
+import UserRouter from './src/routes/UserRouter.js';
 
-const app = express()
+const app = express();
+dotenv.config()
 
-// Connect to the database
-connect;
+// middleware
+app.use(express.json());
 
-app.use(express.json({ extended: false }))
+// routes
+app.use('/', AuthRouter);
+app.use('/', ScoreRouter);
+app.use('/', UserRouter);
 
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Content-Type', 'application/json')
-  res.header('Access-Control-Allow-Headers',
-    'Content-Type'
-  )
-  next()
-})
-
-// Routes
-app.use('/', appRouter)
-app.use('/admin', adminRouter)
-app.use('/account', accountRouter)
-app.use('/news', newsRouter)
-
-app.listen(80, function() {
-  console.log('Server started.')
-})
+//TODO: Setup HTTPS Server
+app.listen(80, () => {
+  console.log('Server started.');
+  connect(process.env.MONGO_URI);
+});
