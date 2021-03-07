@@ -1,10 +1,11 @@
-import { Grid, makeStyles } from '@material-ui/core'
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import { Grid, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root:{
-    position: 'absolute',
+    // position: 'absolute', -- Temporary Change
     paddingLeft: theme.spacing(5),
     paddingRight: theme.spacing(5),
   },
@@ -22,7 +23,7 @@ export default function Home() {
       </Grid>
       <Grid container item xs={6} justify="flex-end">
         <Grid item>
-          <Button><h4>Login</h4></Button>
+          <Button><Link to='/login'>Login</Link></Button>
         </Grid>
       </Grid>
     </Grid>

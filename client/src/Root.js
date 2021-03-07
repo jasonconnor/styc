@@ -4,29 +4,28 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import Login from './components/Login/Login';
 
-function Root() {
+import LoginForm from './components/Forms/LoginForm';
+
+export default function Root() {
   return (
     <div>
 
+      <Router> 
         {/* HEADER */}
         <Header />
 
         {/* ROUTES */}
-        <Router>
-          <Switch>
-            <Route exact path='/' component={Home}/>
-            <Route exact path='/login' component={Login} />
-          </Switch>
-        </Router>
+        <Switch>
+          <Route exact path='/' component={Home}/>
+          <Route exact path='/login' component={LoginForm} />
+        </Switch>
 
         {/* FOOTER */}
         <Footer />
 
+      </Router>
+
     </div>
   );
 }
-
-export default Root;
-
