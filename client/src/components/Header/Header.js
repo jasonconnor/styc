@@ -1,16 +1,26 @@
-import { Grid, makeStyles } from '@material-ui/core'
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import { useLocation } from 'react-router-dom'
+import { Grid, makeStyles, Button } from '@material-ui/core'
+import headerBackgroundColor from './HeaderBgColor'
 
-const useStyles = makeStyles(theme => ({
-  root:{
-    position: 'absolute',
-    paddingLeft: theme.spacing(5),
-    paddingRight: theme.spacing(5),
-  },
-}));
 
 export default function Home() {
+  // This retrieves the route of our current page through useLocation().
+  // Accessed by headerBackgroundColor()
+  const location = useLocation();
+  const route = location.pathname
+
+  // MUI
+  const useStyles = makeStyles(theme => ({
+    root:{
+      position: 'absolute',
+      paddingLeft: theme.spacing(5),
+      paddingRight: theme.spacing(5),
+      // Here we use our imported function from HeaderBgColor.js to get
+      // our header background color based off of the current route (location.path).
+      background: headerBackgroundColor(route)
+    },
+  }));
   const classes = useStyles();
 
   return (
@@ -22,7 +32,9 @@ export default function Home() {
       </Grid>
       <Grid container item xs={6} justify="flex-end">
         <Grid item>
-          <Button><h4>Login</h4></Button>
+          <Button href={'/login'}>
+            <h4>Login</h4>
+          </Button>
         </Grid>
       </Grid>
     </Grid>

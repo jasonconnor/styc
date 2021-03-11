@@ -9,24 +9,20 @@ import Login from './components/Login/Login';
 function Root() {
   return (
     <div>
-
-        {/* HEADER */}
-        <Header />
-
-        {/* ROUTES */}
+        {/* ROUTER */}
         <Router>
+          {/* HEADER */}
+          <Header />
+          {/* ROUTES */}
           <Switch>
             <Route exact path='/' component={Home}/>
             <Route exact path='/login' component={Login} />
           </Switch>
+          {/* FOOTER */}
+          <Footer />
         </Router>
-
-        {/* FOOTER */}
-        <Footer />
-
     </div>
   );
 }
 
 export default Root;
-
