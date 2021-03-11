@@ -7,7 +7,7 @@ export default function LoginForm() {
   const [formError, setFormError] = useState('');
   const { errors, handleSubmit, register } = useForm({ mode: 'onChange' });
 
-  async function onSubmit(data) {
+  async function onSubmit(data, event) {
     const formData = new FormData();
 
     formData.append('username', data.username);
@@ -32,6 +32,8 @@ export default function LoginForm() {
     } else if (result.hasOwnProperty('error')) {
       setFormError(result.error);
     }
+
+    event.target[1].value = '';
   }
 
   return (
