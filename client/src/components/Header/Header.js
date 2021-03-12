@@ -5,7 +5,7 @@ import { Grid, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root:{
-    // position: 'absolute', -- Temporary Change
+    position: 'absolute',
     paddingLeft: theme.spacing(5),
     paddingRight: theme.spacing(5),
   },
