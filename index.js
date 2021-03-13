@@ -1,3 +1,4 @@
+import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 
@@ -12,6 +13,7 @@ dotenv.config()
 
 // middleware
 app.use(express.json());
+app.use(cors({origin: process.env.CLIENT_URI}));
 
 // routes
 app.use('/', AuthRouter);
