@@ -46,7 +46,7 @@ export default function Header() {
     <Grid container alignItems="center" justify="space-between" className={classes.header}>
       <Grid container item xs={6} justify="flex-start">
         <Grid item>
-          <h2>Slash til You Crash</h2>
+          <Link to='/'><Button><h2>Slash til You Crash</h2></Button></Link>
         </Grid>
       </Grid>
       <Grid container item xs={6} justify="flex-end">
