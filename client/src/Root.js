@@ -6,24 +6,21 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import LoginForm from './components/Forms/LoginForm';
 
-function Root() {
+export default function Root() {
   return (
     <div>
-      {/* HEADER */}
-      <Header />
-
-      {/* ROUTES */}
-      <Router>
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/login' component={LoginForm} />
-        </Switch>
-      </Router>
-
-      {/* FOOTER */}
-      <Footer />
+        {/* ROUTER */}
+        <Router>
+          {/* HEADER */}
+          <Header />
+          {/* ROUTES */}
+          <Switch>
+            <Route exact path='/' component={Home}/>
+            <Route exact path='/login' component={LoginForm} />
+          </Switch>
+          {/* FOOTER */}
+          <Footer />
+        </Router>
     </div>
   );
 }
-
-export default Root();
