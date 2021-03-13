@@ -36,7 +36,7 @@ Garrett ()
 
 
 <hr />
-<h2>Github Description</h2>
-[ ] Tested and verified working
-[ ] Built without errors
-[ ] Short and Consise PR message
+<h2>Github RP Description</h2>
+- [ ]  Tested and verified working
+- [ ] Built without errors
+- [ ] Short and Concise PR message
