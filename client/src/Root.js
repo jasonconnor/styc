@@ -4,10 +4,10 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import Login from './components/Login/Login';
 import Play from './components/Play/Play';
+import LoginForm from './components/Forms/LoginForm';
 
-function Root() {
+export default function Root() {
   return (
     <div>
       <Router>
@@ -18,7 +18,7 @@ function Root() {
         {/* ROUTES */}
           <Switch>
             <Route exact path='/' component={Home}/>
-            <Route exact path='/login' component={Login} />
+            <Route exact path='/login' component={LoginForm} />
             <Route exact path='/play' component={Play} />
           </Switch>
 
@@ -29,6 +29,3 @@ function Root() {
     </div>
   );
 }
-
-export default Root;
-

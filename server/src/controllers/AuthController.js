@@ -76,7 +76,6 @@ export default class AuthController {
 
     if (!loginErrors.isEmpty()) {
       return res.status(422).json({
-        message: 'Unable to validate request.',
         error: loginErrors.array()[0].msg 
       });
     }
@@ -88,15 +87,14 @@ export default class AuthController {
       user = await User.findOne({username: req.body.username}).select('+password');
     } catch(error) {
       return res.status(500).json({
-        message: 'Failed to search database for user.',
-        error: error.message
+        error: 'Failed to search database for user.',
+        cause: error.message
       });
     }
 
-    // TODO: Switch message to 'Invalid username or password.'
     if (!user) {
       return res.status(400).json({
-        message: 'Invalid username.'
+        error: 'Invalid username or password.'
       })
     }
 
@@ -106,15 +104,14 @@ export default class AuthController {
       password = await bcrypt.compare(req.body.password, user.password);
     } catch(error) {
       return res.status(500).json({
-        message: 'Failed to verify password.',
-        error: error.message
+        error: 'Failed to verify password.',
+        cause: error.message
       });
     }
 
-    // TODO: Switch message to 'Invalid username or password.'
     if (!password) {
       return res.status(400).json({
-        message: 'Invalid Password.'
+        error: 'Invalid username or password.'
       });
     }
 
@@ -124,8 +121,8 @@ export default class AuthController {
       accessToken = await AccessToken.create(user)
     } catch(error) {
       return res.status(500).json({
-        message: 'Failed to create access token',
-        error: error.message
+        error: 'Failed to create access token',
+        cause: error.message
       })
     }
     

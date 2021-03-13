@@ -1,3 +1,4 @@
+import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 
@@ -12,11 +13,12 @@ dotenv.config()
 
 // middleware
 app.use(express.json());
+app.use(cors({origin: process.env.CLIENT_URI}));
 
 // routes
-app.use('/', AuthRouter);
-app.use('/', ScoreRouter);
-app.use('/', UserRouter);
+app.use('/api/', AuthRouter);
+app.use('/api/', ScoreRouter);
+app.use('/api/', UserRouter);
 
 //TODO: Setup HTTPS Server
 app.listen(80, () => {
