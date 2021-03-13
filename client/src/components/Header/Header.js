@@ -1,25 +1,17 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import { Grid, makeStyles, Button } from '@material-ui/core'
+import routeDict from './RouteDict'
 
-export default function Home() {
-
+export default function Header() {
   // ~ Background Color Change ~
   // This retrieves the route of our current page through useLocation().
   // Accessed by headerBackgroundColor()
   const location = useLocation();
   const route = location.pathname
 
-  // Dictionary of our routes and corresponding background colors. 
-  // Accessed by headerBackgroundColor()
-  const routeDict = {
-    '/' : 'rgba(0,0,0,0.2)',
-    '/login' : 'white'
-  }
-
   // This function takes in a route and returns its background color
   // value located in routeDict.
-  // Accessed by Header.js
   const headerBackgroundColor = (route) => {
     // Here we check to see if the passed in route is a key in routeDict
     // If the route key exists, we return its value
@@ -41,6 +33,12 @@ export default function Home() {
       // our header background color based off of the current route (location.path).
       background: headerBackgroundColor(route)
     },
+
+    link: {
+      textDecoration: 'none', 
+      fontWeight: 'bold', 
+      color:'black',
+    }
   }));
   const classes = useStyles();
 
@@ -53,8 +51,10 @@ export default function Home() {
       </Grid>
       <Grid container item xs={6} justify="flex-end">
         <Grid item>
-          <Button href={'/login'}>
-            <h4>Login</h4>
+          <Button>
+            <Link to='/login' className={classes.link}>
+              Login
+            </Link>
           </Button>
         </Grid>
       </Grid>
