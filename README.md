@@ -32,3 +32,11 @@ https://material-ui.com/
 Jason Connor (),
 Kamp Duong (),
 Garrett ()
+
+
+
+<hr />
+<h2>Github Description</h2>
+[ ] Tested and verified working
+[ ] Built without errors
+[ ] Short and Consise PR message
