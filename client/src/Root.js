@@ -10,6 +10,7 @@ import LoginForm from './components/Forms/LoginForm';
 export default function Root() {
   return (
     <div>
+      {/* ROUTER */}
       <Router>
 
         {/* HEADER */}
