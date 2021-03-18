@@ -11,7 +11,7 @@ export default function LoginForm({history}) {
 
   async function onSubmit(data, event) {
     try {
-      await LoginService(data)
+      await LoginService.login(data)
     } catch(error) {
       setFormError(error)
     }
