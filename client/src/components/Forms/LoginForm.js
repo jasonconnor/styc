@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 
 // Local Imports
 import FormInput from './FormInput';
-import LoginService from '../../services/LoginSerivce';
+import LoginService from '../../services/LoginService';
 
 export default function LoginForm({history}) {
   const [formError, setFormError] = useState('');
