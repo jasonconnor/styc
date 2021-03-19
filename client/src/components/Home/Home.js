@@ -1,25 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import backgroundImage from '../../assets/images/jumbobg.png'
 import { Button, Grid, makeStyles, Typography } from '@material-ui/core'
 import { amber } from '@material-ui/core/colors'
 
-const useStyles = makeStyles(theme => ({
-  root: {
-  },
-  jumbo: {
-    minHeight: '100vh',
-    backgroundImage: `url(${backgroundImage})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  },
-  section2: {
-    minHeight: '50vh',
-    backgroundColor: amber[200],
-  },
-}));
+import backgroundImage from 'assets/images/jumbobg.png'
 
 export default function Home() {
+  // ~ MUI ~
+  const useStyles = makeStyles(theme => ({
+    root: {
+    },
+    jumbo: {
+      minHeight: '100vh',
+      backgroundImage: `url(${backgroundImage})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    },
+    section2: {
+      minHeight: '50vh',
+      backgroundColor: amber[200],
+    },
+  }));
+
   const classes = useStyles();
 
   return (

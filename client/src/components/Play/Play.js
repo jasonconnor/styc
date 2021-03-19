@@ -1,15 +1,17 @@
-import { Grid, makeStyles } from '@material-ui/core'
 import React from 'react';
+import { Grid, makeStyles } from '@material-ui/core'
 import { blueGrey } from '@material-ui/core/colors'
 
-const useStyles = makeStyles(theme => ({
-  root: {
-      minHeight: '100vh',
-      backgroundColor: blueGrey[100],
-  },
-}));
-
 export default function Play() {
+  
+  // ~ MUI ~
+  const useStyles = makeStyles(theme => ({
+    root: {
+        minHeight: '100vh',
+        backgroundColor: blueGrey[100],
+    },
+  }));
+
   const classes = useStyles();
 
   return (
