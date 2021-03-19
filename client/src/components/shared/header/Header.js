@@ -4,21 +4,15 @@ import { Grid, makeStyles, Button } from '@material-ui/core'
 import routeDict from './RouteDict'
 
 export default function Header() {
-  // ~ Background Color Change ~
-  // This retrieves the route of our current page through useLocation().
-  // Accessed by headerBackgroundColor()
-  const location = useLocation();
-  const route = location.pathname
+  // Get current route
+  const route = useLocation().pathname;
 
-  // This function takes in a route and returns its background color
-  // value located in routeDict.
-  const headerBackgroundColor = (route) => {
-    // Here we check to see if the passed in route is a key in routeDict
-    // If the route key exists, we return its value
+  // Returns the header color based on current route
+  const getHeaderColor = () => {    
+    // If the route key exists
     if (Object.keys(routeDict).includes(route)) {
       return routeDict[route]
-    } else {
-      // If the route key does not exist, then we return white
+    } else { // route key does not exist
       return 'white'
     }
   }
@@ -29,9 +23,7 @@ export default function Header() {
       position: 'absolute',
       paddingLeft: theme.spacing(5),
       paddingRight: theme.spacing(5),
-      // Here we use our function headerBackgroundColor() to get
-      // our header background color based off of the current route (location.path).
-      background: headerBackgroundColor(route)
+      background: getHeaderColor()
     },
 
     link: {
@@ -40,6 +32,7 @@ export default function Header() {
       color:'black',
     }
   }));
+
   const classes = useStyles();
 
   return (

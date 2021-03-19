@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Home from "./components/Home/Home";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import Play from './components/Play/Play';
-import LoginForm from './components/Forms/LoginForm';
+import Header from "components/shared/header/Header";
+import Footer from "components/shared/footer/Footer";
+import Home from "components/home/Home";
+import Play from 'components/play/Play';
+import LoginForm from 'components/login/LoginForm';
 
 export default function Root() {
   return (

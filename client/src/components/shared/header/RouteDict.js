@@ -2,7 +2,7 @@
 // Accessed by headerBackgroundColor() in Header.js
 const routeDict = {
     '/' : 'rgba(0,0,0,0.2)',
-    '/login' : 'white'
+    '/login' : 'white',
 }
 
 export default routeDict

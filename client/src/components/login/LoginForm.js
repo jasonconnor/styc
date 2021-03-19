@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 // Local Imports
-import FormInput from './FormInput';
-import LoginService from '../../services/LoginService';
+import FormInput from 'components/shared/forms/FormInput';
+import LoginService from 'services/LoginService';
+import Message from 'models/Messages';
 
 export default function LoginForm({history}) {
   const [formError, setFormError] = useState('');
@@ -32,7 +33,7 @@ export default function LoginForm({history}) {
         ref={register({
           required: {
             value: true,
-            message: 'Username is required to log in.',
+            message: Message.RequireUsername,
           },
         })}
       />
@@ -46,7 +47,7 @@ export default function LoginForm({history}) {
         ref={register({
           required: {
             value: true,
-            message: 'Password is required to log in.',
+            message: Message.RequirePassword,
           },
         })}
       />
