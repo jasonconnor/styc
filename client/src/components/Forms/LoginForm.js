@@ -1,36 +1,19 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+// Local Imports
 import FormInput from './FormInput';
+import LoginService from '../../services/LoginService';
 
-export default function LoginForm() {
+export default function LoginForm({history}) {
   const [formError, setFormError] = useState('');
   const { errors, handleSubmit, register } = useForm({ mode: 'onChange' });
 
   async function onSubmit(data, event) {
-    const formData = new FormData();
-
-    formData.append('username', data.username);
-    formData.append('password', data.password);
-
-    let response = null;
-    let result = null;
-
     try {
-      response = await fetch('http://localhost:80/login', {
-        method: 'POST',
-        body: formData,
-      });
-
-      result = await response.json();
-    } catch (error) {
-      setFormError(error.message);
-    }
-
-    if (result === null) {
-      setFormError('Received empty response from the server. Try again later.');
-    } else if (result.hasOwnProperty('error')) {
-      setFormError(result.error);
+      await LoginService.login(data)
+    } catch(error) {
+      setFormError(error)
     }
 
     event.target[1].value = '';
