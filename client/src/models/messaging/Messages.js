@@ -1,11 +1,9 @@
-import { MessageSharp } from "@material-ui/icons"
-
 /**
  * Centralized File for Messages in the Front-End
  * 
- * import Message from 'models/Messages';
+ * import Message from 'models/Messaging/Messages';
  * 
- * To use: Message.RequireUsername
+ * Harness: Message.RequireUsername
  *  */ 
 const Messages = {
     // General Messages

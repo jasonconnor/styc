@@ -1,9 +1,9 @@
 /**
  * Centralized File for Error Messages in the Front-End
  * 
- * import ErrorMessage from 'models/ErrorMessages';
+ * import ErrorMessage from 'models/Messaging/ErrorMessages';
  * 
- * To use: ErrorMessage.NetworkError
+ * Harness: ErrorMessage.NetworkError
  *  */ 
 const ErrorMessages = {
     // General API Errors

@@ -1,5 +1,14 @@
-import ErrorMessage from 'models/ErrorMessages';
+import ErrorMessage from 'models/messaging/ErrorMessages';
 
+/* Harness:
+import LoginService from 'services/LoginService';
+
+LoginService.login(data)
+*/
+
+/**
+ * Service - Handles Login requests & responses with API
+ */
 export default class LoginService {
   static login = (data) => {
 

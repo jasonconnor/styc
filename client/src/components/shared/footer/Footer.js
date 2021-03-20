@@ -2,6 +2,15 @@ import React from 'react';
 import { Grid, makeStyles } from '@material-ui/core'
 import Green from '@material-ui/core/colors/green'
 
+/* Harness: 
+import Footer from "components/shared/footer/Footer";
+
+<Footer />
+*/
+
+/**
+ * Footer Page Component
+ */
 export default function Footer() {
   // ~ MUI ~
   const useStyles = makeStyles(theme => ({

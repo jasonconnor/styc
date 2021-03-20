@@ -5,6 +5,15 @@ import { amber } from '@material-ui/core/colors'
 
 import backgroundImage from 'assets/images/jumbobg.png'
 
+/* Harness:
+import Home from "components/home/Home";
+
+<Route exact path='/' component={Home}/>
+*/
+
+/**
+ * Home page component.
+ */
 export default function Home() {
   // ~ MUI ~
   const useStyles = makeStyles(theme => ({
