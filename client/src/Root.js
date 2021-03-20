@@ -5,7 +5,7 @@ import Header from "components/shared/header/Header";
 import Footer from "components/shared/footer/Footer";
 import Home from "components/home/Home";
 import Play from 'components/play/Play';
-import LoginForm from 'components/login/LoginForm';
+import LoginForm from 'components/login/login-form/LoginForm';
 
 export default function Root() {
   return (
