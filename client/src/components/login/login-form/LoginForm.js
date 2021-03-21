@@ -36,8 +36,8 @@ export default function LoginForm({ history }) {
 
   return (
     <form
-      onSubmit={handleSubmit(attemptLogin)}
       encType='multipart/form-data'
+      onSubmit={handleSubmit(attemptLogin)}
     >
       {formError ? <div>{formError}</div> : null}
 

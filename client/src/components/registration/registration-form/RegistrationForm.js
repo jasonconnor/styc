@@ -6,7 +6,7 @@ import FormInput from 'components/shared/forms/FormInput';
 import Message from 'models/messaging/Messages';
 
 /*
-import RegistrationForm from 'components/registration/registration-form/RegistrationForm;
+import RegistrationForm from 'components/registration/registration-form/RegistrationForm';
 
 <RegistrationForm />
 */
@@ -33,7 +33,10 @@ export default function RegistrationForm({ history }) {
   }
 
   return (
-    <form onSubmit={handleSubmit(attemptRegistration)} encType='multipart/form-data'>
+    <form 
+      encType='multipart/form-data'
+      onSubmit={handleSubmit(attemptRegistration)} 
+    >
       <FormInput
         type='text'
         name='username'
