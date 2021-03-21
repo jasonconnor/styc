@@ -72,6 +72,11 @@ export default function Header() {
               Login
             </Link>
           </Button>
+          <Button>
+            <Link to='/register' className={classes.link}>
+              Register
+            </Link>
+          </Button>
         </Grid>
       </Grid>
     </Grid>
