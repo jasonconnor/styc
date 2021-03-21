@@ -1,15 +1,25 @@
-import { Grid, makeStyles } from '@material-ui/core'
 import React from 'react';
+import { Grid, makeStyles } from '@material-ui/core'
 import { blueGrey } from '@material-ui/core/colors'
+/* Harness:
+import Play from 'components/play/Play';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-      minHeight: '100vh',
-      backgroundColor: blueGrey[100],
-  },
-}));
+<Route exact path='/play' component={Play} />
+*/
 
+/**
+ * Play page component.
+ */
 export default function Play() {
+  
+  // ~ MUI ~
+  const useStyles = makeStyles(theme => ({
+    root: {
+        minHeight: '100vh',
+        backgroundColor: blueGrey[100],
+    },
+  }));
+
   const classes = useStyles();
 
   return (
