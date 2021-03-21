@@ -43,19 +43,19 @@ export default function RegistrationForm({ history }) {
         ref={register({
           required: {
             value: true,
-            message: Message.RequireUsername,
+            message: Message.RequireUsername
           },
           minLength: {
-            value: 6,
-            message: 'Username must be at least 6 characters long.',
+            value: 4,
+            message: Message.UsernameTooLong
           },
           maxLength: {
             value: 20,
-            message: 'Username cannot be longer than 20 characters.',
+            message: Message.UsernameTooLong
           },
           pattern: {
             value: /^[A-Za-z0-9-_]*$/,
-            message: 'Usernames cannot include special characters.',
+            message: Message.InvalidUsername
           },
         })}
       />
@@ -69,19 +69,19 @@ export default function RegistrationForm({ history }) {
         ref={register({
           required: {
             value: true,
-            message: Message.RequirePassword,
+            message: Message.RequirePassword
           },
           minLength: {
             value: 6,
-            message: 'Your password must be at least 6 characters long.',
+            message: Message.PasswordTooShort
           },
           maxLength: {
             value: 20,
-            message: 'Your password cannot be longer than 20 characters.',
+            message: Message.PasswordTooLong
           },
           pattern: {
             value: /^[A-Za-z0-9!@#$%^&*]*$/,
-            message: 'Passwords can only contain certain special characters.',
+            message: Message.InvalidPassword
           },
         })}
       />
