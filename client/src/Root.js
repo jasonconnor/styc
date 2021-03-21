@@ -26,7 +26,7 @@ export default function Root() {
         {/* FOOTER */}
         <Footer />
         
-        </Router>
+      </Router>
     </div>
   );
 }
