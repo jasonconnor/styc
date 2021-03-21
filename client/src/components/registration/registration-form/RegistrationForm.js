@@ -11,6 +11,8 @@ import RegistrationForm from 'components/registration/registration-form/Registra
 <RegistrationForm />
 */
 
+// TO DO: style compenent with Martial UI
+// TO DO: integrate yup schema validation
 // TO DO: make this a sub-component and make a wrapper login page component that utilizes this on the page
 /**
  * Registration Form component.
@@ -31,10 +33,7 @@ export default function RegistrationForm({ history }) {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(attemptRegistration)}
-      encType='multipart/form-data'
-    >
+    <form onSubmit={handleSubmit(attemptRegistration)} encType='multipart/form-data'>
       <FormInput
         type='text'
         name='username'
