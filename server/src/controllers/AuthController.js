@@ -12,7 +12,6 @@ export default class AuthController {
   
     if (!registrationError.isEmpty()) {
       return res.status(422).json({
-        message: 'Unable to validate request.',
         error: registrationError.array()[0].msg 
       });
     }
@@ -24,14 +23,14 @@ export default class AuthController {
       userExists = await User.findOne({username: req.body.username});
     } catch(error) {
       return res.status(500).json({
-        message: 'Encountered an error while checking if that user exists.',
-        error: error.message
+        error: 'Encountered an error while checking if that user exists.',
+        cause: error.message
       });
     }
   
     if (userExists) {
       return res.status(409).json({
-        message: 'A user already exists with that username.'
+        error: 'A user already exists with that username.'
       });
     }
   
@@ -42,8 +41,8 @@ export default class AuthController {
       hashedPassword = await bcrypt.hash(req.body.password, 10);
     } catch(error) {
       return res.status(500).json({
-        message: 'Encountered an error while hashing the password.',
-        error: error.message
+        error: 'Encountered an error while hashing the password.',
+        cause: error.message
       });
     }
   
@@ -59,8 +58,8 @@ export default class AuthController {
       user = await newUser.save();
     } catch(error) {
       return res.status(500).json({
-        message: 'Encountered an error while trying to save new user.',
-        error: error.message
+        error: 'Encountered an error while trying to save new user.',
+        cause: error.message
       });
     }
   
