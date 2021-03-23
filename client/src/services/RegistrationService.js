@@ -15,7 +15,7 @@ export default class RegistrationSerivce {
     const formData = new FormData();
 
     formData.append('username', data.username);
-    formData.append('passowrd', data.password);
+    formData.append('password', data.password);
 
     const postRequestOptions = {
       method: 'POST',
@@ -26,7 +26,7 @@ export default class RegistrationSerivce {
       try {
         /* Sends the POST Request */
         const response = await fetch(
-          `${process.env.SERVER_URI}/api/register`,
+          `${process.env.REACT_APP_SERVER_URI}/api/register`,
           postRequestOptions
         ).catch(() => {
           throw new Error(ErrorMessage.NetworkError);

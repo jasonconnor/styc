@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 // Local Imports
+import RegistrationSerivce from 'services/RegistrationService';
 import FormInput from 'components/shared/forms/FormInput';
 import Message from 'models/messaging/Messages';
 
@@ -22,14 +23,15 @@ import RegistrationForm from 'components/registration/registration-form/Registra
 
 export default function RegistrationForm({ history }) {
   const [formError, setFormError] = useState('');
-  const { errors, handleSubmit, register } = useForm({ mode: 'onChange' });
+  const { errors, handleSubmit, register, reset } = useForm({ mode: 'onChange' });
 
-  async function attemptRegistration(data, event) {
+  async function attemptRegistration(data) {
     try {
-      // Add service here
+      await RegistrationSerivce.registerUser(data)
     } catch (error) {
       setFormError(error);
     }
+    reset();
   }
 
   return (
@@ -37,6 +39,9 @@ export default function RegistrationForm({ history }) {
       encType='multipart/form-data'
       onSubmit={handleSubmit(attemptRegistration)} 
     >
+
+      {formError ? <div>{formError}</div> : null}
+
       <FormInput
         type='text'
         name='username'

@@ -28,9 +28,10 @@ export default class LoginService {
 
         /* Sends the POST Request */
         const response = await fetch(
-          `${process.env.SERVER_URI}/api/login`,
+          `${process.env.REACT_APP_SERVER_URI}/api/login`,
           postRequestOptions
-        ).catch(() => { // Fails to connect to API
+        ).catch(() => { 
+          // Fails to connect to API
           throw new Error(ErrorMessage.NetworkError);
         });
 
