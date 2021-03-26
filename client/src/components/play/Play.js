@@ -15,13 +15,17 @@ const gameStateEnum = {
 
 const buttonMessages = {
   '0': {
-    
+    'A': 'Start Game'
   },
   '1': {
-
+    'A': 'Attack',
+    'D': 'Drink Potion',
+    'F': 'Flee'
   },
   '2': {
-
+    'A': 'Continue',
+    'D': 'Buy Potion',
+    'F': 'Quit'
   }
 }
 
@@ -29,6 +33,7 @@ const buttonMessages = {
  * Play page component.
  */
 export default function Play() {
+  let [gameLog, updateLog] = useState(["Beginning of Log"]);
   const [gameState, setGameState] = useState(0);
   
   // ~ MUI ~
@@ -41,6 +46,19 @@ export default function Play() {
 
   const classes = useStyles();
 
+  const changeGameState = () => {
+    let newState = (gameState + 1) % 3;
+    addToLog(`change state to ${gameStateEnum[newState]}`);
+    setGameState(newState);
+  }
+
+  const addToLog = (text) => {
+    let timeStamp = new Date();
+    gameLog.push(`${timeStamp.toTimeString().substring(0,8)}: Pressed ${text} button.`);
+
+    updateLog(gameLog);
+  }
+
   return (
     <Grid container justify="center" alignItems="center" spacing={3} className={classes.root}>
       <Grid item>
@@ -48,14 +66,18 @@ export default function Play() {
       </Grid>
       <Grid item>
         <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-          <Button onClick={_ => setGameState(0)}>Game State 0</Button>
-          <Button onClick={_ => setGameState(1)}>Game State 1</Button>
-          <Button onClick={_ => setGameState(2)}>Game State 2</Button>
+          {buttonMessages[gameState]?.A != null && <Button onClick={_ => addToLog(buttonMessages[gameState].A)}>{buttonMessages[gameState].A}</Button>}
+          {buttonMessages[gameState]?.D != null && <Button onClick={_ => addToLog(buttonMessages[gameState].D)}>{buttonMessages[gameState].D}</Button>}
+          {buttonMessages[gameState]?.F != null && <Button onClick={_ => addToLog(buttonMessages[gameState].F)}>{buttonMessages[gameState].F}</Button>}
+          <Button onClick={_ => changeGameState()}>Change Game State</Button>
         </ButtonGroup>
       </Grid>
-      <Grid item>
+      {/* <Grid item>
         Some Words Here
-      </Grid>
+      </Grid> */}
+      <ul>
+        {gameLog.map((textLine, i) => <li key={i}>{textLine}</li>)}
+      </ul>
     </Grid>
   )
 }
