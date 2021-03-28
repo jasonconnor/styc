@@ -17,10 +17,9 @@ import RegistrationForm from 'components/registration/registration-form/Registra
 // TO DO: make this a sub-component and make a wrapper login page component that utilizes this on the page
 /**
  * Registration Form component.
- *
+ * 
  * Currently acting as the entire Registration Page Component.
  */
-
 export default function RegistrationForm({ history }) {
   const [formError, setFormError] = useState('');
   const { errors, handleSubmit, register, reset } = useForm({ mode: 'onChange' });
@@ -55,7 +54,7 @@ export default function RegistrationForm({ history }) {
           },
           minLength: {
             value: 4,
-            message: Message.UsernameTooLong
+            message: Message.UsernameTooShort
           },
           maxLength: {
             value: 20,

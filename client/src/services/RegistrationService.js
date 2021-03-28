@@ -9,7 +9,6 @@ RegstrationService.registerUser(data)
 /**
  * Service - Handles registration requests & responses with API
  */
-
 export default class RegistrationSerivce {
   static registerUser = (data) => {
     const formData = new FormData();
