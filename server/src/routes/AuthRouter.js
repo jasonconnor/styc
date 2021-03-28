@@ -11,6 +11,6 @@ AuthRouter.get('/logout', AuthController.logout);
 
 // POST Routes
 AuthRouter.post('/login', upload.none(), Validate.login, AuthController.login);
-AuthRouter.post('/register', Validate.register, AuthController.register);
+AuthRouter.post('/register', upload.none(), Validate.register, AuthController.register);
 
 export default AuthRouter;

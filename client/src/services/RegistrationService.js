@@ -1,17 +1,16 @@
 import ErrorMessage from 'models/messaging/ErrorMessages';
 
 /* Harness:
-import LoginService from 'services/LoginService';
+import RegistrationSerivce from 'services/RegistrationService;
 
-LoginService.login(data)
+RegstrationService.registerUser(data)
 */
 
 /**
- * Service - Handles Login requests & responses with API
+ * Service - Handles registration requests & responses with API
  */
-export default class LoginService {
-  static login = (data) => {
-
+export default class RegistrationSerivce {
+  static registerUser = (data) => {
     const formData = new FormData();
 
     formData.append('username', data.username);
@@ -22,23 +21,20 @@ export default class LoginService {
       body: formData,
     };
 
-
     return new Promise(async (resolve, reject) => {
       try {
-
         /* Sends the POST Request */
         const response = await fetch(
-          `${process.env.REACT_APP_SERVER_URI}/api/login`,
+          `${process.env.REACT_APP_SERVER_URI}/api/register`,
           postRequestOptions
-        ).catch(() => { 
-          // Fails to connect to API
+        ).catch(() => {
           throw new Error(ErrorMessage.NetworkError);
         });
 
         const responseJson = await response.json();
 
         /* Check for errors */
-        // Checking for empty response {}
+        // Check for empty response {}
         if (!responseJson || Object.keys(responseJson).length === 0) {
           throw new Error(ErrorMessage.EmptyResponse);
         }
@@ -48,12 +44,10 @@ export default class LoginService {
         }
 
         resolve(responseJson);
-
       } catch (error) {
         // Reject the Promise with the friendly error
         reject(error.message);
       }
-
     });
-  }
+  };
 }
