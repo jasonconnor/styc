@@ -33,7 +33,7 @@ const buttonMessages = {
  * Play page component.
  */
 export default function Play() {
-  let [gameLog, updateLog] = useState(["Beginning of Log"]);
+  const [gameLog, updateLog] = useState(["Beginning of Log"]);
   const [gameState, setGameState] = useState(0);
   
   // ~ MUI ~
@@ -54,21 +54,20 @@ export default function Play() {
 
   const addToLog = (text) => {
     let timeStamp = new Date();
-    gameLog.push(`${timeStamp.toTimeString().substring(0,8)}: Pressed ${text} button.`);
 
-    updateLog(gameLog);
+    updateLog([...gameLog, `${timeStamp.toTimeString().substring(0,8)}: Pressed ${text} button.`]);
   }
 
   return (
-    <Grid container justify="center" alignItems="center" spacing={3} className={classes.root}>
+    <Grid container justify="center" alignItems="center" className={classes.root}>
       <Grid item>
         <label>Game State: {gameStateEnum[gameState]}</label>
       </Grid>
       <Grid item>
         <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-          {buttonMessages[gameState]?.A != null && <Button onClick={_ => addToLog(buttonMessages[gameState].A)}>{buttonMessages[gameState].A}</Button>}
-          {buttonMessages[gameState]?.D != null && <Button onClick={_ => addToLog(buttonMessages[gameState].D)}>{buttonMessages[gameState].D}</Button>}
-          {buttonMessages[gameState]?.F != null && <Button onClick={_ => addToLog(buttonMessages[gameState].F)}>{buttonMessages[gameState].F}</Button>}
+          {buttonMessages[gameState]?.A != null && <Button onClick={_ => addToLog(buttonMessages[gameState].A)} > {buttonMessages[gameState].A} </Button> }
+          {buttonMessages[gameState]?.D != null && <Button onClick={_ => addToLog(buttonMessages[gameState].D)} > {buttonMessages[gameState].D} </Button> }
+          {buttonMessages[gameState]?.F != null && <Button onClick={_ => addToLog(buttonMessages[gameState].F)} > {buttonMessages[gameState].F} </Button> }
           <Button onClick={_ => changeGameState()}>Change Game State</Button>
         </ButtonGroup>
       </Grid>
