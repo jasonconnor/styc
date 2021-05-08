@@ -18,11 +18,15 @@ export default function ActionBarComponent() {
     // ~ MUI ~
     const useStyles = makeStyles(theme => ({
         root: {
-            borderTop: '5px solid grey',
+            border: '5px solid grey',
             height: 'max-content'
         },
+        healthBarContainer: {
+            padding: '5px 0'
+        },
         healthBar: {
-            width: '80%'
+            width: '80%',
+            padding: '5px 0'
         },
         gameButton: {
             fontSize: '1.5em',
@@ -49,7 +53,7 @@ export default function ActionBarComponent() {
                 alignItems="center"
                 justify="space-around"
                 className={classes.root}>
-                <Grid item container xs={4}>
+                <Grid item container justify="center" sm={12} md={5} py={3}>
                     <Grid item
                         xs={12}
                         container
@@ -66,25 +70,25 @@ export default function ActionBarComponent() {
                         {gameStats.health} / {gameStats.healthMax}
                     </Grid>
                 </Grid>
-                <Grid item container xs={4}>
+                <Grid item container justify="center" sm={12} md>
                     <ButtonGroup>
-                        <Button variant="contained"
+                        <Button size="large" variant="contained"
                             color="primary"
                             className={classes.gameButton}
                             onClick={killedEnemy}>
                             🏹
                         </Button>
-                        <Button variant="contained"
+                        <Button size="large" variant="contained"
                             color="primary"
                             className={classes.gameButton}>
                             🏃‍♂️
                         </Button>
-                        <Button variant="contained"
+                        <Button size="large" variant="contained"
                             color="primary"
                             className={classes.gameButton}>
                             💉
                         </Button>
-                        <Button variant="outlined"
+                        <Button size="large" variant="outlined"
                             color="primary"
                             disabled
                             className={classes.potionLabel}>
@@ -97,11 +101,12 @@ export default function ActionBarComponent() {
                         </Button>
                     </ButtonGroup>
                 </Grid>
-                <Grid item container justify="flex-end" xs={4}>
-                    <ButtonGroup>
+                <Grid item container justify="center" sm={12} md>
+                    <ButtonGroup width="100%">
                         <Button variant="contained"
                             color="primary"
-                            className={classes.gameButton}>
+                            className={classes.gameButton}
+                            >
                             🙍‍♂️
                         </Button>
                         <Button variant="contained"

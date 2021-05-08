@@ -33,7 +33,7 @@ export default function HomeComponent() {
       <Grid container
             className={classes.root}>
             <Grid item
-                xs={9}>
+                sm={12} md={9}>
                 <Grid container
                     className={classes.leftPane}
                     alignContent="space-between">
@@ -41,7 +41,7 @@ export default function HomeComponent() {
                 </Grid>
             </Grid>
             <Grid item
-              xs={3}>
+              sm={12} md={3}>
               <Grid container
                     className={classes.rightPane}>
                     <StatsComponent />
