@@ -7,7 +7,7 @@
  *  */ 
 const ErrorMessages = {
     // General API Errors
-    NetworkError: 'Encountered a network error. Try again soon.',
+    NetworkError: 'Encountered a network error.',
     EmptyResponse: 'Received empty response from the server.',
     
     // Home Page
