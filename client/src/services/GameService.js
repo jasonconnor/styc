@@ -19,7 +19,7 @@ export default class GameService {
         
         const promise = await fetch(
             `http://${_serverUri}:${_port}/api/game/enemies`,
-            {method: 'GET', headers: _headers, Orgin: 'http://localhost'},
+            {method: 'GET', headers: _headers, Orgin: `http://${_serverUri}`},
         ).catch(_ => {
             _setReturnObject(returnObj, true, ErrorMessage.NetworkError);
             console.warn(returnObj.Error);

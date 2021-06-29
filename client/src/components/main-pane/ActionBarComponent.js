@@ -1,58 +1,29 @@
 import React from 'react';
-import { Button, ButtonGroup, Grid, makeStyles, LinearProgress  } from '@material-ui/core'
-import { useGameStats, useGameStatsUpdate } from 'contexts/GameContext';
+import { Button, ButtonGroup, Grid,  LinearProgress  } from '@material-ui/core'
+import { connect } from 'react-redux';
+import './ActionBarComponent.css'
 
-export default function ActionBarComponent() {
-    let gameStats = useGameStats();
+class ActionBarComponent extends React.Component {
+    killedEnemy = () => {
+        this.props.dispatch({ type: "KilledEnemy" })
+    }
 
-    const killedEnemy = useGameStatsUpdate({
-        enemiesDefeated: 1,
-        gold: 20,
-        health: 3,
-        healthMax: 3,
-        strength: 1,
-        dexterity: 1,
-        luck: 0.03,
-    });
+    drinkPotion = () => {
+        this.props.dispatch({ type:"DrinkPotion" })
+    }
 
-    // ~ MUI ~
-    const useStyles = makeStyles(theme => ({
-        root: {
-            border: '5px solid grey',
-            height: 'max-content'
-        },
-        healthBarContainer: {
-            padding: '5px 0'
-        },
-        healthBar: {
-            width: '80%',
-            padding: '5px 0'
-        },
-        gameButton: {
-            fontSize: '1.5em',
-        },
-        potionLabel: {
-            display: 'block',
-        },
-        potionLabelUpper: {
-            fontSize: '.6em',
-        },
-        potionLabelLower: {
-            fontSize: '1em',
-            color: 'black',
-        },
-    }));
+    getHit = () => {
+        this.props.dispatch({ type:"GetHit" })
+    }
 
-    const classes = useStyles();
-
-    return (
-        <React.Fragment>
+    render() {
+        return (
             <Grid item
                 xs={12}
                 container
                 alignItems="center"
                 justify="space-around"
-                className={classes.root}>
+                className='actionBarRoot'>
                 <Grid item container justify="center" sm={12} md={5} py={3}>
                     <Grid item
                         xs={12}
@@ -60,42 +31,45 @@ export default function ActionBarComponent() {
                         justify="center">
                         <LinearProgress
                             variant="determinate"
-                            value={100}
-                            className={classes.healthBar} />
+                            value={this.props.health / this.props.healthMax * 100}
+                            className='healthBar'
+                            />
                     </Grid>
                     <Grid item
                         xs={12}
                         container
                         justify="center">
-                        {gameStats.health} / {gameStats.healthMax}
+                        {this.props.health} / {this.props.healthMax}
                     </Grid>
                 </Grid>
                 <Grid item container justify="center" sm={12} md>
                     <ButtonGroup>
                         <Button size="large" variant="contained"
                             color="primary"
-                            className={classes.gameButton}
-                            onClick={killedEnemy}>
+                            className='gameButton'
+                            onClick={this.killedEnemy}>
                             🏹
                         </Button>
                         <Button size="large" variant="contained"
                             color="primary"
-                            className={classes.gameButton}>
+                            className='gameButton'
+                            onClick={this.getHit}>
                             🏃‍♂️
                         </Button>
                         <Button size="large" variant="contained"
                             color="primary"
-                            className={classes.gameButton}>
+                            className='gameButton'
+                            onClick={this.drinkPotion}>
                             💉
                         </Button>
                         <Button size="large" variant="outlined"
                             color="primary"
                             disabled
-                            className={classes.potionLabel}>
-                            <div className={classes.potionLabelUpper}>
+                            className='potionLabel'>
+                            <div className='potionLabelUpper'>
                                 Potions
                             </div>
-                            <div className={classes.potionLabelLower}>
+                            <div className='potionLabelLower'>
                                 x{14}
                             </div>
                         </Button>
@@ -105,23 +79,29 @@ export default function ActionBarComponent() {
                     <ButtonGroup width="100%">
                         <Button variant="contained"
                             color="primary"
-                            className={classes.gameButton}
-                            >
+                            className='gameButton'>
                             🙍‍♂️
                         </Button>
                         <Button variant="contained"
                             color="primary"
-                            className={classes.gameButton}>
+                            className='gameButton'>
                             🥇
                         </Button>
                         <Button variant="contained"
                             color="primary"
-                            className={classes.gameButton}>
+                            className='gameButton'>
                             🔧
                         </Button>
                     </ButtonGroup>
                 </Grid>
             </Grid>
-        </React.Fragment>
-    );
+        )
+    }
 }
+
+const mapStateToProps = state => ({
+    health: state.health,
+    healthMax: state.healthMax
+});
+
+export default connect(mapStateToProps)(ActionBarComponent);

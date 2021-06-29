@@ -1,0 +1,24 @@
+.actionBarRoot {
+     border: 5px solid grey;
+     height: max-content;
+ }
+.healthBarContainer {
+     padding: 5px 0
+ }
+.healthBar {
+     width: 80%;
+     padding: 5px 0;
+ }
+.gameButton {
+     font-size: 1.5em;
+ }
+.potionLabel {
+     display: block;
+ }
+.potionLabelUpper {
+     font-size: .6em;
+ }
+.potionLabelLower {
+     font-size: 1em;
+     color: black;
+ }

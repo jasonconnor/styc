@@ -1,0 +1,10 @@
+.paneStats {
+    height: calc(100vh - 3em);
+}
+.paneStats h1 {
+    text-align: center;
+}
+.paneFooter {
+    height: 1.5em;
+    text-align: center;
+}
