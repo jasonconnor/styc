@@ -1,0 +1,17 @@
+@import '../../styles/variables.scss';
+
+.remove-this-later {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  background: $primary;
+  color: $white;
+
+  li {
+    a,
+    a:visited {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+}
