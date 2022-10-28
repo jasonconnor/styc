@@ -1,13 +1,13 @@
 @import '../../styles/variables.scss';
 
-.remove-this-later {
+#navbar {
   display: flex;
-  gap: 20px;
-  list-style: none;
-  background: $primary;
-  color: $white;
+  justify-content: flex-end;
 
-  li {
+  .remove-this-later {
+    color: $white;
+    padding: 5px 20px;
+
     a,
     a:visited {
       text-decoration: none;

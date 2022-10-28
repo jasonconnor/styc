@@ -1,23 +1,23 @@
 @import '../../styles/variables.scss';
 
 .play-page-container {
-  background: $white;
+  color: $white;
 
   .boon {
-    background: $boon-dark;
+    background: $boon;
     color: $white;
 
     svg {
-      fill: $boon;
+      fill: $boon-light;
     }
   }
 
   .debuff {
-    background: $debuff-dark;
+    background: $debuff;
     color: $white;
 
     svg {
-      fill: $debuff;
+      fill: $debuff-light;
     }
   }
 }
