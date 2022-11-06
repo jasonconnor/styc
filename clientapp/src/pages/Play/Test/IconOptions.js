@@ -122,7 +122,7 @@ const IconOptions = () => {
                 className='debuff'
               />
             </Tooltip>
-            <Tooltip disableInteractive title={<span>Your attacks have a 2 second delay.<br /><i>Effect ends in 5 seconds.</i></span>}>
+            <Tooltip disableInteractive title={<><span>Your attacks have a 2 second delay.<br /><i>Effect ends in 5 seconds.</i></span><br /><span>----OR----</span><br /><span>Your attacks' cooldown takes 2 seconds longer to recover.<br /><i>Effect ends in 5 seconds.</i></span></>}>
               <Chip
                 avatar={<RemoveCircle />}
                 label='Slowed-2 (5s)'
