@@ -15,7 +15,7 @@ import {
   Store,
   Storefront
 } from '@mui/icons-material'
-import { Box, Chip, Container, Divider, IconButton, Stack, Tooltip, Typography } from '@mui/material'
+import { Box, Chip, Divider, IconButton, Stack, Tooltip, Typography } from '@mui/material'
 
 const IconOptions = () => {
   return (
