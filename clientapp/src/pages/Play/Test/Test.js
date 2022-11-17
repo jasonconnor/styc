@@ -1,6 +1,7 @@
 import TimedAttacks from './TimedAttacks'
 import IconOptions from './IconOptions'
 import { Container, Stack } from '@mui/material'
+import BattleSystemTest from './BattleSystemTest'
 
 const Test = () => {
   return (<Container>
@@ -8,6 +9,7 @@ const Test = () => {
       <TimedAttacks />
       <IconOptions />
       <br />
+      <BattleSystemTest />
     </Stack>
   </Container>)
 }
