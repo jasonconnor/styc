@@ -5,7 +5,7 @@ import './navbar.scss'
 
 const Navbar = () => {
   return (
-    <nav id='navbar'>
+    <div id='navbar'>
       <Stack 
         className='remove-this-later'
         direction='row'
@@ -16,7 +16,7 @@ const Navbar = () => {
         <Link to="/Play">Play</Link>
         <Link to="/Login">Login</Link>
       </Stack>
-    </nav>
+    </div>
   )
 }
 

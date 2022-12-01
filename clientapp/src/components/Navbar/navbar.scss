@@ -3,6 +3,9 @@
 #navbar {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  height: 50px;
+  background: $navbar;
 
   .remove-this-later {
     color: $white;

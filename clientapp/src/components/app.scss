@@ -1,0 +1,7 @@
+@import '../styles/variables.scss';
+
+#page-main-container {
+  height: calc(100vh - 50px - 40px); // 50px = navbar, 40px = 20px padding
+  padding: 20px;
+  background: $background;
+}
