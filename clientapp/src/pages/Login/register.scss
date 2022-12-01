@@ -1,0 +1,23 @@
+#register-container {
+  background: white;
+  padding: 20px;
+
+  .invalidPassword,
+  .invalidUsername {
+    border-color: red;
+
+    &:hover {
+      border-color: red;
+    }
+
+    & .MuiInputLabel-formControl {
+      color: red;
+    }
+
+    & .MuiOutlinedInput-root {
+      & fieldset {
+        border-color: red;
+      }
+    }
+  }
+}
