@@ -1,21 +1,19 @@
+@import '../../styles/variables.scss';
+
 #register-container {
 
-  .invalidPassword,
-  .invalidUsername {
-    border-color: red;
+  .content {
+    background: $white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px $black;
 
-    &:hover {
-      border-color: red;
+    h1 {
+      margin-top: 0;
     }
 
-    & .MuiInputLabel-formControl {
-      color: red;
-    }
-
-    & .MuiOutlinedInput-root {
-      & fieldset {
-        border-color: red;
-      }
+    .log-in-container {
+      color: $dark-grey-3;
     }
   }
 }

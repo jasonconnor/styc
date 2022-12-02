@@ -15,3 +15,8 @@ code {
 }
 
 /* Global Styles here */
+
+/* MUI Overrides */
+.MuiButton-root {
+  text-transform: none !important;
+}

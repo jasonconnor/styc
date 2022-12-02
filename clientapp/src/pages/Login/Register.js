@@ -1,19 +1,20 @@
-import { 
+import {
   useRef,
   useState
 } from 'react'
-import { 
-  Button, 
-  Stack, 
-  TextField, 
+import {
+  Box,
+  Button,
+  Stack,
+  TextField,
   Typography
 } from '@mui/material'
 import { registerAccount } from '../../services/login/login.svc'
 import './register.scss'
+import { Link } from 'react-router-dom'
 
 const defaultInputState = {
-  isValid: true,
-  error: null
+  isValid: true
 }
 
 const Register = () => {
@@ -23,13 +24,14 @@ const Register = () => {
 
   const [inputState, setInputState] = useState(defaultInputState)
 
-  const register = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     const isValid = validateInput()
 
     if (!isValid) {
       setInputState({
-        isValid: false,
-        error: "invalid inputs"
+        isValid: false
       })
       return
     }
@@ -59,54 +61,72 @@ const Register = () => {
       direction='row'
       justifyContent='center'
     >
-      <div>
+      <div className='content'>
         <h1>
           Register page
         </h1>
 
-        <Stack alignItems='center' spacing={3}>
-          <span>
+        <Box
+          component='form'
+          noValidate
+          autoComplete='off'
+        >
+          <Stack alignItems='center' spacing={3}>
             <TextField
               size='small'
               label='Username'
+              fullWidth
               inputRef={usernameRef}
               onChange={() => setInputState(defaultInputState)}
-              className={!inputState.isValid ? 'invalidUsername' : null}
+              error={!inputState.isValid}
             />
-          </span>
 
-          <span>
             <TextField
               size='small'
               label='Password'
+              fullWidth
               inputRef={passwordRef}
               onChange={() => setInputState(defaultInputState)}
-              className={!inputState.isValid ? 'invalidPassword' : null}
+              error={!inputState.isValid}
             />
-          </span>
 
-          <span>
             <TextField
               size='small'
               label='Confirm Password'
+              fullWidth
               inputRef={confirmPasswordRef}
               onChange={() => setInputState(defaultInputState)}
-              className={!inputState.isValid ? 'invalidPassword' : null}
+              error={!inputState.isValid}
             />
-          </span>
 
-          <span>
-            <Typography sx={{textAlign: 'center', color: 'red'}}>
-              {!inputState.isValid ? inputState.error : null}
-            </Typography>
             <Button
               variant='contained'
-              onClick={register}
+              onClick={handleSubmit}
+              fullWidth
+              type='submit'
             >
               Register
             </Button>
-          </span>
-        </Stack>
+
+            <Stack
+              className='log-in-container'
+              direction='row'
+              alignItems='center'
+            >
+              <Typography
+                variant='subtitle2'
+              >
+                Already have an account?
+              </Typography>
+              <Button
+                component={Link} 
+                to='/Login'
+              >
+                Sign in
+              </Button>
+            </Stack>
+          </Stack>
+        </Box>
       </div>
     </Stack>
   )

@@ -1,2 +1,18 @@
+@import '../../styles/variables.scss';
+
 #login-container {
+  .content {
+    background: $white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px $black;
+
+    h1 {
+      margin-top: 0;
+    }
+
+    .sign-up-container {
+      color: $dark-grey-3;
+    }
+  }
 }
