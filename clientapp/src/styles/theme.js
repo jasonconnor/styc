@@ -1,9 +1,23 @@
 import { createTheme } from "@mui/material";
-import { amber, blueGrey } from "@mui/material/colors";
+import { blueGrey } from "@mui/material/colors";
+import colors from '../styles/_export.scss';
+
+const primaryPalette = {
+  main: colors.primary
+};
+
+const secondaryPalette = {
+  main: colors.secondary
+};
+
+const tertiaryPalette = {
+  main: colors.tertiary
+};
 
 export const appTheme = createTheme({
   palette: {
-    primary: amber,
-    secondary: blueGrey
+    primary: primaryPalette,
+    secondary: secondaryPalette,
+    tertiary: tertiaryPalette
   }
 });

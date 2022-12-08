@@ -20,4 +20,14 @@
       fill: $debuff-light;
     }
   }
+
+  .test-button-container {
+    button {
+      position: relative;
+
+      &:hover {
+        transform: scale(115%);
+      }
+    }
+  }
 }

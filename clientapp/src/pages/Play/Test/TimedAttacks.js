@@ -65,7 +65,7 @@ const TimedAttacks = () => {
   }
 
   // Method to reduce player health
-  const reducePlayerHP = (amount) => {
+  const reducePlayerHP = (amount) => () => {
     setHealth(prev => prev - amount)
   }
 
@@ -142,7 +142,7 @@ const TimedAttacks = () => {
         </div>
         }
       </Box>
-      <Stack direction='row' spacing={2}>
+      <Stack className='test-button-container' direction='row' spacing={2}>
         <Tooltip title='Slimes deal 2 damage every 2 seconds.'>
           <Button variant='contained' onClick={handleClickedEnemy(0)}>Slime</Button>
         </Tooltip>
@@ -150,8 +150,8 @@ const TimedAttacks = () => {
           <Button variant='contained' onClick={handleClickedEnemy(1)}>Mouse</Button>
         </Tooltip>
         <Button variant='contained' color='secondary' onClick={stopTimer} disabled={isPlayerDead}>Stop Timer</Button>
-        <Button variant='contained' color='secondary' onClick={() => reducePlayerHP(4)}>Reduce health by 4</Button>
-        <Button variant='contained' color='secondary' onClick={heal(5)}>Heal 5 HP</Button>
+        <Button variant='contained' color='tertiary' onClick={reducePlayerHP(4)}>Reduce health by 4</Button>
+        <Button variant='contained' color='tertiary' onClick={heal(5)}>Heal 5 HP</Button>
       </Stack>
       <br />
       <Tooltip title={`Deal ${playerAttack} damage to the enemy.`}>
