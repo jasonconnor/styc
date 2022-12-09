@@ -1,13 +1,13 @@
 import jwt from 'jsonwebtoken'
 
-const accessTokenExpiry = Math.floor(Date.now() / 1000) + (60 * 5)
-const refrshTokenExpiry = Math.floor(Date.now() / 1000) + (3600 * 24)
+const accessTokenExpiry = () => { return Math.floor(Date.now() / 1000) + (60 * 5) }
+const refrshTokenExpiry = () => { return Math.floor(Date.now() / 1000) + (3600 * 24) }
 
 export function createAccessToken(user) {
   try {
     const accessToken = jwt.sign({
       sub: user,
-      exp: accessTokenExpiry
+      exp: accessTokenExpiry()
     }, process.env.ACCESS_SECRET)
 
     return [accessToken, null]
@@ -21,7 +21,7 @@ export function createRefreshToken(user) {
   try {
     const refreshToken = jwt.sign({
       sub: user,
-      exp: refrshTokenExpiry
+      exp: refrshTokenExpiry()
     }, process.env.REFRESH_SECRET)
 
     return [refreshToken, null]
