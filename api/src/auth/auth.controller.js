@@ -73,7 +73,5 @@ export async function login(request, response) {
     error: 'No tokens provided.'
   })
 
-  console.log(tokens)
-
-  return response.status(200).json({ok: true})
+  return response.status(200).json(tokens)
 }

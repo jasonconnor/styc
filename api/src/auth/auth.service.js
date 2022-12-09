@@ -12,7 +12,7 @@ export async function createUser(username, password) {
     const user = new UsersModel({username, password})
     const stats = new StatsModel({user: user.id})
 
-    const statsResult = await stats.save()
+    await stats.save()
 
     user.stats = stats.id
     const userResult = await user.save()
