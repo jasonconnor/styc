@@ -1,5 +1,6 @@
 import axios from "axios"
 import { APIURL } from "../app/app.svc"
+import { authService } from "../auth/auth.svc"
 
 export const attemptLogin = async (username, password) => {
   const params = {
@@ -9,6 +10,11 @@ export const attemptLogin = async (username, password) => {
 
   try {
     let resp = await axios.post(`${APIURL}/auth/login`, params)
+
+    const { accessToken, refreshToken } = resp.data;
+
+    authService.setAccessToken(accessToken);
+    authService.setRefreshToken(refreshToken);
 
     window.location.href = '/'
   }

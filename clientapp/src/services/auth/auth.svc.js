@@ -1,10 +1,17 @@
-const accessToken = "accessToken";
+const accessToken = "accessToken",
+      refreshToken = "refreshToken";
 
 export const authService = {
-  getToken: () => {
+  getAccessToken: () => {
     return localStorage.getItem(accessToken);
   },
-  setToken: (token) => {
+  setAccessToken: (token) => {
     localStorage.setItem(accessToken, token);
+  },
+  getRefreshToken: () => {
+    return localStorage.getItem(refreshToken);
+  },
+  setRefreshToken: (token) => {
+    localStorage.setItem(refreshToken, token);
   }
 }

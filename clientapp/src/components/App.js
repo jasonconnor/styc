@@ -14,10 +14,21 @@ import Register from "../pages/Login/Register";
 import { startup } from "../services/app/app.svc";
 import { appTheme } from "../styles/theme";
 import Navbar from "./Navbar/Navbar";
+import { useDispatch } from "react-redux"
+import { getUserProfile } from "../store/reducers/profile";
 import './app.scss'
+import { useEffect } from "react";
 
 const App = () => {
-  startup()
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    startup()
+  
+    dispatch(
+      getUserProfile()
+    )
+  }, [])
 
   return (
     <ThemeProvider theme={appTheme}>

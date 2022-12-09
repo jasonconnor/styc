@@ -4,7 +4,11 @@ import { authService } from "./services/auth/auth.svc";
 export const initialize = () => {
   // Add JWT to requests
   axios.interceptors.request.use((request) => {
-    request.headers.common['Authorization'] = `JWT ${authService.getToken()}`;
+    const accessToken = authService.getAccessToken();
+    if (accessToken) {
+      request.headers.Authorization = `JWT ${authService.getAccessToken()}`;
+    }
+
     return request;
   });
 

@@ -72,6 +72,7 @@ const Login = () => {
             />
 
             <TextField
+              type='password'
               size='small'
               label='Password'
               inputRef={passwordRef}
