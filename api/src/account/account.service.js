@@ -5,8 +5,6 @@ export async function getAccountData(id) {
     const user = await UsersModel
       .findById(id)
       .populate('stats')
-      .populate('scores')
-    console.log(user.stats)
     return [user, null]
   } catch (error) {
     console.error(error)

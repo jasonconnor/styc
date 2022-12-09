@@ -8,4 +8,10 @@ const StatsSchema = new mongoose.Schema({
   }
 })
 
+StatsSchema.pre('save', function(next) {
+  console.log(this)
+  this.totalKills = 0
+  return next ()
+})
+
 export const StatsModel = mongoose.model('Stats', StatsSchema)
