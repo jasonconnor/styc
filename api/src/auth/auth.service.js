@@ -5,13 +5,19 @@ import {
   createRefreshToken
 } from '../tokens/tokens.service.js'
 import { UsersModel } from '../users/users.model.js'
+import { StatsModel } from '../stats/stats.model.js'
 
 export async function createUser(username, password) {
   try {
     const user = new UsersModel({username, password})
-    const result = await user.save()
+    const stats = new StatsModel({user: user.id})
 
-    return [result, null]
+    const statsResult = await stats.save()
+
+    user.stats = stats.id
+    const userResult = await user.save()
+
+    return [userResult, null]
   } catch (error) {
     console.error(error)
     return [null, error]

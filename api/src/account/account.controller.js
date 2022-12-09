@@ -1,9 +1,9 @@
-import { getAccountStatsAndScores } from './account.service.js'
+import { getAccountData } from './account.service.js'
 
 export async function getAccount(request, response) {
   const id = request.user
 
-  const [user, error] = await getAccountStatsAndScores(id)
+  const [user, error] = await getAccountData(id)
 
   if (error) return response.status(500).json({error: 'Failed to fetch user.'})
   

@@ -1,7 +1,5 @@
 import mongoose from 'mongoose'
 
-import { UsersModel } from '../users/users.model.js'
-
 const StatsSchema = new mongoose.Schema({
   totalKills: Number,
   user: {
