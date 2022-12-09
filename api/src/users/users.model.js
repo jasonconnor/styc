@@ -14,7 +14,7 @@ const UserSchema = new mongoose.Schema({
     default: Date.now
   },
   scores: [{type: mongoose.Schema.Types.ObjectId, ref: 'Score'}],
-  stats: [{type: mongoose.Schema.Types.ObjectId, ref: 'Stats'}]
+  stats: {type: mongoose.Schema.Types.ObjectId, ref: 'Stats'}
 })
 
 export const UsersModel = mongoose.model('User', UserSchema)

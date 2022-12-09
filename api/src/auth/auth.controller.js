@@ -7,6 +7,7 @@ import {
   checkPassword,
   createTokenPair
 } from './auth.service.js'
+import { createStatsForUser } from '../stats/stats.service.js'
 
 export async function signup(request, response) {
   const validationErrors = validationResult(request)
@@ -22,10 +23,18 @@ export async function signup(request, response) {
 
   if (hashError) return response.status(500).json({error: 'Failed to hash password.'})
 
-  const [user, error] = await createUser(username, hashedPassword)
+  const [user, userError] = await createUser(username, hashedPassword)
 
-  if (error) return response.status(500).json({error: 'Failed to create new user.'})
+  if (userError) return response.status(500).json({error: 'Failed to create new user.'})
 
+  const [stats, statsError] = await createStatsForUser(user.id)
+
+  if (statsError) return response.status(500).json({
+    error: 'Failed to create stats for user.'
+  })
+
+  console.log(stats)
+  
   return response.status(200).json({message: `Successfully created user: ${user.username}`})
 }
 
