@@ -7,6 +7,7 @@ import {
   checkPassword,
   createTokenPair
 } from './auth.service.js'
+import { verifyRefreshToken } from '../tokens/tokens.service.js'
 
 export async function signup(request, response) {
   const validationErrors = validationResult(request)
@@ -70,7 +71,38 @@ export async function login(request, response) {
   })
 
   if (tokens === null) return response.status(500).json({
-    error: 'No tokens provided.'
+    error: 'No tokens created.'
+  })
+
+  return response.status(200).json(tokens)
+}
+
+export function refreshTokens(request, response) {
+  const { refreshToken } = request.body
+
+  if (!refreshToken) return response.status(403).json({
+    error: 'No refresh token provided.'
+  })
+
+  const [data, verifyError] = verifyRefreshToken(refreshToken)
+
+  if (verifyError && verifyError.name === 'TokenExpiredError') {
+    return response.status(401).json({error: 'Refresh token expired.'})
+  }
+
+  // TODO: handle invalid tokens in some unique way 
+  if (tokenError) return response.status(403).json({
+    error: 'Invalid refresh token.'
+  })
+
+  const [tokens, createError] = createTokenPair(data.sub)
+
+  if (createError) return response.status(500).json({
+    error: 'Error creating token pair.'
+  })
+
+  if (tokens === null) return response.status(500).json({
+    error: 'No tokens created.'
   })
 
   return response.status(200).json(tokens)

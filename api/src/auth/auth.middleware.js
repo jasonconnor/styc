@@ -14,7 +14,7 @@ export function checkTokens(request, response, next) {
     return response.status(401).json({error: 'Token expired.'})
   }
 
-  if (tokenError) return response.status(403).json({error: 'Invalid token.'})
+  if (tokenError) return response.status(403).json({error: 'Invalid access token.'})
 
   request.user = data.sub
 
