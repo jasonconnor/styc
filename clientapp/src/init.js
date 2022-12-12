@@ -1,22 +1,43 @@
 import axios from "axios";
-import { authService } from "./services/auth/auth.svc";
+import { authService, refreshUserToken } from "./services/auth/auth.svc";
 
 export const initialize = () => {
   // Add JWT to requests
-  axios.interceptors.request.use((request) => {
-    const accessToken = authService.getAccessToken();
-    if (accessToken) {
-      request.headers.Authorization = `JWT ${authService.getAccessToken()}`;
+  axios.interceptors.request.use(
+    (request) => {
+      const accessToken = authService.getAccessToken();
+      if (accessToken) {
+        request.headers.Authorization = `JWT ${authService.getAccessToken()}`;
+      }
+
+      return request;
+    },
+    async (error) => {
+      console.log("--- blah ---")
     }
+  );
 
-    return request;
-  });
+  // Response handler
+  axios.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    async (error) => {
+      if (error.message) {
+        console.log(error.message);
+      }
 
-  // IDK
-  axios.interceptors.response.use((response) => {
-    return response;
-  },
-  async (error) => {
-    console.error(error);
-  })
+      // check if expired token error
+      // if (error?.response?.status === 401) {
+      //   // refresh token
+      //   console.log("- Refreshing token.");
+      //   await refreshUserToken();
+        
+      //   // re-request
+      //   console.log("- Re-requesting token.");
+
+      //   await axios.request(error.config);
+      // }
+    }
+  );
 };
