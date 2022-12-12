@@ -91,7 +91,7 @@ export function refreshTokens(request, response) {
   }
 
   // TODO: handle invalid tokens in some unique way 
-  if (tokenError) return response.status(403).json({
+  if (verifyError) return response.status(403).json({
     error: 'Invalid refresh token.'
   })
 
