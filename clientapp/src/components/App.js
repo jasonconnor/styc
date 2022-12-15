@@ -18,6 +18,7 @@ import { useDispatch } from "react-redux"
 import { getUserProfile } from "../store/reducers/profile";
 import './app.scss'
 import { useEffect } from "react";
+import Profile from "../pages/Profile/Profile";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -46,6 +47,8 @@ const App = () => {
                 element={<Play />} />
               <Route path="/Leaderboard" 
                 element={<Leaderboard />} />
+              <Route path="/Profile" 
+                element={<Profile />} />
               <Route path="/" 
                 element={<Landing />} />
             </Routes>

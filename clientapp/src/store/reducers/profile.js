@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 import { APIURL } from "../../services/app/app.svc";
+import { getRequestWithRetry } from "../../services/app/requestWrapper";
 
 const initialState = {
   loading: false,
@@ -12,7 +12,12 @@ export const getUserProfile = createAsyncThunk(
   'profile/user',
   async (params, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${APIURL}/account`);
+      if (!localStorage.getItem('accessToken')) {
+        return;
+      }
+
+      const response = await getRequestWithRetry(`${APIURL}/account`);
+
       return response.data;
     } catch (err) {
         throw err;
