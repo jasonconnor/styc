@@ -11,7 +11,7 @@ const StatsSchema = new mongoose.Schema({
 
 StatsSchema.pre('save', function(next) {
   this.cumulativeScore = 0
-  this.totalEnemiesSlain = 0
+  this.cumulativeEnemiesSlain = 0
   return next ()
 })
 
