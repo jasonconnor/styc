@@ -1,7 +1,8 @@
 import mongoose from 'mongoose'
 
 const StatsSchema = new mongoose.Schema({
-  totalKills: Number,
+  cumulativeScore: Number,
+  cumulativeEnemiesSlain: Number,
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
@@ -9,8 +10,8 @@ const StatsSchema = new mongoose.Schema({
 })
 
 StatsSchema.pre('save', function(next) {
-  console.log(this)
-  this.totalKills = 0
+  this.cumulativeScore = 0
+  this.totalEnemiesSlain = 0
   return next ()
 })
 

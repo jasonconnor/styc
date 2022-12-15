@@ -1,4 +1,4 @@
-import { getAccountData } from './account.service.js'
+import { getAccountData } from '..users/users.service.js'
 
 export async function getAccount(request, response) {
   const id = request.user

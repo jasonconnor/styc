@@ -19,3 +19,27 @@ export async function getUserById(id) {
     return [null, error]
   }
 }
+
+export async function getAccountData(id) {
+  try {
+    const user = await UsersModel
+      .findById(id)
+      .populate('stats')
+      .populate('scores')
+    return [user, null]
+  } catch (error) {
+    console.error(error)
+    return [null, error]
+  }
+}
+
+export async function updateUsersScores(userId, scoreId) {
+  try {
+    const user = await UsersModel.findById(userId)
+    const update = await user.update({$push: {'scores': scoreId}})
+    return [update, null]
+  } catch (error) {
+    console.error(error)
+    return [null, error]
+  }
+}

@@ -1,8 +1,8 @@
 import mongoose from 'mongoose'
 
-import { UsersModel } from '../users/users.model.js'
-
-const ScoreSchema = mongoose.Schema({
+const ScoreSchema = new mongoose.Schema({
+  enemiesSlain: Number,
+  totalScore: Number,
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
