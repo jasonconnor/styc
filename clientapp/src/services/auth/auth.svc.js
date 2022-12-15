@@ -38,3 +38,10 @@ export const refreshUserToken = async () => {
     throw err?.error ?? 'Issue unknown.'
   }
 }
+
+export const logout = () => {
+  localStorage.removeItem(accessToken);
+  localStorage.removeItem(refreshToken);
+
+  window.location.href = '/';
+}
