@@ -19,6 +19,16 @@ export async function signup(request, response) {
   
   const { username, password } = request.body
 
+  const [usernameResult, usernameError] = await checkUsername(username)
+
+  if (usernameError) return response.status(500).json({
+    error: 'Failed to look up username.'
+  })
+
+  if (usernameResult) return response.status(400).json({
+    error: 'Username is already taken.'
+  })
+
   const [hashedPassword, hashError] = await hashPassword(password)
 
   if (hashError) return response.status(500).json({error: 'Failed to hash password.'})
@@ -46,7 +56,7 @@ export async function login(request, response) {
     error: 'Failed to fetch user.'
   })
   
-  if (userResult === null) return response.status(400).json({
+  if (!userResult) return response.status(400).json({
     error: 'Invalid username.'
   })
 
@@ -59,7 +69,7 @@ export async function login(request, response) {
     error: 'Failed to check password.'
   })
 
-  if (passwordResult === false) return response.status(400).json({
+  if (!passwordResult) return response.status(400).json({
     error: 'Invalid password.'
   })
 
@@ -68,10 +78,6 @@ export async function login(request, response) {
 
   if (tokenError) return response.status(500).json({
     error: 'Error creating token pair.'
-  })
-
-  if (tokens === null) return response.status(500).json({
-    error: 'No tokens created.'
   })
 
   return response.status(200).json(tokens)
@@ -99,10 +105,6 @@ export function refreshTokens(request, response) {
 
   if (createError) return response.status(500).json({
     error: 'Error creating token pair.'
-  })
-
-  if (tokens === null) return response.status(500).json({
-    error: 'No tokens created.'
   })
 
   return response.status(200).json(tokens)
