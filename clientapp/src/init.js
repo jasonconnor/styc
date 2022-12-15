@@ -1,5 +1,5 @@
 import axios from "axios";
-import { authService, refreshUserToken } from "./services/auth/auth.svc";
+import { authService } from "./services/auth/auth.svc";
 
 export const initialize = () => {
   // Add JWT to requests
@@ -27,17 +27,7 @@ export const initialize = () => {
         console.log(error.message);
       }
 
-      // check if expired token error
-      // if (error?.response?.status === 401) {
-      //   // refresh token
-      //   console.log("- Refreshing token.");
-      //   await refreshUserToken();
-        
-      //   // re-request
-      //   console.log("- Re-requesting token.");
-
-      //   await axios.request(error.config);
-      // }
+      return error.response;
     }
   );
 };
