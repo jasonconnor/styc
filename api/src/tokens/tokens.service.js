@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken'
 
-function  getAccessTokenExpiry() { 
+function getAccessTokenExpiry() { 
   return Math.floor(Date.now() / 1000) + (60 * 5) 
 }
 
-function getRefrshTokenExpiry() { 
+function getRefreshTokenExpiry() { 
   return Math.floor(Date.now() / 1000) + (3600 * 24)
 }
 
@@ -26,7 +26,7 @@ export function createRefreshToken(user) {
   try {
     const refreshToken = jwt.sign({
       sub: user,
-      exp: getRefrshTokenExpiry()
+      exp: getRefreshTokenExpiry()
     }, process.env.REFRESH_SECRET)
 
     return [refreshToken, null]
