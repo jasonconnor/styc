@@ -1,8 +1,17 @@
+import { validationResult } from 'express-validator'
+
 import { updateUsersStats } from '../stats/stats.service.js'
 import { updateUsersScores } from '../users/users.service.js'
 import { createScore, getTop100Scores } from './scores.service.js'
 
 export async function saveScore(request, response) {
+  const validationErrors = validationResult(request)
+
+  // handle request validation results
+  if (!validationErrors.isEmpty()) return response.status(400).json({
+    error: validationErrors.errors[0].msg
+  })
+
   const { user } = request
   const { totalScore, enemiesSlain } = request.body
 
