@@ -29,8 +29,10 @@ export const refreshUserToken = async () => {
 
     const { accessToken, refreshToken } = resp.data;
 
-    authService.setAccessToken(accessToken);
-    authService.setRefreshToken(refreshToken);
+    if (accessToken && refreshToken) {
+      authService.setAccessToken(accessToken);
+      authService.setRefreshToken(refreshToken);
+    }
   }
   catch (err) {
     console.error('An error occurred while trying to refresh the token.', err?.error ?? 'Issue unknown.')
