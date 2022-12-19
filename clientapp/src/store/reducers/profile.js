@@ -13,7 +13,7 @@ export const getUserProfile = createAsyncThunk(
   async (params, { rejectWithValue }) => {
     try {
       if (!localStorage.getItem('accessToken')) {
-        return;
+        return null;
       }
 
       const response = await getRequestWithRetry(`${APIURL}/account`);
