@@ -35,7 +35,7 @@ const Navbar = () => {
         className='title-container'
       >
         <div className='flurish-container'></div>
-        <div class='page-title'>Slash Til You Crash</div>
+        <div className='page-title'>Slash Til You Crash</div>
         <div className='flurish-container'>
           
         </div>

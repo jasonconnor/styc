@@ -23,6 +23,14 @@
       justify-content: center;
       font-size: 4rem;
       font-family: 'OldEnglish';
+
+      @media screen and (max-width: 980px) {
+        font-size: 3rem;
+      }
+
+      @media screen and (max-width: 760px) {
+        font-size: 2rem;
+      }
     }
   }
   
