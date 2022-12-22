@@ -7,10 +7,23 @@ import {
   TableHead,
   TableRow
 } from '@mui/material';
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { getLeaderboard } from '../../store/reducers/leaderboard'
 
 import './leaderboard.scss'
 
 const Leaderboard = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(
+      getLeaderboard()
+    )
+  }, [])
+
+  const highscores = useSelector(state => state.leaderboard.data);
+  console.log(highscores)
   return (
     <div>
       <h2>Leaderboards</h2>
@@ -26,7 +39,17 @@ const Leaderboard = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            
+            {highscores && highscores.map((score) => (
+              <TableRow
+                key={score._id} 
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell>{score.user.username}</TableCell>
+                <TableCell align='right'>{score.totalScore}</TableCell>
+                <TableCell align='right'>{score.enemiesSlain}</TableCell>
+                <TableCell align='right'>{score.createdAt}</TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

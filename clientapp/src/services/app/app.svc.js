@@ -4,3 +4,7 @@ export const startup = () => {
   if (process.env.NODE_ENV === "development")
     APIURL = "http://localhost:80"
 }
+
+export const formatDate = (date) => {
+  
+}
