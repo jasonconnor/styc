@@ -12,7 +12,7 @@ const Navbar = () => {
   const userProfile = useSelector(state => state.userProfile);
   
   const open = Boolean(anchorEl);
-  const isLoggedIn = userProfile.complete && userProfile.data;
+  const isLoggedIn = userProfile.complete && userProfile.data && !userProfile.data?.error;
   
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
