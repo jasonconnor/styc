@@ -1,32 +1,44 @@
 @import '../../styles/variables.scss';
 
 .play-page-container {
-  color: $white;
+  color: $black;
 
-  .boon {
-    background: $boon;
-    color: $white;
+  .article-title {
+    text-align: center;
+    color: $dark-grey-3;
+  }
 
-    svg {
-      fill: $boon-light;
+  .article-body {
+    text-align: justify;
+    text-justify: inter-word;
+    color: $dark-grey-3;
+  }
+
+  // TODO: Temporary Styling
+  .article-image {
+    background: $black;
+    height: 100%;
+  }
+
+  .clickable-article {
+    position: relative;
+    cursor: pointer;
+    color: $black;
+
+    &:hover {
+      color: $black;
+      transform: scale(105%);
     }
   }
 
-  .debuff {
-    background: $debuff;
-    color: $white;
-
-    svg {
-      fill: $debuff-light;
+  #main-menu-container {
+    .main-article-title {
+      margin-bottom: 0;
     }
-  }
 
-  .test-button-container {
-    button {
-      position: relative;
-
-      &:hover {
-        transform: scale(115%);
+    .main-article-body-container {
+      .article-body {
+        margin-top: 0;
       }
     }
   }

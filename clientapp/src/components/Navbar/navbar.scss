@@ -34,7 +34,7 @@
     }
   }
   
-  .remove-this-later {
+  .nav-links-container {
     color: $black;
     padding: 5px 0;
     border-top: 2px $black solid;
@@ -44,6 +44,10 @@
     a:visited {
       text-decoration: none;
       color: inherit;
+    }
+
+    .profile-menu-button {
+      cursor: pointer;
     }
   }
 }

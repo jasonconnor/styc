@@ -42,7 +42,7 @@ const Navbar = () => {
       </Stack>
 
       <Stack 
-        className='remove-this-later'
+        className='nav-links-container'
         direction='row'
         justifyContent='space-between'
       >
@@ -68,7 +68,12 @@ const Navbar = () => {
         }
 
         {isLoggedIn &&
-        <span onClick={handleClick}>{userProfile.data.username}</span>
+        <span 
+          onClick={handleClick}
+          className='profile-menu-button'
+        >
+          {userProfile.data.username}
+        </span>
         }
         
       </Stack>

@@ -1,7 +1,17 @@
-import { TEMP_ENEMIES } from "./tempEnemies";
+import { TEMP_ENEMIES } from "../../../services/game/tempEnemies";
 
+// This would probably come from the API
 export let baseEnemies = [...TEMP_ENEMIES];
 
+// Cooldown timeout timers
+export let playerMainCooldown = null
+export let playerMagicCooldown = null
+
+/**
+ * Initialize a creature.
+ * @param {object} creature 
+ * @returns A fully initialized creature object.
+ */
 export const initiateCreature = (creature) => {
   return {
     ...creature,
