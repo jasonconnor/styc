@@ -6,3 +6,4 @@ export { default as ShopComponent } from "./Shop";
 export { default as ClinicComponent } from "./Clinic";
 export { default as GameOverComponent } from "./GameOver";
 export { default as ArticleComponent } from "./Article";
+export { default as ErrorStateComponent } from "./ErrorState";

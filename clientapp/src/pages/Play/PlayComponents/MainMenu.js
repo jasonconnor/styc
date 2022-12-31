@@ -1,9 +1,15 @@
 import { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import { Grid } from '@mui/material';
-import { ClosedClinicArticle, ClosedShopArticle, getRandomArticle, StartGameArticle } from '../Helpers/ArticleHelper';
-import Article from './Article';
 import { updateGameState } from '../../../store/reducers/game';
+import { Grid } from '@mui/material';
+import { ArticleComponent } from '.';
+import { 
+  ClosedClinicArticle, 
+  ClosedShopArticle, 
+  getRandomArticle, 
+  StartGameArticle 
+} from '../Helpers/ArticleHelper';
+import { GameStates } from '../Helpers/GameStates';
 
 const MainMenu = () => {
   const dispatch = useDispatch();
@@ -13,7 +19,7 @@ const MainMenu = () => {
 
   const startNewGameClickHandler = () => {
     dispatch(
-      updateGameState(1)
+      updateGameState(GameStates.SELECTION)
     )
   }
 
@@ -52,7 +58,7 @@ const MainMenu = () => {
         xs={4}
         className="closed-clinic-article"
       >
-        <Article
+        <ArticleComponent
           {...ClosedClinicArticle} 
         />
       </Grid>
@@ -61,7 +67,7 @@ const MainMenu = () => {
         xs={4}
         className="start-game-article"
       >
-        <Article
+        <ArticleComponent
           {...randomArticle} 
         />
       </Grid>
@@ -70,7 +76,7 @@ const MainMenu = () => {
         xs={4}
         className="closed-shop-article"
       >
-        <Article
+        <ArticleComponent
           {...ClosedShopArticle} 
         />
       </Grid>

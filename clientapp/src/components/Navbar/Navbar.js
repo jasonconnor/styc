@@ -1,10 +1,18 @@
-import { FormatAlignJustify, Logout } from "@mui/icons-material";
-import { Avatar, Divider, ListItemIcon, Menu, MenuItem, Stack } from "@mui/material";
-import { useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { 
+  Divider, 
+  Menu, 
+  MenuItem, 
+  Stack 
+} from "@mui/material";
+import { 
+  ArrowLeft, 
+  ArrowRight, 
+} from "@mui/icons-material";
 import { logout } from "../../services/auth/auth.svc";
-
+import { updateGameState } from "../../store/reducers/game";
 import './navbar.scss'
 
 const Navbar = () => {
@@ -25,6 +33,21 @@ const Navbar = () => {
   const handleLogout = () => {
     logout();
   }
+
+  // TODO: Remove these
+  const isDebug = new URLSearchParams(window.location.search).get('Debug')
+  const gameState = useSelector(state => state.game.State);
+  const dispatch = useDispatch();
+  const changeGameStateHandler = (direction) => () => {
+    if (gameState === -2 && direction === -1) return;
+    if (gameState === 5 && direction === 1) return;
+    
+    dispatch(
+      updateGameState(gameState + direction)
+    )
+  }
+
+  // END OF Remove these
 
   return (<>
     <div id='navbar'>
@@ -56,6 +79,24 @@ const Navbar = () => {
           <Link to="/Play">Play</Link>
           }
         </Stack>
+
+        {/* Remove This Stack after Game implemented */}
+        {isDebug &&
+        <Stack 
+          direction='row'
+          spacing={2}
+        >
+          <ArrowLeft 
+            sx={{cursor: 'pointer'}}
+            onClick={changeGameStateHandler(-1)}
+            />
+          <span>Game State ({gameState})</span>
+          <ArrowRight 
+            sx={{cursor: 'pointer'}}
+            onClick={changeGameStateHandler(1)}
+          />
+        </Stack>
+        }
         
         {!isLoggedIn &&
         <Stack

@@ -1,10 +1,9 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateGameState } from "../../store/reducers/game";
+import { useSelector } from "react-redux";
 import { GameStates } from "./Helpers/GameStates";
 import { 
   ClinicComponent,
   CombatComponent,
+  ErrorStateComponent,
   GameOverComponent,
   LoadingComponent,
   MainMenuComponent,
@@ -18,19 +17,14 @@ import './play.scss';
  * @returns The Play JSX component.
  */
 const Play = () => {
-  const dispatch = useDispatch();
   const gameState = useSelector(state => state.game.State);
-
-  useEffect(() => {
-    dispatch(updateGameState(0));
-  }, [])
 
   /**
    * Get the component based on the game state.
    * @returns A JSX Component.
    */
   const getStateComponent = () => {
-    if (gameState === null) {
+    if (!gameState) {
       return <LoadingComponent />;
     }
 
@@ -47,6 +41,9 @@ const Play = () => {
         return <ClinicComponent />;
       case GameStates.GAMEOVER:
         return <GameOverComponent />;
+      case GameStates.ERROR_GENERIC:
+      default:
+        return <ErrorStateComponent />;
     }
   }
 

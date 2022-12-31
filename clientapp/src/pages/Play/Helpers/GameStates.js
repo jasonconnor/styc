@@ -1,9 +1,10 @@
 export const GameStates = {
-  "MAINMENU": 0,
-  "SELECTION": 1,
-  "COMBAT": 2,
-  "SHOP": 3,
-  "CLINIC": 4,
-  "GAMEOVER": 10,
-  "ERROR_GENERIC": -1
+  "LOADING": 0,
+  "MAINMENU": 1,
+  "SELECTION": 2,
+  "COMBAT": 3,
+  "SHOP": 4,
+  "CLINIC": 5,
+  "GAMEOVER": -1,
+  "ERROR_GENERIC": -2
 }
