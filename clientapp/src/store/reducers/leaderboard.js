@@ -12,7 +12,7 @@ const initialState = {
 export const getLeaderboard = createAsyncThunk(
   'highscores', async (params, { rejectWithValue }) => {
     try {
-      const response = await getHighscores(`http://localhost/scores`);
+      const response = await getHighscores(`${APIURL}/scores`);
       return response.data;
     } catch (error) {
       throw error;

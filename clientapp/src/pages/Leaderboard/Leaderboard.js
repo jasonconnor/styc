@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { 
   Paper,
   Table,
@@ -6,24 +8,24 @@ import {
   TableContainer,
   TableHead,
   TableRow
-} from '@mui/material';
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+} from '@mui/material'
 import { getLeaderboard } from '../../store/reducers/leaderboard'
+import { APIURL } from '../../services/app/app.svc'
 
 import './leaderboard.scss'
 
 const Leaderboard = () => {
   const dispatch = useDispatch();
+  const highscores = useSelector(state => state.leaderboard);
 
   useEffect(() => {
+    if (APIURL === "" || highscores.loading) return
+    
     dispatch(
       getLeaderboard()
     )
-  }, [])
+  }, [APIURL])
 
-  const highscores = useSelector(state => state.leaderboard.data);
-  console.log(highscores)
   return (
     <div>
       <h2>Leaderboards</h2>
@@ -39,7 +41,7 @@ const Leaderboard = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {highscores && highscores.map((score) => (
+            {highscores.data && highscores.data.map((score) => (
               <TableRow
                 key={score._id} 
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
