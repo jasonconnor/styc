@@ -13,12 +13,15 @@ const DebugMenu = () => {
     ).get('Debug'),
     []
   )
-  
+
   const gameState = useSelector(state => state.game.State);
   
+  const isLeftMost = useMemo(() => gameState === -2, [gameState]);
+  const isRightMost = useMemo(() => gameState === 5, [gameState]);
+  
   const changeGameStateHandler = (direction) => () => {
-    if (gameState === -2 && direction === -1) return;
-    if (gameState === 5 && direction === 1) return;
+    if (isLeftMost && direction === -1) return;
+    if (isRightMost && direction === 1) return;
     
     dispatch(
       updateGameState(gameState + direction)
@@ -32,12 +35,19 @@ const DebugMenu = () => {
       spacing={2}
     >
       <ArrowLeft
-        sx={{cursor: 'pointer'}}
+        sx={{
+          cursor: isLeftMost ? 'initial' : 'pointer',
+          visibility: isLeftMost ? 'hidden' : 'initial',
+        }}
         onClick={changeGameStateHandler(-1)}
         />
       <span>Game State ({gameState})</span>
       <ArrowRight 
-        sx={{cursor: 'pointer'}}
+        sx={{
+          cursor: isRightMost ? 'initial' : 'pointer',
+          visibility: isRightMost ? 'hidden' : 'initial',
+
+        }}
         onClick={changeGameStateHandler(1)}
       />
     </Stack>
