@@ -12,9 +12,7 @@ const Loading = () => {
   useEffect(() => {
     if (gameState !== null) return
 
-    dispatch(
-      updateGameState(GameStates.MAINMENU)
-    )
+    dispatch(updateGameState(GameStates.MAINMENU))
   }, [gameState])
     
   // TODO: Fill with Skeleton of actual Newspaper layout

@@ -61,9 +61,6 @@ const Navbar = () => {
           <Link to="/Play">Play</Link>
           }
         </Stack>
-
-        {/* Remove This after Game implemented */}
-        <DebugMenu />
         
         {!isLoggedIn &&
         <Stack
@@ -109,8 +106,10 @@ const Navbar = () => {
         Logout
       </MenuItem>
     </Menu>
-    </>
-  )
+    
+    {/* Remove This after Game implemented */}
+    <DebugMenu />
+  </>)
 }
 
 export default Navbar

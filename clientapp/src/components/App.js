@@ -23,9 +23,7 @@ const App = () => {
   const dispatch = useDispatch()
   
   useEffect(() => {  
-    dispatch(
-      getUserProfile()
-    )
+    dispatch(getUserProfile())
   }, [])
 
   return (

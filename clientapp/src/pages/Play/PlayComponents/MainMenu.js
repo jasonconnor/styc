@@ -18,9 +18,7 @@ const MainMenu = () => {
     getRandomArticle(2), [])
 
   const startNewGameClickHandler = () => {
-    dispatch(
-      updateGameState(GameStates.SELECTION)
-    )
+    dispatch(updateGameState(GameStates.SELECTION))
   }
 
   return (
