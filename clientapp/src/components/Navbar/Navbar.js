@@ -1,34 +1,34 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useState } from "react"
+import { useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import { 
   Divider, 
   Menu, 
   MenuItem, 
   Stack 
-} from "@mui/material";
-import { logout } from "../../services/auth/auth.svc";
+} from "@mui/material"
+import { logout } from "../../services/auth/auth.svc"
 import './navbar.scss'
 
-import DebugMenu from "../../pages/Play/Test/DebugMenu";
+import DebugMenu from "../../pages/Play/Test/DebugMenu"
 
 const Navbar = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const userProfile = useSelector(state => state.userProfile);
+  const [anchorEl, setAnchorEl] = useState(null)
+  const userProfile = useSelector(state => state.userProfile)
   
-  const open = Boolean(anchorEl);
-  const isLoggedIn = userProfile.complete && userProfile.data && !userProfile.data?.error;
+  const open = Boolean(anchorEl)
+  const isLoggedIn = userProfile.complete && userProfile.data && !userProfile.data?.error
   
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
 
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
   const handleLogout = () => {
-    logout();
+    logout()
   }
 
   return (<>

@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from 'axios'
 
 export const getHighscores = async (url) => {
-  const response = await axios.get(url);
-  return response;
+  const response = await axios.get(url)
+  return response
 }

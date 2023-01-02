@@ -1,27 +1,27 @@
-import { ThemeProvider } from "@mui/material";
+import { useEffect } from "react"
+import { useDispatch } from "react-redux"
 import {
   BrowserRouter as Router,
   Routes,
   Route
-} from "react-router-dom";
+} from "react-router-dom"
+import { ThemeProvider } from "@mui/material"
+import { getUserProfile } from "../store/reducers/profile"
+import { startup } from "../services/app/app.svc"
+import { appTheme } from "../styles/theme"
+import Navbar from "./Navbar/Navbar"
 import { 
   Landing, 
   Leaderboard, 
   Login, 
-  Play 
-} from "../pages";
-import Register from "../pages/Login/Register";
-import { startup } from "../services/app/app.svc";
-import { appTheme } from "../styles/theme";
-import Navbar from "./Navbar/Navbar";
-import { useDispatch } from "react-redux"
-import { getUserProfile } from "../store/reducers/profile";
+  Play,
+  Profile,
+  Register
+} from "../pages"
 import './app.scss'
-import { useEffect } from "react";
-import Profile from "../pages/Profile/Profile";
 
 const App = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   
   useEffect(() => {
     startup()

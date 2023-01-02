@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
   State: null
@@ -9,13 +9,13 @@ const gameSlice = createSlice({
   initialState,
   reducers: {
     updateGameState(state, { payload }) {
-      state.State = payload;
+      state.State = payload
     }
   },
   extraReducers: {}
-});
+})
 
 export const {
   updateGameState,
-} = gameSlice.actions;
-export const gameReducer = gameSlice.reducer;
+} = gameSlice.actions
+export const gameReducer = gameSlice.reducer

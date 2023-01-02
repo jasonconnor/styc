@@ -1,26 +1,26 @@
 export const getRandomArticle = (size = null) => {
   let articles = size === null 
     ? Articles
-    : Articles.filter(article => article.size === size);
+    : Articles.filter(article => article.size === size)
 
-  const randomIndex = Math.floor(Math.random() * articles.length);
+  const randomIndex = Math.floor(Math.random() * articles.length)
 
-  return articles[randomIndex];
+  return articles[randomIndex]
 }
 
 export const getRandomArticles = (quantity, size = null) => {
   let articles = size === null 
     ? Articles
-    : Articles.filter(article => article.size === size);
+    : Articles.filter(article => article.size === size)
 
-  const returnArticles = [];
+  const returnArticles = []
 
   for (let i = 0; i < quantity; i++) {
-    const randomIndex = Math.floor(Math.random() * articles.length);
-    returnArticles.push(articles[randomIndex]);
+    const randomIndex = Math.floor(Math.random() * articles.length)
+    returnArticles.push(articles[randomIndex])
   }
 
-  return returnArticles;
+  return returnArticles
 }
 
 // These should be stored in our DB and Fetched via the API
@@ -135,7 +135,7 @@ const Articles = [
     type: "ARTICLE"
   },
   */
-];
+]
 
 export const DefeatedEnemyArticles = [
   {
@@ -150,7 +150,7 @@ export const DefeatedEnemyArticles = [
     size: 1,
     type: "VICTORY"
   },
-];
+]
 
 export const NewShopArticle = {
   title: "New General Store Opens in Town",
@@ -159,7 +159,7 @@ export const NewShopArticle = {
   ],
   size: 1,
   type: "SHOP"
-};
+}
 
 export const ClosedShopArticle = {
   title: "Community Store Closing Its Doors Permanently",
@@ -168,7 +168,7 @@ export const ClosedShopArticle = {
   ],
   size: 1,
   type: "CLOSEDSHOP"
-};
+}
 
 export const NewClinicArticle = {
   title: "New Pharmacy Opens in Town",
@@ -179,7 +179,7 @@ export const NewClinicArticle = {
   ],
   size: 1,
   type: "CLINIC"
-};
+}
 
 export const ClosedClinicArticle = {
   title: "Clinic Closing Permanently, Leaving Patients in Need",
@@ -188,7 +188,7 @@ export const ClosedClinicArticle = {
   ],
   size: 1,
   type: "CLOSEDCLINIC"
-};
+}
 
 export const GameOverArticle = {
   title: "History Hero Fought Hard Until the End",
@@ -199,7 +199,7 @@ export const GameOverArticle = {
   ],
   size: 3,
   type: "GAMEOVER"
-};
+}
 
 export const StartGameArticle = {
   title: "Starting a New Game with Excitement and Camaraderie",
@@ -208,4 +208,4 @@ export const StartGameArticle = {
   ],
   size: 1,
   type: "STARTGAME"
-};
+}

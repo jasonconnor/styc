@@ -1,11 +1,11 @@
-import { ArrowLeft, ArrowRight } from '@mui/icons-material';
-import { Stack } from '@mui/material';
+import { ArrowLeft, ArrowRight } from '@mui/icons-material'
+import { Stack } from '@mui/material'
 import React, { useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { updateGameState } from '../../../store/reducers/game';
+import { useDispatch, useSelector } from 'react-redux'
+import { updateGameState } from '../../../store/reducers/game'
 
 const DebugMenu = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   
   const isDebug = useMemo(() => 
     new URLSearchParams(
@@ -14,14 +14,14 @@ const DebugMenu = () => {
     []
   )
 
-  const gameState = useSelector(state => state.game.State);
+  const gameState = useSelector(state => state.game.State)
   
-  const isLeftMost = useMemo(() => gameState === -2, [gameState]);
-  const isRightMost = useMemo(() => gameState === 5, [gameState]);
+  const isLeftMost = useMemo(() => gameState === -2, [gameState])
+  const isRightMost = useMemo(() => gameState === 5, [gameState])
   
   const changeGameStateHandler = (direction) => () => {
-    if (isLeftMost && direction === -1) return;
-    if (isRightMost && direction === 1) return;
+    if (isLeftMost && direction === -1) return
+    if (isRightMost && direction === 1) return
     
     dispatch(
       updateGameState(gameState + direction)

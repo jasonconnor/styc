@@ -25,7 +25,7 @@ const Register = () => {
   const [inputState, setInputState] = useState(defaultInputState)
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     const isValid = validateInput()
 

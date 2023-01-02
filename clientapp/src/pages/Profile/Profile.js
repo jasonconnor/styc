@@ -1,10 +1,9 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'
 
 const Profile = () => {
-  const userProfile = useSelector(state => state.userProfile);
+  const userProfile = useSelector(state => state.userProfile)
 
-  const isLoggedIn = userProfile.complete && userProfile.data;
+  const isLoggedIn = userProfile.complete && userProfile.data
 
   if (!isLoggedIn) {
     window.location.href = '/'  

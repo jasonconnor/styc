@@ -1,21 +1,21 @@
-import { useMemo } from 'react';
-import { useDispatch } from 'react-redux';
-import { updateGameState } from '../../../store/reducers/game';
-import { Grid } from '@mui/material';
-import { ArticleComponent } from '.';
+import { useMemo } from 'react'
+import { useDispatch } from 'react-redux'
+import { updateGameState } from '../../../store/reducers/game'
+import { Grid } from '@mui/material'
+import { ArticleComponent } from '.'
 import { 
   ClosedClinicArticle, 
   ClosedShopArticle, 
   getRandomArticle, 
   StartGameArticle 
-} from '../Helpers/ArticleHelper';
-import { GameStates } from '../Helpers/GameStates';
+} from '../Helpers/ArticleHelper'
+import { GameStates } from '../Helpers/GameStates'
 
 const MainMenu = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const randomArticle = useMemo(() => 
-    getRandomArticle(2), []);
+    getRandomArticle(2), [])
 
   const startNewGameClickHandler = () => {
     dispatch(

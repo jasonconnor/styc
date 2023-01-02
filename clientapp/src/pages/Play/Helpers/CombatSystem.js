@@ -1,7 +1,7 @@
-import { TEMP_ENEMIES } from "../../../services/game/tempEnemies";
+import { TEMP_ENEMIES } from "../../../services/game/tempEnemies"
 
 // This would probably come from the API
-export let baseEnemies = [...TEMP_ENEMIES];
+export let baseEnemies = [...TEMP_ENEMIES]
 
 // Cooldown timeout timers
 export let playerMainCooldown = null
@@ -73,22 +73,22 @@ const calculateDamage = (source, target, attackType) => {
   let isDealingCrit = false,
     sourceDamage = 0,
     sourceAcc,
-    sourceElem;
+    sourceElem
 
   // Determine which stats to use based on attack type
   switch (attackType) {
     case 'MAIN':
-      sourceDamage = source.ATK_Base;
-      sourceElem = source.ATK_Elem;
-      sourceAcc = source.ATK_Acc;
-      break;
+      sourceDamage = source.ATK_Base
+      sourceElem = source.ATK_Elem
+      sourceAcc = source.ATK_Acc
+      break
     case 'MAGIC':
-      sourceDamage = source.MAG_Base;
-      sourceElem = source.MAG_Elem;
-      sourceAcc = source.MAG_Acc;
-      break;
+      sourceDamage = source.MAG_Base
+      sourceElem = source.MAG_Elem
+      sourceAcc = source.MAG_Acc
+      break
     default:
-      break;
+      break
   }
 
   // roll for accuracy
@@ -112,5 +112,5 @@ const calculateDamage = (source, target, attackType) => {
 
   // return damage amount
   console.log("damage",sourceDamage)
-  return sourceDamage;
+  return sourceDamage
 }

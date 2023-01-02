@@ -1,5 +1,8 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { 
+  useDispatch,
+  useSelector
+} from 'react-redux'
 import { 
   Paper,
   Table,
@@ -15,8 +18,8 @@ import { APIURL } from '../../services/app/app.svc'
 import './leaderboard.scss'
 
 const Leaderboard = () => {
-  const dispatch = useDispatch();
-  const highscores = useSelector(state => state.leaderboard);
+  const dispatch = useDispatch()
+  const highscores = useSelector(state => state.leaderboard)
 
   useEffect(() => {
     if (APIURL === "" || highscores.loading) return

@@ -22,17 +22,16 @@ const Login = () => {
     // Validate Login
     let invalidInput = false;
     if (usernameRef.current.value.trim().length === 0) {
-      setIsValid(prev => { return { ...prev, username: false } });
-      invalidInput = true;
+      setIsValid(prev => { return { ...prev, username: false } })
+      invalidInput = true
     }
 
     if (passwordRef.current.value.trim().length === 0) {
-      setIsValid(prev => { return { ...prev, password: false } });
-      invalidInput = true;
+      setIsValid(prev => { return { ...prev, password: false } })
+      invalidInput = true
     }
     
-    if (invalidInput)
-      return;
+    if (invalidInput) return
 
     // Send inputs to API
     attemptLogin(

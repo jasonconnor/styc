@@ -4,13 +4,13 @@ export default (props) => {
     body,
     size,
     type
-  } = props;
+  } = props
 
   return (
     <div>
-      <h2 className='article-title'>
+      <h3 className='article-title'>
         {title}
-      </h2>
+      </h3>
 
       {size === 1 &&
       <p className='article-body'>{body}</p>

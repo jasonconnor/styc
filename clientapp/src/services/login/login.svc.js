@@ -11,10 +11,10 @@ export const attemptLogin = async (username, password) => {
   try {
     let resp = await axios.post(`${APIURL}/auth/login`, params)
 
-    const { accessToken, refreshToken } = resp.data;
+    const { accessToken, refreshToken } = resp.data
 
-    authService.setAccessToken(accessToken);
-    authService.setRefreshToken(refreshToken);
+    authService.setAccessToken(accessToken)
+    authService.setRefreshToken(refreshToken)
 
     window.location.href = '/'
   }

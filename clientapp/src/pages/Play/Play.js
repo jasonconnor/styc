@@ -1,5 +1,5 @@
-import { useSelector } from "react-redux";
-import { GameStates } from "./Helpers/GameStates";
+import { useSelector } from "react-redux"
+import { GameStates } from "./Helpers/GameStates"
 import { 
   ClinicComponent,
   CombatComponent,
@@ -9,15 +9,15 @@ import {
   MainMenuComponent,
   SelectionComponent,
   ShopComponent
-} from "./PlayComponents";
-import './play.scss';
+} from "./PlayComponents"
+import './play.scss'
 
 /**
  * The play page.
  * @returns The Play JSX component.
  */
 const Play = () => {
-  const gameState = useSelector(state => state.game.State);
+  const gameState = useSelector(state => state.game.State)
 
   /**
    * Get the component based on the game state.
@@ -25,25 +25,25 @@ const Play = () => {
    */
   const getStateComponent = () => {
     if (!gameState) {
-      return <LoadingComponent />;
+      return <LoadingComponent />
     }
 
     switch (gameState) {
       case GameStates.MAINMENU:
-        return <MainMenuComponent />;
+        return <MainMenuComponent />
       case GameStates.SELECTION:
-        return <SelectionComponent />;
+        return <SelectionComponent />
       case GameStates.COMBAT:
-        return <CombatComponent />;
+        return <CombatComponent />
       case GameStates.SHOP:
-        return <ShopComponent />;
+        return <ShopComponent />
       case GameStates.CLINIC:
-        return <ClinicComponent />;
+        return <ClinicComponent />
       case GameStates.GAMEOVER:
-        return <GameOverComponent />;
+        return <GameOverComponent />
       case GameStates.ERROR_GENERIC:
       default:
-        return <ErrorStateComponent />;
+        return <ErrorStateComponent />
     }
   }
 

@@ -1,21 +1,21 @@
-import axios from "axios";
-import { APIURL } from "../app/app.svc";
+import axios from "axios"
+import { APIURL } from "../app/app.svc"
 
 const accessToken = "accessToken",
-      refreshToken = "refreshToken";
+      refreshToken = "refreshToken"
 
 export const authService = {
   getAccessToken: () => {
-    return localStorage.getItem(accessToken);
+    return localStorage.getItem(accessToken)
   },
   setAccessToken: (token) => {
-    localStorage.setItem(accessToken, token);
+    localStorage.setItem(accessToken, token)
   },
   getRefreshToken: () => {
-    return localStorage.getItem(refreshToken);
+    return localStorage.getItem(refreshToken)
   },
   setRefreshToken: (token) => {
-    localStorage.setItem(refreshToken, token);
+    localStorage.setItem(refreshToken, token)
   }
 }
 
@@ -27,11 +27,11 @@ export const refreshUserToken = async () => {
   try {
     let resp = await axios.post(`${APIURL}/auth/refresh`, params)
 
-    const { accessToken, refreshToken } = resp.data;
+    const { accessToken, refreshToken } = resp.data
 
     if (accessToken && refreshToken) {
-      authService.setAccessToken(accessToken);
-      authService.setRefreshToken(refreshToken);
+      authService.setAccessToken(accessToken)
+      authService.setRefreshToken(refreshToken)
     }
   }
   catch (err) {
@@ -42,8 +42,8 @@ export const refreshUserToken = async () => {
 }
 
 export const logout = () => {
-  localStorage.removeItem(accessToken);
-  localStorage.removeItem(refreshToken);
+  localStorage.removeItem(accessToken)
+  localStorage.removeItem(refreshToken)
 
-  window.location.href = '/';
+  window.location.href = '/'
 }
