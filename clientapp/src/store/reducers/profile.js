@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { APIURL } from "../../services/app/app.svc"
 import { getRequestWithRetry } from "../../services/app/requestWrapper"
 
 const initialState = {
@@ -16,7 +15,7 @@ export const getUserProfile = createAsyncThunk(
         return null
       }
 
-      const response = await getRequestWithRetry(`${APIURL}/account`)
+      const response = await getRequestWithRetry('/account')
 
       return response.data
     } catch (err) {

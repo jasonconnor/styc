@@ -2,7 +2,7 @@ import axios from "axios"
 import { authService } from "./services/auth/auth.svc"
 
 export const initialize = () => {
-  // Add JWT to requests
+  // Config requests to send JWT in headers.
   axios.interceptors.request.use(
     (request) => {
       const accessToken = authService.getAccessToken()
@@ -17,17 +17,17 @@ export const initialize = () => {
     }
   )
 
-  // Response handler
-  axios.interceptors.response.use(
-    (response) => {
-      return response
-    },
-    async (error) => {
-      if (error.message) {
-        console.log(error.message)
-      }
+  // Config responses
+  // axios.interceptors.response.use(
+  //   (response) => {
+  //     return response
+  //   },
+  //   async (error) => {
+  //     if (error.message) {
+  //       console.log(error.message)
+  //     }
 
-      return error.response
-    }
-  )
+  //     return error.response
+  //   }
+  // )
 }

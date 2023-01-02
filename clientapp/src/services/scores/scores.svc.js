@@ -1,6 +1,6 @@
 import axios from 'axios'
+import { APIURL } from '../../services/app/app.svc'
 
-export const getHighscores = async (url) => {
-  const response = await axios.get(url)
-  return response
+export const getHighscores = async () => {
+  return await axios.get(`${APIURL}/scores`)
 }

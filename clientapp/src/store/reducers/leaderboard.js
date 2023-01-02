@@ -1,4 +1,3 @@
-import { APIURL } from '../../services/app/app.svc'
 import { getHighscores } from '../../services/scores/scores.svc'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
@@ -12,7 +11,7 @@ const initialState = {
 export const getLeaderboard = createAsyncThunk(
   'highscores', async (params, { rejectWithValue }) => {
     try {
-      const response = await getHighscores(`${APIURL}/scores`)
+      const response = await getHighscores()
       return response.data
     } catch (error) {
       throw error

@@ -7,7 +7,6 @@ import {
 } from "react-router-dom"
 import { ThemeProvider } from "@mui/material"
 import { getUserProfile } from "../store/reducers/profile"
-import { startup } from "../services/app/app.svc"
 import { appTheme } from "../styles/theme"
 import Navbar from "./Navbar/Navbar"
 import { 
@@ -23,9 +22,7 @@ import './app.scss'
 const App = () => {
   const dispatch = useDispatch()
   
-  useEffect(() => {
-    startup()
-  
+  useEffect(() => {  
     dispatch(
       getUserProfile()
     )
