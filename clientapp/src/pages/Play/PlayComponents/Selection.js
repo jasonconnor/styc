@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 import {
-  Box, Button
+  Box, Button, Stack
 } from '@mui/material'
 import { updateEnemy, updateGameState } from '../../../store/reducers/game'
 import { GameStates } from '../Helpers/GameStates'
@@ -24,33 +24,38 @@ const Selection = () => {
   }
 
   return (
-    <Box>
+    <Stack direction="row" spacing={2}>
       <Button
+        variant='contained'
         onClick={clickClinicHandler}
       >
         Clinic
       </Button>
       <Button
+        variant='contained'
         onClick={clickShopHandler}
       >
         Shop
       </Button>
       <Button
+        variant='contained'
         onClick={clickEnemyHandler(1)}
       >
         Enemy 1
       </Button>
       <Button
+        variant='contained'
         onClick={clickEnemyHandler(2)}
       >
         Enemy 2
       </Button>
       <Button
+        variant='contained'
         onClick={clickEnemyHandler(3)}
       >
         Enemy 3
       </Button>
-    </Box>
+    </Stack>
   )
 }
 
