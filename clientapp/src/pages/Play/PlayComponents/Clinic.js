@@ -18,9 +18,8 @@ const Clinic = () => {
     >
       <Grid item 
         xs={12}
-        className="main-article-title-container"  
       >
-        <h1 className="main-article-title article-title">
+        <h1 className="article-title">
           {VisitedClinicArticle.title}
         </h1>
       </Grid>

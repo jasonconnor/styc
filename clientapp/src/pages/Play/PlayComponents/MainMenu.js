@@ -32,7 +32,7 @@ const MainMenu = () => {
           <h1 className="main-article-title article-title clickable-article"
             onClick={startNewGameClickHandler}
           >
-            {StartGameArticle.title}
+            👉{StartGameArticle.title}👈
           </h1>
       </Grid>
 

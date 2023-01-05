@@ -170,6 +170,18 @@ export const ClosedShopArticle = {
   type: "CLOSEDSHOP"
 }
 
+export const VisitedShopArticle = {
+  title: "New Merchant Brings Excitement to Town",
+  body: [
+    "Residents of Smallville were thrilled to hear the news that a new merchant was setting up shop in their town. The merchant, who introduced himself as Mr. John Doe, arrived with a truck full of exotic goods from far-off lands.",
+    "As word of Mr. Doe's arrival spread, a crowd began to form outside his store. When the doors finally opened, people rushed in to get a look at the unique items on offer. From colorful spices and rare oils to handcrafted jewelry and beautiful textiles, there was something for everyone at Mr. Doe's store.",
+    "The town's merchants, who had previously struggled to compete with larger cities, were excited by the influx of customers and the renewed interest in their own products. Mr. Doe, for his part, seemed just as thrilled to be a part of the community.",
+    "As the day came to a close, it was clear that Mr. Doe's arrival had brought a much-needed boost of energy to Smallville. The town looks forward to seeing what other treasures he has in store."
+  ],
+  size: 4,
+  type: "CLINIC"
+}
+
 export const NewClinicArticle = {
   title: "New Pharmacy Opens in Town",
   body: [

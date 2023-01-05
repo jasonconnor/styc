@@ -3,12 +3,22 @@ export default (props) => {
     title,
     body,
     size,
-    type
+    type,
+    clickableTitle,
+    clickHandler
   } = props
+
+  const handleClickArticle = () => {
+    if (!clickableTitle) return
+    
+    clickHandler()
+  }
 
   return (
     <div>
-      <h3 className='article-title'>
+      <h3 className={`article-title ${clickableTitle ? 'clickable-article' : null}`}
+        onClick={handleClickArticle}
+      >
         {title}
       </h3>
 
