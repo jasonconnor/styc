@@ -170,6 +170,18 @@ export const ClosedShopArticle = {
   type: "CLOSEDSHOP"
 }
 
+export const VisitedShopArticle = {
+  title: "New Merchant Brings Excitement to Town",
+  body: [
+    "Residents of Smallville were thrilled to hear the news that a new merchant was setting up shop in their town. The merchant, who introduced himself as Mr. John Doe, arrived with a truck full of exotic goods from far-off lands.",
+    "As word of Mr. Doe's arrival spread, a crowd began to form outside his store. When the doors finally opened, people rushed in to get a look at the unique items on offer. From colorful spices and rare oils to handcrafted jewelry and beautiful textiles, there was something for everyone at Mr. Doe's store.",
+    "The town's merchants, who had previously struggled to compete with larger cities, were excited by the influx of customers and the renewed interest in their own products. Mr. Doe, for his part, seemed just as thrilled to be a part of the community.",
+    "As the day came to a close, it was clear that Mr. Doe's arrival had brought a much-needed boost of energy to Smallville. The town looks forward to seeing what other treasures he has in store."
+  ],
+  size: 4,
+  type: "CLINIC"
+}
+
 export const NewClinicArticle = {
   title: "New Pharmacy Opens in Town",
   body: [
@@ -177,7 +189,31 @@ export const NewClinicArticle = {
     `The pharmacy's owner, John Smith, is committed to providing top-quality service and is looking forward to serving the community. "We are thrilled to be a part of this town and to have the opportunity to help our neighbors with their healthcare needs," Smith said. "We have a knowledgeable and friendly staff, and we are ready to assist in any way we can."`,
     "The pharmacy is conveniently located in the center of town and is easily accessible by foot or car. It is open seven days a week and offers extended hours for the convenience of its customers. The community is excited to have a new healthcare resource and looks forward to supporting the pharmacy's success."
   ],
-  size: 1,
+  size: 3,
+  type: "CLINIC"
+}
+
+export const VisitedClinicArticle = {
+  title: "The New Clinic: A Short-Lived Success",
+  body: [
+    "On a bustling street in the heart of the city, a new clinic opened its doors for the first time. The clinic, which specialized in family medicine, was the brainchild of Dr. John Smith, a well-respected physician with years of experience.",
+    "As word of the new clinic spread, it wasn't long before the waiting room was filled with patients eager to be seen by Dr. Smith and his team. The clinic's state-of-the-art facilities and personalized approach to care quickly made it a popular choice among locals.",
+    "However, just as the clinic was gaining traction, disaster struck. A fire broke out in the building, destroying the clinic and all of its equipment. Despite their best efforts, Dr. Smith and his team were unable to save the clinic, and it closed its doors for good.",
+    "Despite the tragic end, the short-lived success of the new clinic was not forgotten. Dr. Smith and his team were praised for their dedication to their patients and their commitment to providing top-quality care. While the clinic may no longer be in operation, the impact it had on the community will be felt for years to come."
+  ],
+  size: 4,
+  type: "CLINIC"
+}
+
+export const ReturnOfAHeroArticle = {
+  title: "The Hero Returns: A Community Welcomes Back Its Savior",
+  body: [
+    "After years of service abroad, a beloved hero has returned to their hometown. The community, filled with gratitude and admiration, has organized a grand welcome parade in honor of their return.",
+    "As the hero makes their way through the streets, they are greeted with cheers and applause from an emotional crowd. Children wave handmade signs and throw confetti, while adults wipe tears of joy from their eyes.",
+    "The hero, humbled by the outpouring of love and support, takes the time to thank each and every member of the community for their unwavering support. They vow to continue serving and protecting their home, and the community rejoices in the knowledge that their hero is back where they belong.",
+    "As the parade comes to an end and the hero disappears into the distance, the community is left with a renewed sense of hope and pride. The hero's return marks a new chapter in the history of their hometown, one that will be remembered for generations to come."
+  ],
+  size: 4,
   type: "CLINIC"
 }
 

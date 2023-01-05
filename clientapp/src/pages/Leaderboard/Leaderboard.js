@@ -24,9 +24,7 @@ const Leaderboard = () => {
   useEffect(() => {
     if (APIURL === "" || highscores.loading) return
     
-    dispatch(
-      getLeaderboard()
-    )
+    dispatch(getLeaderboard())
   }, [APIURL])
 
   return (
