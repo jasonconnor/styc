@@ -6,6 +6,13 @@
   .article-title {
     text-align: center;
     color: $dark-grey-3;
+
+    &::before {
+      content: "👉";
+    }
+    &::after {
+      content: "👈";
+    }
   }
 
   .article-body {
