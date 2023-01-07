@@ -6,13 +6,6 @@
   .article-title {
     text-align: center;
     color: $dark-grey-3;
-
-    &::before {
-      content: "👉";
-    }
-    &::after {
-      content: "👈";
-    }
   }
 
   .article-body {
@@ -35,6 +28,13 @@
     &:hover {
       color: $black;
       transform: scale(105%);
+    }
+
+    &::before {
+      content: "👉";
+    }
+    &::after {
+      content: "👈";
     }
   }
 
