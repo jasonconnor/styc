@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 import { updateGameState } from "../../../store/reducers/game"
 import { ReturnOfAHeroArticle, VisitedClinicArticle } from "../Helpers/ArticleHelper"
 import { GameStates } from "../Helpers/GameStates"
+import BackButton from "./BackButton"
 
 const Clinic = () => {
   const dispatch = useDispatch()
@@ -16,8 +17,12 @@ const Clinic = () => {
       spacing={3}
       id="clinic-container"
     >
+      <Grid item xs={1}>
+        <BackButton clickHandler={clickReturnToSelectionHandler} />
+      </Grid>
+
       <Grid item 
-        xs={12}
+        xs={10}
       >
         <h1 className="article-title">
           {VisitedClinicArticle.title}
@@ -47,20 +52,6 @@ const Clinic = () => {
           {VisitedClinicArticle.body[3]}
         </p>
       </Grid>
-
-      <Grid item xs={12}>
-        <h2 className="article-title clickable-article"
-          onClick={clickReturnToSelectionHandler}
-        >
-          {ReturnOfAHeroArticle.title}
-        </h2>
-      </Grid>
-
-      {ReturnOfAHeroArticle.body.map((section, index) => (
-        <Grid key={index} item xs={3} className='article-body'>
-          {section}
-        </Grid>
-      ))}
     </Grid>
   )
 }

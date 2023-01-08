@@ -2,6 +2,7 @@
 
 .play-page-container {
   color: $black;
+  padding-bottom: 3rem;
 
   .article-title {
     text-align: center;
@@ -35,6 +36,12 @@
     }
     &::after {
       content: "👈";
+    }
+  }
+
+  .hover-expand {
+    &:hover {
+      transform: scale(130%);
     }
   }
 
