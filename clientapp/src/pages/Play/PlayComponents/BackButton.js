@@ -1,6 +1,6 @@
 import React from 'react'
 import { IconButton } from '@mui/material'
-import { ArrowBack, MenuBook } from '@mui/icons-material'
+import { ArrowBack, AutoStories } from '@mui/icons-material'
 import colors from '../../../styles/_export.scss'
 
 const BackButton = (props) => {
@@ -13,7 +13,7 @@ const BackButton = (props) => {
       sx={{color: colors.black}}
     >
       <ArrowBack />
-      <MenuBook />
+      <AutoStories sx={{transform: 'scaleX(-1)'}}/>
     </IconButton>
   )
 }
