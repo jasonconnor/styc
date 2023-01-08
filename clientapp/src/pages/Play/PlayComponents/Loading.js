@@ -1,3 +1,5 @@
+import { Print } from '@mui/icons-material'
+import { LinearProgress, Stack } from '@mui/material'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateGameState } from '../../../store/reducers/game'
@@ -17,7 +19,17 @@ const Loading = () => {
     
   // TODO: Fill with Skeleton of actual Newspaper layout
   return (
-    <div>Game loading.....</div>
+    <Stack
+      justifyContent="center"
+      alignItems="center"
+      spacing={2}
+      sx={{
+        minHeight: 'calc(100vh - 166.34px - 40px)'}}
+    >
+      <Print sx={{fontSize: '5rem'}}/>
+      <span>STYC Components loading...</span>
+      <LinearProgress sx={{width: '50%'}} />
+    </Stack>
   )
 }
 

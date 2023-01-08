@@ -51,7 +51,7 @@ const DebugMenu = () => {
             }}
             onClick={changeGameStateHandler(-1)}
             />
-          <span>
+          <span style={{width: '250px'}}>
             Game State ({gameState}): {
               Object.keys(GameStates).find(key => GameStates[key] === gameState)
             }
