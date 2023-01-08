@@ -6,5 +6,10 @@ export const GameStates = {
   "SHOP": 4,
   "CLINIC": 5,
   "GAMEOVER": -1,
-  "ERROR_GENERIC": -2
+  "ERROR_GENERIC": -2,
+}
+
+export const StoreStates = {
+  "CLOSED": 0,
+  "OPEN": 1,
 }

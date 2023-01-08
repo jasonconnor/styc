@@ -2,6 +2,7 @@
 
 .play-page-container {
   color: $black;
+  padding-bottom: 3rem;
 
   .article-title {
     text-align: center;
@@ -28,6 +29,19 @@
     &:hover {
       color: $black;
       transform: scale(105%);
+    }
+
+    &::before {
+      content: "👉";
+    }
+    &::after {
+      content: "👈";
+    }
+  }
+
+  .hover-expand {
+    &:hover {
+      transform: scale(130%);
     }
   }
 

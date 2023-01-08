@@ -1,6 +1,12 @@
+import { useSelector } from "react-redux"
+
 const Combat = () => {
+  const enemy = useSelector(state => state.game.CurrentEnemy)
+
   return (
-    <div>Combat</div>
+    <div>
+      {enemy && enemy.Name}
+    </div>
   )
 }
 

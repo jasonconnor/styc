@@ -1,8 +1,3 @@
-import { TEMP_ENEMIES } from "../../../services/game/tempEnemies"
-
-// This would probably come from the API
-export let baseEnemies = [...TEMP_ENEMIES]
-
 // Cooldown timeout timers
 export let playerMainCooldown = null
 export let playerMagicCooldown = null
