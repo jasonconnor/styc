@@ -21,13 +21,9 @@ export async function signup(request, response) {
 
   const [usernameResult, usernameError] = await checkUsername(username)
 
-  if (usernameError) return response.status(500).json({
-    error: 'Failed to look up username.'
-  })
+  if (usernameError) return response.status(500).json({error: 'Failed to look up username.'})
 
-  if (usernameResult) return response.status(400).json({
-    error: 'Username is already taken.'
-  })
+  if (usernameResult) return response.status(400).json({error: 'Username is already taken.'})
 
   const [hashedPassword, hashError] = await hashPassword(password)
 
@@ -52,33 +48,20 @@ export async function login(request, response) {
 
   const [userResult, userError] = await checkUsername(username)
   
-  if (userError) return response.status(500).json({
-    error: 'Failed to fetch user.'
-  })
+  if (userError) return response.status(500).json({error: 'Failed to fetch user.'})
   
-  if (!userResult) return response.status(400).json({
-    error: 'Invalid username.'
-  })
+  if (!userResult) return response.status(400).json({error: 'Invalid username.'})
 
-  const [
-    passwordResult,
-    passwordError
-  ] = await checkPassword(password, userResult.password)
+  const [passwordResult, passwordError] = await checkPassword(password, userResult.password)
 
-  if (passwordError) return response.status(500).json({
-    error: 'Failed to check password.'
-  })
+  if (passwordError) return response.status(500).json({error: 'Failed to check password.'})
 
-  if (!passwordResult) return response.status(400).json({
-    error: 'Invalid password.'
-  })
+  if (!passwordResult) return response.status(400).json({error: 'Invalid password.'})
 
   // generate auth tokens
   const [tokens, tokenError] = createTokenPair(userResult.id)
 
-  if (tokenError) return response.status(500).json({
-    error: 'Error creating token pair.'
-  })
+  if (tokenError) return response.status(500).json({error: 'Error creating token pair.'})
 
   return response.status(200).json(tokens)
 }
@@ -97,15 +80,11 @@ export function refreshTokens(request, response) {
   }
 
   // TODO: handle invalid tokens in some unique way 
-  if (verifyError) return response.status(403).json({
-    error: 'Invalid refresh token.'
-  })
+  if (verifyError) return response.status(403).json({error: 'Invalid refresh token.'})
 
   const [tokens, createError] = createTokenPair(data.sub)
 
-  if (createError) return response.status(500).json({
-    error: 'Error creating token pair.'
-  })
+  if (createError) return response.status(500).json({error: 'Error creating token pair.'})
 
   return response.status(200).json(tokens)
 }

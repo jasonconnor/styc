@@ -5,6 +5,7 @@ import { AuthRouter } from './auth/auth.router.js'
 import { UsersRouter } from './users/users.router.js'
 import { ScoresRouter } from './scores/score.router.js'
 import { AccountRouter } from './account/account.router.js'
+import { ArticlesRouter } from './articles/articles.router.js'
 
 export const App = express()
 
@@ -17,3 +18,4 @@ App.use('/auth', AuthRouter)
 App.use('/users', UsersRouter)
 App.use('/scores', ScoresRouter)
 App.use('/account', AccountRouter)
+App.use('/articles', ArticlesRouter)
