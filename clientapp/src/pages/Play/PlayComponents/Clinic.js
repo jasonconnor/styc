@@ -1,14 +1,15 @@
 import { Grid } from "@mui/material"
 import { useDispatch } from "react-redux"
-import { updateGameState } from "../../../store/reducers/game"
-import { ReturnOfAHeroArticle, VisitedClinicArticle } from "../Helpers/ArticleHelper"
-import { GameStates } from "../Helpers/GameStates"
+import { updateClinicState, updateGameState } from "../../../store/reducers/game"
+import { VisitedClinicArticle } from "../Helpers/ArticleHelper"
+import { GameStates, StoreStates } from "../Helpers/GameStates"
 import BackButton from "./BackButton"
 
 const Clinic = () => {
   const dispatch = useDispatch()
 
   const clickReturnToSelectionHandler = () => {
+    dispatch(updateClinicState(StoreStates.CLOSED))
     dispatch(updateGameState(GameStates.SELECTION))
   }
 

@@ -3,7 +3,7 @@ import { Box, IconButton, Stack } from '@mui/material'
 import React, { useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateClinicState, updateGameState, updateShopState } from '../../../store/reducers/game'
-import { GameStates } from '../Helpers/GameStates'
+import { GameStates, StoreStates } from '../Helpers/GameStates'
 
 const DebugMenu = () => {
   const [showMenu, setShowMenu] = useState(true)
@@ -32,11 +32,15 @@ const DebugMenu = () => {
   }
 
   const toggleShopStateHandler = () => {
-    dispatch(updateShopState(!shopState))
+    dispatch(updateShopState(shopState === StoreStates.OPEN
+      ? StoreStates.CLOSED
+      : StoreStates.OPEN))
   }
 
   const toggleClinicStateHandler = () => {
-    dispatch(updateClinicState(!clinicState))
+    dispatch(updateClinicState(clinicState === StoreStates.OPEN
+      ? StoreStates.CLOSED
+      : StoreStates.OPEN))
   }
 
   return (<>

@@ -12,6 +12,7 @@ import {
   NewClinicArticle,
   NewShopArticle
 } from '../Helpers/ArticleHelper'
+import { ENEMIES } from '../Helpers/GameConstants'
 
 const Selection = () => {
   const dispatch = useDispatch()
@@ -24,9 +25,9 @@ const Selection = () => {
     [shopState])
 
   const clinicArticle = useMemo(() => clinicState 
-    ? NewClinicArticle 
-    : ClosedClinicArticle,
-  [shopState])
+      ? NewClinicArticle 
+      : ClosedClinicArticle,
+    [clinicState])
 
   // Handler Methods
   const clickClinicHandler = () => {
@@ -39,46 +40,20 @@ const Selection = () => {
 
   const clickEnemyHandler = (enemy) => () => {
     // Choose an enemy based on enemy
-    // dispatch(updateEnemy())
+    dispatch(updateEnemy(enemy))
     dispatch(updateGameState(GameStates.COMBAT))
   }
 
   return (
-    <>
-      <Stack direction="row" spacing={2}>
-        <Button
-          variant='contained'
-          onClick={clickClinicHandler}
-        >
-          Clinic
-        </Button>
-        <Button
-          variant='contained'
-          onClick={clickShopHandler}
-        >
-          Shop
-        </Button>
-        <Button
-          variant='contained'
-          onClick={clickEnemyHandler(1)}
-        >
-          Enemy 1
-        </Button>
-        <Button
-          variant='contained'
-          onClick={clickEnemyHandler(2)}
-        >
-          Enemy 2
-        </Button>
-        <Button
-          variant='contained'
-          onClick={clickEnemyHandler(3)}
-        >
-          Enemy 3
-        </Button>
-      </Stack>
-
     <Grid container spacing={2}>
+      <Grid item xs={4}>
+        <Article 
+          {...ENEMIES[0].Article}
+          clickableTitle={true}
+          clickHandler={clickEnemyHandler(ENEMIES[0])}
+        />
+      </Grid>
+
       <Grid item xs={4}>
         <Article 
           {...clinicArticle}
@@ -95,7 +70,6 @@ const Selection = () => {
         />
       </Grid>
     </Grid>
-    </>
   )
 }
 

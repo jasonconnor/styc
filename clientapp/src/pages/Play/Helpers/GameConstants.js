@@ -1,3 +1,5 @@
+// This should come from API
+
 /*
   Stats:
 
@@ -56,9 +58,31 @@
     Chance of applying element status to opponent
     e.g. 0.6 == 60% of applying a status debuff
     e.g. 'ALWAYS' == always apply
+  
+  Abiilities: sting[]
+    List of abilities the creature possesses
+    e.g. "Lifelink" - heal a percentage of damage dealt
 */
 
-export const TEMP_ENEMIES = [
+export const PLAYER_STATS_DEFAULT = {
+  HP_Base: 200, 
+  ATK_Base: 30,
+  ATK_Elem: [],
+  ATK_Acc: 0.9, 
+  ATK_Freq: 0.33, 
+  DEF_Base: 20,
+  DEF_Evade: 0.05,
+  DEF_Elem_Resist: [],
+  DEF_Elem_Vuln: [],
+  MAG_Base: 50,
+  MAG_Elem: 'FIRE',
+  MAG_Acc: 0.9,
+  MAG_Cooldown: 2,
+  Status_Chance: 0.2,
+  Abilities: []
+}
+
+export const ENEMIES = [
   {
     Name: 'Slime',
     HP_Base: 70, 
@@ -75,7 +99,16 @@ export const TEMP_ENEMIES = [
     MAG_Acc: null,
     MAG_Cooldown: null,
     Status_Chance: null,
-    Abilities: []
+    Abilities: [],
+    Article: {
+      title: "Dangerous Slime Found In Sewers",
+      body: [
+        "Recent investigations uncovered a hazardous sludge found in the sewer system of the city. These goops can cause cancer in the lungs if their odor is inhaled for a prolonged-amount of time.",
+        "Citizens are advised to bury their excrement to avoid increasing the sludge's hazard levels; using it as fertilize is highly suggested."
+      ],
+      size: 2,
+      type: "ENEMY"
+    }
   },
   {
     Name: 'Goblin',
@@ -93,7 +126,16 @@ export const TEMP_ENEMIES = [
     MAG_Acc: null,
     MAG_Cooldown: null,
     Status_Chance: null,
-    Abilities: []
+    Abilities: [],
+    Article: {
+      title: "Gobin Enemy Article Title",
+      body: [
+        "Goblin Enemy Article Body 1",
+        "Goblin Enemy Article Body 2",
+      ],
+      size: 2,
+      type: "ENEMY"
+    }
   },
   {
     Name: 'Ball of Spikes',
@@ -111,6 +153,15 @@ export const TEMP_ENEMIES = [
     MAG_Acc: null,
     MAG_Cooldown: null,
     Status_Chance: null,
-    Abilities: ['REFLECT']
+    Abilities: ['REFLECT'],
+    Article: {
+      title: "Ball of Spikes Enemy Article Title",
+      body: [
+        "Ball of Spikes Enemy Article Body 1",
+        "Ball of Spikes Enemy Article Body 2",
+      ],
+      size: 2,
+      type: "ENEMY"
+    }
   }
 ]

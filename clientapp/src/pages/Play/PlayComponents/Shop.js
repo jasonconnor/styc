@@ -1,24 +1,19 @@
-import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { 
   Grid,
-  IconButton,
   Stack,
   Typography
 } from "@mui/material"
-import { ArrowBack, MenuBook } from '@mui/icons-material'
 import { updateGameState, updateShopState } from "../../../store/reducers/game"
 import { GameStates, StoreStates } from "../Helpers/GameStates"
 import { VisitedShopArticle } from "../Helpers/ArticleHelper"
 import BackButton from "./BackButton"
 
 const Shop = () => {
-  const [usedShop, setUsedShop] = useState(false)
   const dispatch = useDispatch()
 
   const clickBackHandler = () => {
-    if (usedShop) dispatch(updateShopState(StoreStates.CLOSED))
-
+    dispatch(updateShopState(StoreStates.CLOSED))
     dispatch(updateGameState(GameStates.SELECTION))
   }
 

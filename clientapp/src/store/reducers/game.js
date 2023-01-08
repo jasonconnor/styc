@@ -3,9 +3,11 @@ import { StoreStates } from "../../pages/Play/Helpers/GameStates"
 
 const initialState = {
   State: null,
-  CurrentEnemy: null,
   IsShopAvailable: StoreStates.CLOSED,
   IsClinicAvailable: StoreStates.CLOSED,
+  PlayerStats: null,
+  EnemyRoster: [],
+  CurrentEnemy: null,
 }
 
 const gameSlice = createSlice({
@@ -24,6 +26,10 @@ const gameSlice = createSlice({
     updateClinicState(state, { payload }) {
       state.IsClinicAvailable = payload
     },
+    // Player
+    updatePlayerStats(state, { payload }) {
+      state.PlayerStats = payload
+    },
     // Enemy
     updateEnemy(state, { payload }) {
       state.CurrentEnemy = payload
@@ -40,6 +46,7 @@ export const {
   updateEnemy,
   updateClinicState,
   updateGameState,
+  updatePlayerStats,
   updateShopState,
 } = gameSlice.actions
 export const gameReducer = gameSlice.reducer

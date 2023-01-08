@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { useDispatch } from 'react-redux'
-import { updateGameState } from '../../../store/reducers/game'
+import { updateGameState, updatePlayerStats } from '../../../store/reducers/game'
 import { Grid } from '@mui/material'
 import { ArticleComponent } from '.'
 import { 
@@ -10,6 +10,7 @@ import {
   StartGameArticle 
 } from '../Helpers/ArticleHelper'
 import { GameStates } from '../Helpers/GameStates'
+import { PLAYER_STATS_DEFAULT } from '../Helpers/GameConstants'
 
 const MainMenu = () => {
   const dispatch = useDispatch()
@@ -18,6 +19,7 @@ const MainMenu = () => {
     getRandomArticle(2), [])
 
   const startNewGameClickHandler = () => {
+    dispatch(updatePlayerStats(PLAYER_STATS_DEFAULT))
     dispatch(updateGameState(GameStates.SELECTION))
   }
 
