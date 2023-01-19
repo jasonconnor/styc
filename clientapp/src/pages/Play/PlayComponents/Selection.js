@@ -13,6 +13,7 @@ import {
   NewShopArticle
 } from '../Helpers/ArticleHelper'
 import { ENEMIES } from '../Helpers/GameConstants'
+import { initiateCreature } from '../Helpers/CombatSystem'
 
 const Selection = () => {
   const dispatch = useDispatch()
@@ -40,7 +41,7 @@ const Selection = () => {
 
   const clickEnemyHandler = (enemy) => () => {
     // Choose an enemy based on enemy
-    dispatch(updateEnemy(enemy))
+    dispatch(updateEnemy(initiateCreature(enemy)))
     dispatch(updateGameState(GameStates.COMBAT))
   }
 

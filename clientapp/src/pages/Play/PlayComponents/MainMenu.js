@@ -11,6 +11,7 @@ import {
 } from '../Helpers/ArticleHelper'
 import { GameStates } from '../Helpers/GameStates'
 import { PLAYER_STATS_DEFAULT } from '../Helpers/GameConstants'
+import { initiateCreature } from '../Helpers/CombatSystem'
 
 const MainMenu = () => {
   const dispatch = useDispatch()
@@ -19,7 +20,7 @@ const MainMenu = () => {
     getRandomArticle(2), [])
 
   const startNewGameClickHandler = () => {
-    dispatch(updatePlayerStats(PLAYER_STATS_DEFAULT))
+    dispatch(updatePlayerStats(initiateCreature(PLAYER_STATS_DEFAULT)))
     dispatch(updateGameState(GameStates.SELECTION))
   }
 

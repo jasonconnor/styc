@@ -14,10 +14,15 @@ const tertiaryPalette = {
   main: colors.tertiary
 }
 
+const blackPalette = {
+  main: colors.black
+}
+
 export const appTheme = createTheme({
   palette: {
     primary: primaryPalette,
     secondary: secondaryPalette,
-    tertiary: tertiaryPalette
+    tertiary: tertiaryPalette,
+    black: blackPalette
   }
 })
