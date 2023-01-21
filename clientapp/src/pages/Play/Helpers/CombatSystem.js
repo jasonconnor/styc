@@ -1,17 +1,41 @@
-// Cooldown timeout timers
-export let playerMainCooldown = null
-export let playerMagicCooldown = null
-
 /**
  * Initialize a creature.
  * @param {object} creature 
  * @returns A fully initialized creature object.
- */
+*/
 export const initiateCreature = (creature) => {
   return {
     ...creature,
     HP_Current: creature.HP_Base
   }
+}
+
+// Interval timers
+let enemyAttackInterval = null
+
+/**
+ * Called to start the enemy attack interval.
+ * @param {creature} enemy The enemy
+ * @param {creature} player The player
+ * @param {function} setEnemyCallback The callback function to update the enemy
+ * @param {function} setPlayerCallback The callback function to update the player
+ */
+export const initializeEnemyAttackInterval = (
+  enemy, 
+  player, 
+  setEnemyCallback, 
+  setPlayerCallback
+) => {
+  enemyAttackInterval = setInterval(() => {
+    executeAttack(enemy, player, setEnemyCallback, setPlayerCallback)
+  }, enemy.ATK_Freq * 1000)
+}
+
+/**
+ * Called to stop the enemy attack interval.
+ */
+export const clearEnemyAttackInterval = () => {
+  clearInterval(enemyAttackInterval)
 }
 
 /**
@@ -30,28 +54,43 @@ export const executeAttack = (
   setTargetCallback, 
   attackType = 'MAIN'
 ) => {
+  // Calculate damage dealt
   const damageToTarget = calculateDamage(source, target, attackType)
   setTargetCallback(target => {
+    let resultingHP = target.HP_Current - damageToTarget
+    if (resultingHP < 0)
+      resultingHP = 0
+
     return {
       ...target,
-      HP_Current: target.HP_Current - damageToTarget
+      HP_Current: resultingHP
     }  
   })
 
+  // Calculate recoil damage
   if (target.Abilities.some(abil => abil === 'REFLECT')) {
     setSourceCallback(source => {
+      let resultingHP = source.HP_Current - 10
+      if (resultingHP < 0)
+        resultingHP = 0
+
       return {
         ...source,
-        HP_Current: source.HP_Current - 10
+        HP_Current: resultingHP
       }
     })
   }
 
+  // Calculate hp drain
   if (source.Abilities.some(abil => abil === 'LIFELINK')) {
     setSourceCallback(source => {
+      let resultingHP = source.HP_Current + (damageToTarget * 0.3)
+      if (resultingHP > source.HP_Base)
+        resultingHP = source.HP_Base
+
       return {
         ...source,
-        HP_Current: source.HP_Current + (damageToTarget * 0.3)
+        HP_Current: resultingHP
       }
     })
   }
@@ -106,6 +145,5 @@ const calculateDamage = (source, target, attackType) => {
   if (!targetIsResistent) sourceDamage -= target.DEF_Base
 
   // return damage amount
-  console.log("damage",sourceDamage)
   return sourceDamage
 }

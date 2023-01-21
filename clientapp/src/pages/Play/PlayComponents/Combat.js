@@ -1,32 +1,88 @@
-import { Box, Button, Grid, LinearProgress, Stack, TextField } from '@mui/material'
-import { useState } from 'react'
+import { 
+  useEffect, 
+  useState 
+} from 'react'
 import { useSelector } from 'react-redux'
-import { playerMainCooldown } from '../Helpers/CombatSystem'
+import { 
+  Box, 
+  Button, 
+  Grid, 
+  LinearProgress, 
+  Stack 
+} from '@mui/material'
+import { 
+  clearEnemyAttackInterval, 
+  executeAttack, 
+  initializeEnemyAttackInterval
+} from '../Helpers/CombatSystem'
 
+/**
+ * The game's combat state component.
+ * @returns The Combat JSX Component.
+ */
 const Combat = () => {
+  /** Redux */
   const game = useSelector(state => state.game)
-  const enemy = game.CurrentEnemy
-  const player = game.PlayerStats
 
+  /** Local states */
+  const [player, setPlayer] = useState(game.PlayerStats)
+  const [enemy, setEnemy] = useState(game.CurrentEnemy)
   const [isMeleeAttackDisabled, setIsMeleeAttackDisabled] = useState(false)
   const [isMagicAttackDisabled, setIsMagicAttackDisabled] = useState(false)
 
+  /** Use Effect */
+
+  // Start the enemy's attack interval.
+  useEffect(() => {
+    // Wait until both the player and enemy has initialized.
+    if (player === null
+        || enemy === null)
+      return
+
+    initializeEnemyAttackInterval(
+      enemy,
+      player,
+      setEnemy,
+      setPlayer
+    )
+  }, [])
+
+  // Stop attacks when the enemy or the player is slain.
+  useEffect(() => {
+    if (enemy.HP_Current === 0
+      || player.HP_Current === 0
+    ) {
+      clearEnemyAttackInterval()
+      setIsMeleeAttackDisabled(true)
+      setIsMagicAttackDisabled(true)
+    }
+  }, [enemy.HP_Current, player.HP_Current])
+
+  /** Click Handlers */
+
+  // Handler for when the melee attack is clicked.
   const handleMeleeClicked = () => {
     setIsMeleeAttackDisabled(true)
 
-    playerMainCooldown = setTimeout(() => {
+    setTimeout(() => {
       setIsMeleeAttackDisabled(false)
     }, player.ATK_Freq * 1000)
+
+    executeAttack(player, enemy, setPlayer, setEnemy)
   }
 
+  // Handler for when the magic attack is clicked.
   const handleMagicClicked = () => {
     setIsMagicAttackDisabled(true)
 
-    playerMainCooldown = setTimeout(() => {
+    setTimeout(() => {
       setIsMagicAttackDisabled(false)
     }, player.MAG_Cooldown * 1000)
+
+    executeAttack(player, enemy, setPlayer, setEnemy, "MAGIC")
   }
 
+  /** JSX Component */
   return (
     <Grid container
       spacing={3}
@@ -60,8 +116,7 @@ const Combat = () => {
             {enemy &&
               <>
                 <span>HP: {enemy.HP_Current}/{enemy.HP_Base}</span>
-                <span>Atk Dmg: {enemy.ATK_Base}</span>
-                <span>Atk Spd: {enemy.ATK_Freq}</span>
+                <span>Enemy Element: {enemy.ATK_Elem ?? "Normal"}</span>
               </>
             }
           </Stack>
@@ -78,9 +133,13 @@ const Combat = () => {
           padding: '0 20px 20px'
         }}>
           <h3 className='article-title'>Timers</h3>
-          Add timers here
           <Stack>
-            <LinearProgress color='black' variant='determinate' value={50} />
+            <LinearProgress 
+              color='tertiary' 
+              variant='determinate' 
+              value={Math.floor(enemy.HP_Current/enemy.HP_Base*100)} 
+              sx={{height: '2rem'}}
+            />
           </Stack>
           <h3 className='article-title'>Controls</h3>
           <Stack direction='row' spacing={2}>
