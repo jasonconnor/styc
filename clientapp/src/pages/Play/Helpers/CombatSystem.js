@@ -1,7 +1,3 @@
-// Cooldown timeout timers
-export let playerMainCooldown = null
-export let playerMagicCooldown = null
-
 /**
  * Initialize a creature.
  * @param {object} creature 
@@ -30,9 +26,11 @@ export const initializeEnemyAttackInterval = (
   setEnemyCallback, 
   setPlayerCallback
 ) => {
-  enemyAttackInterval = setInterval(() => {
-    executeAttack(enemy, player, setEnemyCallback, setPlayerCallback)
-  }, enemy.ATK_Freq * 1000)
+  if (enemyAttackInterval === null) {
+    enemyAttackInterval = setInterval(() => {
+      executeAttack(enemy, player, setEnemyCallback, setPlayerCallback)
+    }, enemy.ATK_Freq * 1000)
+  }
 }
 
 /**
@@ -40,6 +38,7 @@ export const initializeEnemyAttackInterval = (
  */
 export const clearEnemyAttackInterval = () => {
   clearInterval(enemyAttackInterval)
+  enemyAttackInterval = null
 }
 
 /**

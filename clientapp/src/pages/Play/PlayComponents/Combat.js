@@ -14,9 +14,11 @@ import {
   clearEnemyAttackInterval, 
   executeAttack, 
   initializeEnemyAttackInterval,
-  playerMagicCooldown,
-  playerMainCooldown
 } from '../Helpers/CombatSystem'
+
+// Cooldown timeout timers
+let playerMainCooldown = null
+let playerMagicCooldown = null
 
 /**
  * The game's combat state component.
@@ -36,11 +38,6 @@ const Combat = () => {
 
   // Start the enemy's attack interval.
   useEffect(() => {
-    // Wait until both the player and enemy has initialized.
-    if (player === null
-        || enemy === null)
-      return
-
     initializeEnemyAttackInterval(
       enemy,
       player,
@@ -55,9 +52,13 @@ const Combat = () => {
       || player.HP_Current === 0
     ) {
       clearEnemyAttackInterval()
+
       clearTimeout(playerMainCooldown)
+      playerMainCooldown = null
+
       clearTimeout(playerMagicCooldown)
-      
+      playerMagicCooldown = null
+
       if (!isMeleeAttackDisabled)
         setIsMeleeAttackDisabled(true)
       if (!isMagicAttackDisabled)
