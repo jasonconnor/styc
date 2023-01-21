@@ -1,3 +1,7 @@
+// Cooldown timeout timers
+export let playerMainCooldown = null
+export let playerMagicCooldown = null
+
 /**
  * Initialize a creature.
  * @param {object} creature 

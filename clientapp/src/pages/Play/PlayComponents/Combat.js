@@ -13,7 +13,9 @@ import {
 import { 
   clearEnemyAttackInterval, 
   executeAttack, 
-  initializeEnemyAttackInterval
+  initializeEnemyAttackInterval,
+  playerMagicCooldown,
+  playerMainCooldown
 } from '../Helpers/CombatSystem'
 
 /**
@@ -53,8 +55,13 @@ const Combat = () => {
       || player.HP_Current === 0
     ) {
       clearEnemyAttackInterval()
-      setIsMeleeAttackDisabled(true)
-      setIsMagicAttackDisabled(true)
+      clearTimeout(playerMainCooldown)
+      clearTimeout(playerMagicCooldown)
+      
+      if (!isMeleeAttackDisabled)
+        setIsMeleeAttackDisabled(true)
+      if (!isMagicAttackDisabled)
+        setIsMagicAttackDisabled(true)
     }
   }, [enemy.HP_Current, player.HP_Current])
 
@@ -64,7 +71,7 @@ const Combat = () => {
   const handleMeleeClicked = () => {
     setIsMeleeAttackDisabled(true)
 
-    setTimeout(() => {
+    playerMainCooldown = setTimeout(() => {
       setIsMeleeAttackDisabled(false)
     }, player.ATK_Freq * 1000)
 
@@ -75,7 +82,7 @@ const Combat = () => {
   const handleMagicClicked = () => {
     setIsMagicAttackDisabled(true)
 
-    setTimeout(() => {
+    playerMagicCooldown = setTimeout(() => {
       setIsMagicAttackDisabled(false)
     }, player.MAG_Cooldown * 1000)
 
