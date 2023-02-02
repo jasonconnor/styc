@@ -12,7 +12,7 @@ export const App = express()
 
 // app-level middleware
 App.use(express.json())
-App.use(cors(process.env.CLIENT_URL))
+App.use(cors(process.env.CLIENT_URI))
 
 // routes
 App.use('/auth', AuthRouter)
