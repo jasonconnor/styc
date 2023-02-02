@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import { findAll, random } from './enemies.controller'
+import { findAll, random } from './enemies.controller.js'
 
 export const EnemiesRouter = Router()
 
