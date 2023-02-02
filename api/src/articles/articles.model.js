@@ -12,6 +12,7 @@ const ArticleSchema = new mongoose.Schema({
     enum: [
       'ARTICLE',
       'VICTORY',
+      'ENEMY',
       'SHOP',
       'CLOSEDSHOP',
       'CLINIC',
