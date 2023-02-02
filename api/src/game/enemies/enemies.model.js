@@ -2,6 +2,8 @@ import mongoose from 'mongoose'
 
 const EnemySchema = new mongoose.Schema({
   name: String,
+  levelBase: Number,
+  experienceBase: Number,
   hpBase: Number,
   attackkBase: Number,
   attackElement: [{type: mongoose.Schema.Types.ObjectId, ref: 'Element'}],
