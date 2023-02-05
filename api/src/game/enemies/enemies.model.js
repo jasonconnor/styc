@@ -5,7 +5,7 @@ const EnemySchema = new mongoose.Schema({
   levelBase: Number,
   experienceBase: Number,
   hpBase: Number,
-  attackkBase: Number,
+  attackBase: Number,
   attackElement: [{type: mongoose.Schema.Types.ObjectId, ref: 'Element'}],
   attackAccuracy: Number,
   attackFrequency: Number,
