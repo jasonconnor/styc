@@ -2,7 +2,7 @@ import { EnemiesModel } from './enemies.model.js'
 
 export async function getAllEnemies() {
   try {
-    const enemies = await EnemiesModel.findAll()
+    const enemies = await EnemiesModel.find()
     return [enemies, null]
   } catch (error) {
     console.error(error)
