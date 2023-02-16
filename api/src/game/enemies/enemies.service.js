@@ -10,19 +10,9 @@ export async function getAllEnemies() {
   }
 }
 
-export async function getEnemyByName(name) {
-  try {
-    const enemy = await EnemiesModel.findOne(name)
-    return [enemy, null]
-  } catch (error) {
-    console.error(error)
-    return [null, error]
-  }
-}
-
 export async function getRandomEnemy() {
   try {
-    const enemy = await EnemiesModel.sample()
+    const enemy = await EnemiesModel.aggregate([{$sample: {size: 1}}])
     return [enemy, null]
   } catch (error) {
     console.error(error)
