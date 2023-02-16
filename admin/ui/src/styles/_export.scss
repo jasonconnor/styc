@@ -1,0 +1,22 @@
+@import 'variables.scss';
+
+:export {
+  primary: $primary;
+  secondary: $secondary;
+  tertiary: $tertiary;
+  white: $white;
+  black: $black;
+  darkgrey1: $dark-grey-1;
+  darkgrey2: $dark-grey-2;
+  darkgrey3: $dark-grey-3;
+  lightgrey1: $light-grey-1;
+  lightgrey2: $light-grey-2;
+  lightgrey3: $light-grey-3;
+  background: $background;
+  boon: $boon;
+  boonlight: $boon-light;
+  boondark: $boon-dark;
+  debuff: $debuff;
+  debufflight: $debuff-light;
+  debuffdark: $debuff-dark;
+}

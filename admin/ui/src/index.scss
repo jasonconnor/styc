@@ -1,0 +1,28 @@
+@import './styles/variables.scss';
+
+body {
+  margin: 0;
+  font-family: 'Times New Roman';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0 1.5rem;
+  background: $background;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@font-face {
+  font-family: 'OldEnglish';
+  src: local('OldEnglishFive'),
+    url('./fonts/OldEnglishFive.ttf') format('truetype');
+}
+
+/* Global Styles here */
+
+/* MUI Overrides */
+.MuiButton-root {
+  text-transform: none !important;
+}

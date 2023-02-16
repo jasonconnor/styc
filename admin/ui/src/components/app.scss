@@ -1,0 +1,5 @@
+@import '../styles/variables.scss';
+
+#page-main-container {
+  min-height: calc(100vh - 166.34px - 40px); // 166.34px = navbar, 40px = 20px padding
+}

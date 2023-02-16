@@ -1,0 +1,59 @@
+@import '../../styles/variables.scss';
+
+.play-page-container {
+  color: $black;
+  padding-bottom: 3rem;
+
+  .article-title {
+    text-align: center;
+    color: $dark-grey-3;
+  }
+
+  .article-body {
+    text-align: justify;
+    text-justify: inter-word;
+    color: $dark-grey-3;
+  }
+
+  // TODO: Temporary Styling
+  .article-image {
+    background: $black;
+    height: 100%;
+  }
+
+  .clickable-article {
+    position: relative;
+    cursor: pointer;
+    color: $black;
+
+    &:hover {
+      color: $black;
+      transform: scale(105%);
+    }
+
+    &::before {
+      content: "👉";
+    }
+    &::after {
+      content: "👈";
+    }
+  }
+
+  .hover-expand {
+    &:hover {
+      transform: scale(130%);
+    }
+  }
+
+  #main-menu-container {
+    .main-article-title {
+      margin-bottom: 0;
+    }
+
+    .main-article-body-container {
+      .article-body {
+        margin-top: 0;
+      }
+    }
+  }
+}
