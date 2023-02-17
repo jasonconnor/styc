@@ -15,27 +15,27 @@ export async function saveScore(request, response) {
   const { user } = request
   const { totalScore, enemiesSlain } = request.body
 
-  const [score, saveError] = await createScore({user, totalScore, enemiesSlain})
+  const {scoreResult, error: saveError} = await createScore({user, totalScore, enemiesSlain})
 
   if (saveError) return response.status(500).json({error: 'Failed to save score.'})
 
-  const [userUpdate, userUpdateError] = await updateUsersScores(user, score.id)
+  const {error: userScoreUpdateError} = await updateUsersScores(user, scoreResult.id)
 
-  if (userUpdateError) return response.status(500).json({
+  if (userScoreUpdateError) return response.status(500).json({
     error: 'Failed to update user scores.'
   })
 
-  const [statsUpdate, statsUpdateError] = await updateUsersStats(user, {enemiesSlain, totalScore})
+  const {error: userStatsUpdateError} = await updateUsersStats(user, {enemiesSlain, totalScore})
 
-  if (statsUpdateError) return response.status(500).json({
+  if (userStatsUpdateError) return response.status(500).json({
     error: 'Failed to update user stats.'
   })
   
-  return response.status(200).json(score)
+  return response.status(200).json(scoreResult)
 }
 
 export async function highscores(request, response) {
-  const [scores, error] = await getTop100Scores()
+  const {scores, error} = await getTop100Scores()
 
   if (error) return response.status(500).json({error: 'Error fetching highscores.'})
 

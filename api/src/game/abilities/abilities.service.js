@@ -2,10 +2,10 @@ import { AbilitiesModel } from './abilities.model.js'
 
 export async function findByName(name) {
   try {
-    const element = await AbilitiesModel.findOne(name)
-    return [element, null]
+    const ability = await AbilitiesModel.findOne(name)
+    return {ability}
   } catch (error) {
     console.error(error)
-    return [null, error]
+    return {error}
   }
 }

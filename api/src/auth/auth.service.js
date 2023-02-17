@@ -17,10 +17,10 @@ export async function createUser(username, password) {
     user.stats = stats.id
     const userResult = await user.save()
 
-    return [userResult, null]
+    return {userResult}
   } catch (error) {
     console.error(error)
-    return [null, error]
+    return {error}
   }
 }
 
@@ -28,41 +28,41 @@ export async function hashPassword(password) {
   try {
     const hashedPassword = await bcrypt.hash(password, 10)
 
-    return [hashedPassword, null]
+    return {hashedPassword}
   } catch (error) {
     console.error(error)
-    return [null, error]
+    return {error}
   }
 }
 
-export async function checkUsername(username) {
+export async function getUserByUsername(username) {
   try {
     const user = await UsersModel.findOne({username}).select('+password')
 
-    return [user, null]
+    return {user}
   } catch (error) {
     console.error(error)
-    return [null, error]
+    return {error}
   }
 }
 
 export async function checkPassword(passwordInput, hashedPassword) {
   try {
-    const result = await bcrypt.compare(passwordInput, hashedPassword)
+    const passwordResult = await bcrypt.compare(passwordInput, hashedPassword)
 
-    return [result, null]
+    return {passwordResult}
   } catch (error) {
     console.error(error)
-    return [null, error]
+    return {error}
   }
 }
 
 export function createTokenPair(user) {
-  const [accessToken, accessTokenError] = createAccessToken(user)
-  const [refreshToken, refreshTokenError] = createRefreshToken(user)
+  const {accessToken, error: accessTokenError} = createAccessToken(user)
+  const {refreshToken, error: refreshTokenError} = createRefreshToken(user)
 
-  if (accessTokenError) return [null, accessTokenError]
-  if (refreshTokenError) return [null, refreshTokenError]
+  if (accessTokenError) return {error: accessTokenError}
+  if (refreshTokenError) return {error: refreshTokenError}
 
-  return [{accessToken, refreshToken}, null]
+  return {tokens: {accessToken, refreshToken}}
 }

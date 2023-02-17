@@ -3,7 +3,7 @@ import { validationResult } from 'express-validator'
 import {
   createUser,
   hashPassword, 
-  checkUsername,
+  getUserByUsername,
   checkPassword,
   createTokenPair
 } from './auth.service.js'
@@ -19,21 +19,21 @@ export async function signup(request, response) {
   
   const { username, password } = request.body
 
-  const [usernameResult, usernameError] = await checkUsername(username)
+  const {user, error: usernameError} = await getUserByUsername(username)
 
   if (usernameError) return response.status(500).json({error: 'Failed to look up username.'})
 
-  if (usernameResult) return response.status(400).json({error: 'Username is already taken.'})
+  if (user) return response.status(400).json({error: 'Username is already taken.'})
 
-  const [hashedPassword, hashError] = await hashPassword(password)
+  const {hashedPassword, error: hashError} = await hashPassword(password)
 
   if (hashError) return response.status(500).json({error: 'Failed to hash password.'})
 
-  const [user, userError] = await createUser(username, hashedPassword)
+  const {userResult, error: userError} = await createUser(username, hashedPassword)
 
   if (userError) return response.status(500).json({error: 'Failed to create new user.'})
   
-  return response.status(200).json({message: `Successfully created user: ${user.username}`})
+  return response.status(200).json({message: `Successfully created user: ${userResult.username}`})
 }
 
 export async function login(request, response) {
@@ -46,20 +46,20 @@ export async function login(request, response) {
 
   const { username, password } = request.body
 
-  const [userResult, userError] = await checkUsername(username)
+  const {user, error: userError} = await getUserByUsername(username)
   
   if (userError) return response.status(500).json({error: 'Failed to fetch user.'})
   
-  if (!userResult) return response.status(400).json({error: 'Invalid username.'})
+  if (!user) return response.status(400).json({error: 'Invalid username.'})
 
-  const [passwordResult, passwordError] = await checkPassword(password, userResult.password)
+  const {passwordResult, error: passwordError} = await checkPassword(password, user.password)
 
   if (passwordError) return response.status(500).json({error: 'Failed to check password.'})
 
   if (!passwordResult) return response.status(400).json({error: 'Invalid password.'})
 
   // generate auth tokens
-  const [tokens, tokenError] = createTokenPair(userResult.id)
+  const {tokens, error: tokenError} = createTokenPair(user.id)
 
   if (tokenError) return response.status(500).json({error: 'Error creating token pair.'})
 
@@ -73,7 +73,7 @@ export function refreshTokens(request, response) {
     error: 'No refresh token provided.'
   })
 
-  const [data, verifyError] = verifyRefreshToken(refreshToken)
+  const {data, error: verifyError} = verifyRefreshToken(refreshToken)
 
   if (verifyError && verifyError.name === 'TokenExpiredError') {
     return response.status(401).json({error: 'Refresh token expired.'})
@@ -82,7 +82,7 @@ export function refreshTokens(request, response) {
   // TODO: handle invalid tokens in some unique way 
   if (verifyError) return response.status(403).json({error: 'Invalid refresh token.'})
 
-  const [tokens, createError] = createTokenPair(data.sub)
+  const {tokens, error: createError} = createTokenPair(data.sub)
 
   if (createError) return response.status(500).json({error: 'Error creating token pair.'})
 
