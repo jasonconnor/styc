@@ -1,7 +1,7 @@
 import { getAllUsers, getUserById } from './users.service.js'
 
 export async function findAll(request, response) {
-  const [users, error] = await getAllUsers()
+  const {users, error} = await getAllUsers()
 
   if (error) return response.status(500).json({error: 'Error fetching users.'})
 
@@ -15,7 +15,7 @@ export async function findById(request, response) {
 
   if (error) return response.status(500).json({error: 'Error fetching user.'})
   
-  if (user === null) return response.status(404).json({error: 'No user found.'})
+  if (!user) return response.status(404).json({error: 'No user found.'})
 
   return response.status(200).json(user)
 }

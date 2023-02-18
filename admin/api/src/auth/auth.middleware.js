@@ -8,7 +8,7 @@ export function checkTokens(request, response, next) {
 
   if (!token) return response.status(400).json({error: 'Authorization required.'})
 
-  const [data, tokenError] = verifyAccessToken(token)
+  const {data, error: tokenError} = verifyAccessToken(token)
 
   if (tokenError && tokenError.name === 'TokenExpiredError') {
     return response.status(401).json({error: 'Token expired.'})

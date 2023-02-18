@@ -4,11 +4,11 @@ export async function createScore(data) {
   const score = new ScoresModel(data)
 
   try {
-    const result = await score.save()
-    return [result, null]
+    const scoreResult = await score.save()
+    return {scoreResult}
   } catch (error) {
     console.error(error)
-    return [null, error]
+    return {error}
   }
 }
 
@@ -21,9 +21,9 @@ export async function getTop100Scores() {
       .limit(100)
       .populate('user')
 
-    return [scores, null]
+    return {scores}
   } catch (error) {
     console.error(error)
-    return [null, error]
+    return {error}
   }
 }

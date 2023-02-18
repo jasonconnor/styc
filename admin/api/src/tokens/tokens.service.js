@@ -15,10 +15,10 @@ export function createAccessToken(user) {
       exp: getAccessTokenExpiry()
     }, process.env.ACCESS_SECRET)
 
-    return [accessToken, null]
+    return {accessToken}
   } catch (error) {
     console.error(error)
-    return [null, error]
+    return {error}
   }
 }
 
@@ -29,29 +29,29 @@ export function createRefreshToken(user) {
       exp: getRefreshTokenExpiry()
     }, process.env.REFRESH_SECRET)
 
-    return [refreshToken, null]
+    return {refreshToken}
   } catch (error) {
     console.error(error)
-    return [null, error]
+    return {error}
   }
 }
 
 export function verifyAccessToken(token) {
   try {
     const data = jwt.verify(token, process.env.ACCESS_SECRET)
-    return [data, null]
+    return {data}
   } catch (error) {
     console.error(error)
-    return [null, error]
+    return {error}
   }
 }
 
 export function verifyRefreshToken(token) {
   try { 
     const data = jwt.verify(token, process.env.REFRESH_SECRET)
-    return [data, null]
+    return {data}
   } catch (error) {
     console.error(error)
-    return [null, error]
+    return {error}
   }
 }

@@ -3,7 +3,7 @@ import { getAccountData } from '../users/users.service.js'
 export async function getAccount(request, response) {
   const id = request.user
 
-  const [user, error] = await getAccountData(id)
+  const {user, error} = await getAccountData(id)
 
   if (error) return response.status(500).json({error: 'Failed to fetch user.'})
   
