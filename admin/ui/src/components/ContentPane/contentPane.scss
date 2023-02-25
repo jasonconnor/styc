@@ -1,0 +1,6 @@
+#content-pane-container {
+  padding: .5rem;
+  max-height: calc(100vh - 1rem);
+  overflow-y: auto;
+  flex-grow: 1;
+}

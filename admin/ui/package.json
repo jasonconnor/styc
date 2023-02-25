@@ -16,7 +16,7 @@
     "sass": "^1.55.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=1991 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

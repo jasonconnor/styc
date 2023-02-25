@@ -1,0 +1,45 @@
+#left-pane-container {
+  width: 250px;
+  max-height: 100vh;
+  overflow-y: auto;
+  padding: 0 1rem;
+
+  box-shadow: 0 0 5px rgb(118, 118, 118);
+  background-color: rgb(39, 39, 70);
+  color: rgb(218, 217, 217);
+
+  .title {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .section-label {
+    // margin-top: -1rem;
+    // margin-bottom: 1rem;
+
+    // .MuiDivider-wrapper {
+    //   position: relative;
+    //   top: 1rem;
+    // }
+    border-color: rgba(255, 255, 255, 0.349);
+
+    &::before,
+    &::after {
+      border-top-color: rgba(255, 255, 255, 0.349);
+    }
+  }
+
+  .page-link {
+    padding: 1rem;
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      background-color: rgb(78, 99, 162);
+    }
+
+    &.active-page::before {
+      content: '👉';
+    }
+  }
+}
