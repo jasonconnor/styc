@@ -1,0 +1,19 @@
+#enemies-panel-container {
+  .table-header {
+    border-bottom: 2px solid rgb(193, 193, 193);
+  }
+
+  .enemy-row {
+    cursor: pointer;
+
+    &:nth-child(2n+1) {
+      background-color: rgb(214, 208, 228);
+    }
+
+    &:hover {
+      background-color: rgb(175, 165, 198);
+    }
+
+    
+  }
+}
