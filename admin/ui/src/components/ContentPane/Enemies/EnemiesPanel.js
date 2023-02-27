@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Button, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import { IconButton, Menu, MenuItem, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import { Add } from '@mui/icons-material'
 import { GetAllEnemies } from '../../../services/Enemies.svc'
 import './enemiesPanel.scss'
@@ -9,11 +9,13 @@ import './enemiesPanel.scss'
  * Make Context Menu for row
  *  - Delete
  *  - View/Edit
- * Click to View
+ * Wire up Create Menu
  */
 
 const EnemiesPanel = () => {
   const [enemies, setEnemies] = useState([])
+  const [anchorEl, setAnchorEl] = useState(null)
+  const open = Boolean(anchorEl)
 
   const getEnemies = async () => {
     const response = await GetAllEnemies()
@@ -23,13 +25,23 @@ const EnemiesPanel = () => {
     }
     setEnemies(response.enemies)
   }
-  useEffect(() => {getEnemies()}, [])
+  useEffect(() => { getEnemies() }, [])
+
+  const handleAddClick = (event) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
 
   return (<Stack id='enemies-panel-container' spacing={2}>
     <span>
-      <Button variant='outlined'>
-        <Add sx={{marginRight: '5px'}}/><span>Add enemy</span>
-      </Button>
+      <IconButton variant='outlined'
+        onClick={handleAddClick}
+      >
+        <Add />
+      </IconButton>
     </span>
 
     <TableContainer component={Paper}>
@@ -67,16 +79,25 @@ const EnemiesPanel = () => {
         </TableBody>
       </Table>
     </TableContainer>
+
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={open}
+      onClose={handleClose}
+    >
+      <MenuItem>Add Enemy</MenuItem>
+    </Menu>
   </Stack>)
 }
 
-const CustomTableColumnHeader = ({children}) => {
-  return <TableCell sx={{whiteSpace: 'nowrap'}}>
+const CustomTableColumnHeader = ({ children }) => {
+  return <TableCell sx={{ whiteSpace: 'nowrap' }}>
     <span>{children}</span>
   </TableCell>
 }
 
-const EnemyRow = ({enemy}) => {
+const EnemyRow = ({ enemy }) => {
   const handleOpenContext = (event) => {
     event.preventDefault()
   }
@@ -84,28 +105,42 @@ const EnemyRow = ({enemy}) => {
   return (<TableRow className='enemy-row'
     onContextMenu={handleOpenContext}
   >
-    <TableCell>{enemy._id}</TableCell>
-    <TableCell>{enemy.name}</TableCell>
-    <TableCell>{enemy.levelBase}</TableCell>
-    <TableCell>{enemy.experienceBase}</TableCell>
-    <TableCell>{enemy.hpBase}</TableCell>
-    <TableCell>{enemy.attackBase}</TableCell>
-    <TableCell>{enemy.attackElement.length > 0 ? enemy.attackElement : 'none'}</TableCell>
-    <TableCell>{enemy.attackAccuracy}</TableCell>
-    <TableCell>{enemy.attackFrequency}</TableCell>
-    <TableCell>{enemy.defenseBase}</TableCell>
-    <TableCell>{enemy.defenseEvade}</TableCell>
-    <TableCell>{enemy.defenseElementResistance.length > 0 ? enemy.defenseElementResistance : 'none'}</TableCell>
-    <TableCell>{enemy.defenseElementVulnerability.length > 0 ? enemy.defenseElementVulnerability : 'none'}</TableCell>
-    <TableCell>{enemy.magicBase ?? 'none'}</TableCell>
-    <TableCell>{enemy.magicElement.length > 0 ? enemy.magicElement : 'none'}</TableCell>
-    <TableCell>{enemy.magicAccuracy ?? 'none'}</TableCell>
-    <TableCell>{enemy.magicCooldown ?? 'none'}</TableCell>
-    <TableCell>{enemy.statusChance ?? 'none'}</TableCell>
-    <TableCell>{enemy.article ?? 'none'}</TableCell>
-    <TableCell>{enemy.createdAt ?? 'none'}</TableCell>
-    <TableCell>{enemy.updatedAt ?? 'none'}</TableCell>
+    <CellValue item={enemy._id} />
+    <CellValue item={enemy.name} />
+    <CellValue item={enemy.levelBase} />
+    <CellValue item={enemy.experienceBase} />
+    <CellValue item={enemy.hpBase} />
+    <CellValue item={enemy.attackBase} />
+    <CellValue items={enemy.attackElement} />
+    <CellValue item={enemy.attackAccuracy} />
+    <CellValue item={enemy.attackFrequency} />
+    <CellValue item={enemy.defenseBase} />
+    <CellValue item={enemy.defenseEvade} />
+    <CellValue items={enemy.defenseElementResistance} />
+    <CellValue items={enemy.defenseElementVulnerability} />
+    <CellValue item={enemy.magicBase} />
+    <CellValue items={enemy.magicElement} />
+    <CellValue item={enemy.magicAccuracy} />
+    <CellValue item={enemy.magicCooldown} />
+    <CellValue item={enemy.statusChance} />
+    <CellValue item={enemy.article} />
+    <CellValue item={enemy.createdAt} />
+    <CellValue item={enemy.updatedAt} />
   </TableRow>)
+}
+
+const CellValue = ({ item, items }) => {
+  if (!items) {
+    return (<TableCell>
+      {item ?? 'none'}
+    </TableCell>)
+  }
+
+  
+  return (<TableCell>{
+    items.map(item => item.name).join(', ')
+  }
+  </TableCell>)
 }
 
 export default EnemiesPanel

@@ -2,7 +2,12 @@ import { EnemiesModel } from './enemies.model.js'
 
 export async function getAllEnemies() {
   try {
-    const enemies = await EnemiesModel.find()
+    const enemies = await EnemiesModel
+      .find()
+      .populate('attackElement')
+      .populate('defenseElementResistance')
+      .populate('defenseElementVulnerability')
+      .populate('magicElement')
     return {enemies}
   } catch (error) {
     console.error(error)
