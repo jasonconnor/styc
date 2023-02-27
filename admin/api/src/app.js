@@ -7,6 +7,7 @@ import { ScoresRouter } from './scores/score.router.js'
 import { AccountRouter } from './account/account.router.js'
 import { EnemiesRouter } from './game/enemies/enemies.router.js'
 import { ArticlesRouter } from './articles/articles.router.js'
+import { ElementsRouter } from './game/elements/elements.router.js'
 
 export const App = express()
 
@@ -21,3 +22,4 @@ App.use('/scores', ScoresRouter)
 App.use('/account', AccountRouter)
 App.use('/enemies', EnemiesRouter)
 App.use('/articles', ArticlesRouter)
+App.use('/elements', ElementsRouter)
