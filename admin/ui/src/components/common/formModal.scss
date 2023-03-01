@@ -1,0 +1,27 @@
+#form-modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .form-modal-wrapper {
+    min-width: 300px;
+    background: rgb(39, 39, 70);
+    border-radius: 1rem;
+
+    .form-header-container {
+      padding: 1rem 1rem 0;
+      color: rgb(215, 214, 214);
+    }
+    
+    .form-body-container {
+      padding: 1rem;
+      background: white;
+      border-top: thin solid grey;
+      border-bottom: thin solid grey;
+    }
+
+    .form-footer-container {
+      padding: 0 1rem 1rem;
+    }
+  }
+}

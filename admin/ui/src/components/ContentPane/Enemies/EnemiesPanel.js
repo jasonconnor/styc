@@ -3,6 +3,7 @@ import { IconButton, Menu, MenuItem, Paper, Stack, Table, TableBody, TableCell, 
 import { Add } from '@mui/icons-material'
 import { GetAllEnemies } from '../../../services/Enemies.svc'
 import './enemiesPanel.scss'
+import EnemyFormModal from './EnemyFormModal'
 
 /** TODO:
  * Make Columns Sortable
@@ -14,8 +15,9 @@ import './enemiesPanel.scss'
 
 const EnemiesPanel = () => {
   const [enemies, setEnemies] = useState([])
+  const [modalState, setModalState] = useState(false)
   const [anchorEl, setAnchorEl] = useState(null)
-  const open = Boolean(anchorEl)
+  const openCreateMenu = Boolean(anchorEl)
 
   const getEnemies = async () => {
     const response = await GetAllEnemies()
@@ -31,8 +33,17 @@ const EnemiesPanel = () => {
     setAnchorEl(event.currentTarget)
   }
 
-  const handleClose = () => {
+  const handleCloseCreateMenu = () => {
     setAnchorEl(null)
+  }
+
+  const handleCreateClick = () => {
+    handleCloseCreateMenu()
+    setModalState(true)
+  }
+
+  const handleCloseCreateModal = () => {
+    setModalState(false)
   }
 
   return (<Stack id='enemies-panel-container' spacing={2}>
@@ -48,6 +59,7 @@ const EnemiesPanel = () => {
       <Table>
         <TableHead>
           <TableRow className='table-header'>
+            <CustomTableColumnHeader>No.</CustomTableColumnHeader>
             <CustomTableColumnHeader>ID</CustomTableColumnHeader>
             <CustomTableColumnHeader>Name</CustomTableColumnHeader>
             <CustomTableColumnHeader>Level Base</CustomTableColumnHeader>
@@ -73,21 +85,28 @@ const EnemiesPanel = () => {
         </TableHead>
 
         <TableBody>
-          {enemies.map((enemy) => (
-            <EnemyRow key={enemy._id} enemy={enemy} />
+          {enemies.map((enemy, index) => (
+            <EnemyRow key={enemy._id} enemy={enemy} listNum={index} />
           ))}
         </TableBody>
       </Table>
     </TableContainer>
 
+    {/* Popups */}
+
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={open}
-      onClose={handleClose}
+      open={openCreateMenu}
+      onClose={handleCloseCreateMenu}
     >
-      <MenuItem>Add Enemy</MenuItem>
+      <MenuItem onClick={handleCreateClick}>Add Enemy</MenuItem>
     </Menu>
+
+    <EnemyFormModal 
+      open={modalState} 
+      onClose={handleCloseCreateModal} 
+    />
   </Stack>)
 }
 
@@ -97,7 +116,7 @@ const CustomTableColumnHeader = ({ children }) => {
   </TableCell>
 }
 
-const EnemyRow = ({ enemy }) => {
+const EnemyRow = ({ enemy, listNum }) => {
   const handleOpenContext = (event) => {
     event.preventDefault()
   }
@@ -105,6 +124,7 @@ const EnemyRow = ({ enemy }) => {
   return (<TableRow className='enemy-row'
     onContextMenu={handleOpenContext}
   >
+    <TableCell>{listNum + 1}</TableCell>
     <CellValue item={enemy._id} />
     <CellValue item={enemy.name} />
     <CellValue item={enemy.levelBase} />
@@ -136,9 +156,10 @@ const CellValue = ({ item, items }) => {
     </TableCell>)
   }
 
-  
   return (<TableCell>{
-    items.map(item => item.name).join(', ')
+    items.length > 0
+      ? items.map(item => item.name).join(', ')
+      : 'none'
   }
   </TableCell>)
 }
