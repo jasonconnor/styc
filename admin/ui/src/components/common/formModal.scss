@@ -4,12 +4,12 @@
   align-items: center;
 
   .form-modal-wrapper {
-    min-width: 300px;
+    min-width: 400px;
     background: rgb(39, 39, 70);
     border-radius: 1rem;
 
     .form-header-container {
-      padding: 1rem 1rem 0;
+      padding: 1rem;
       color: rgb(215, 214, 214);
     }
     
@@ -18,10 +18,11 @@
       background: white;
       border-top: thin solid grey;
       border-bottom: thin solid grey;
+      min-height: 50px;
     }
 
     .form-footer-container {
-      padding: 0 1rem 1rem;
+      padding: 1rem;
     }
   }
 }
