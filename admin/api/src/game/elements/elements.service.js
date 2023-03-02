@@ -10,16 +10,6 @@ export const getAllElements = async () => {
   }
 }
 
-export async function findByName(name) {
-  try {
-    const element = await ElementsModel.findOne(name)
-    return {element}
-  } catch (error) {
-    console.error(error)
-    return {error}
-  }
-}
-
 export const findById = async (id) => {
   try {
     const element = await ElementsModel.findById(id)
