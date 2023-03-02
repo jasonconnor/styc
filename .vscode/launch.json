@@ -1,0 +1,32 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "command": "cd .\\admin\\ui\\;npm start",
+      "name": "Debug Admin UI",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "command": "cd .\\admin\\api\\;npm start",
+      "name": "Debug Admin Api",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "command": "cd .\\api\\;npm start",
+      "name": "Debug Styc Api",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "command": "cd .\\clientapp\\;npm start",
+      "name": "Debug Styc ui",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+  ]
+}
