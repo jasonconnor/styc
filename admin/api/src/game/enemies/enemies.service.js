@@ -25,12 +25,12 @@ export async function getRandomEnemy() {
   }
 }
 
-export const createNewEnemy = async (requestBody) => {
+export const createNewEnemy = async (newEnemy) => {
   try {
-    const newEnemy = new EnemiesModel(requestBody)
-    const enemy = await newEnemy.save()
+    const enemy = new EnemiesModel({...newEnemy})
+    const enemyResult = await enemy.save()
 
-    return {enemy}
+    return {result: enemyResult}
   } catch (error) {
     console.error(error)
     return {error}

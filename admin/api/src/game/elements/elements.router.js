@@ -1,7 +1,9 @@
 import { Router } from "express";
-import { findAll } from "./elements.controller.js";
+import { create, findAll, findOne, findOneId } from "./elements.controller.js";
 
 export const ElementsRouter = Router()
 
 ElementsRouter.get('/', findAll)
-// ElementsRouter.post('/', () => {})
+ElementsRouter.get('/:name', findOne)
+ElementsRouter.get('/:id', findOneId)
+ElementsRouter.post('/', create)
