@@ -1,4 +1,4 @@
-import { findByName } from '../elements/elements.service.js'
+import { findById } from '../elements/elements.service.js'
 import { createNewEnemy, getAllEnemies, getRandomEnemy } from './enemies.service.js'
 
 export async function findAll(request, response) {

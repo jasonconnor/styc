@@ -1,4 +1,4 @@
-import { createNewElement, findById, findByName, getAllElements } from "./elements.service.js"
+import { createNewElement, findById, getAllElements } from "./elements.service.js"
 
 export const findAll = async (request, response) => {
   const {elements, error} = await getAllElements()
