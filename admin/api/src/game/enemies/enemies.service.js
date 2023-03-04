@@ -30,7 +30,7 @@ export const createNewEnemy = async (newEnemy) => {
     const enemy = new EnemiesModel({...newEnemy})
     const enemyResult = await enemy.save()
 
-    return {result: enemyResult}
+    return {enemy: enemyResult}
   } catch (error) {
     console.error(error)
     return {error}

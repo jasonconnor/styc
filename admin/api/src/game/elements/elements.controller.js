@@ -21,7 +21,7 @@ export const findOneId = async (request, response) => {
 export const create = async (request, response) => {
   const {element} = request.body
   
-  const {result: elementResult, error} = await createNewElement(element)
+  const {element: elementResult, error} = await createNewElement(element)
 
   if (error) return response.status(500).json({error: 'Error creating element.'})
 
