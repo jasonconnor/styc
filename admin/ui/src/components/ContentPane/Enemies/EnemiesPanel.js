@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
-import { IconButton, Menu, MenuItem, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
-import { Add } from '@mui/icons-material'
+import { Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import { GetAllEnemies } from '../../../services/Enemies.svc'
 import './enemiesPanel.scss'
-import EnemyFormModal from './EnemyFormModal'
+import CreateEnemy from './CreateEnemy/CreateEnemy'
 
 /** TODO:
  * Make Columns Sortable
@@ -15,11 +14,9 @@ import EnemyFormModal from './EnemyFormModal'
 
 const EnemiesPanel = () => {
   const [enemies, setEnemies] = useState([])
-  const [modalState, setModalState] = useState(false)
-  const [anchorEl, setAnchorEl] = useState(null)
-  const openCreateMenu = Boolean(anchorEl)
 
-  const getEnemies = async () => {
+  // Should probably move this to a global state
+  const getEnemies = () => async () => {
     const response = await GetAllEnemies()
     if (response.error) {
       // TODO: show error in UI
@@ -27,33 +24,17 @@ const EnemiesPanel = () => {
     }
     setEnemies(response.enemies)
   }
-  useEffect(() => { getEnemies() }, [])
-
-  const handleAddClick = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
-
-  const handleCloseCreateMenu = () => {
-    setAnchorEl(null)
-  }
-
-  const handleCreateClick = () => {
-    handleCloseCreateMenu()
-    setModalState(true)
-  }
-
-  const handleCloseCreateModal = () => {
-    setModalState(false)
+  useEffect(getEnemies, [])
+  
+  const handleCreateClicked = async () => {
+    console.log('clicked create')
   }
 
   return (<Stack id='enemies-panel-container' spacing={2}>
-    <span>
-      <IconButton variant='outlined'
-        onClick={handleAddClick}
-      >
-        <Add />
-      </IconButton>
-    </span>
+    <CreateEnemy 
+      // elements={elements}
+      onCreate={handleCreateClicked}
+    />
 
     <TableContainer component={Paper}>
       <Table>
@@ -91,22 +72,6 @@ const EnemiesPanel = () => {
         </TableBody>
       </Table>
     </TableContainer>
-
-    {/* Popups */}
-
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={openCreateMenu}
-      onClose={handleCloseCreateMenu}
-    >
-      <MenuItem onClick={handleCreateClick}>Add Enemy</MenuItem>
-    </Menu>
-
-    <EnemyFormModal 
-      open={modalState} 
-      onClose={handleCloseCreateModal} 
-    />
   </Stack>)
 }
 

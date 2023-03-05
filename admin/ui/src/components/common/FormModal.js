@@ -1,16 +1,16 @@
-import { Box, Button, Divider, Modal, Stack, Typography } from '@mui/material'
+import { Box, Button, Modal, Stack, Typography } from '@mui/material'
 import React from 'react'
 import './formModal.scss'
 
-const FormModal = ({ open, onClose, header, children }) => {
+const FormModal = ({ open, onClose, onCreate, header, children }) => {
   return (
     <Modal
       id='form-modal-container'
       open={open}
-      onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
-
+      keepMounted={false}
+      disablePortal
     >
       <Box className='form-modal-wrapper'>
         <Typography variant='h5' className='form-header-container'>
@@ -34,6 +34,7 @@ const FormModal = ({ open, onClose, header, children }) => {
           </Button>
           <Button variant='contained'
             color='primary'
+            onClick={onCreate}
           >
             Create
           </Button>
