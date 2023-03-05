@@ -4,12 +4,14 @@ import { Add } from '@mui/icons-material'
 import EnemyFormModal from './EnemyFormModal'
 import { GetAllElements } from '../../../../services/Elements.svc'
 
-
-const CreateEnemy = (props) => {
-  const {
-    onCreate
-  } = props
-
+/**
+ * 
+ * @param {{
+ *  onCreate: Function
+ * }} props The props passed into the component.
+ * @param props.onCreate The method to call when the create button is clicked.
+ */
+const CreateEnemy = ({onCreate}) => {
   const [elements, setElements] = useState([])
   const [newElements, setNewElements] = useState([])
   const [snackbarOpen, setSnakbarOpen] = useState(false)
@@ -18,6 +20,7 @@ const CreateEnemy = (props) => {
   const openCreateMenu = Boolean(anchorEl)
 
   // Should probably move this to a global state
+  /** Fetch elements from the API. */
   const getElements = () => async () => {
     const response = await GetAllElements()
     if (response.error) {
@@ -28,35 +31,42 @@ const CreateEnemy = (props) => {
   }
   useEffect(getElements, [])
 
+  /** Handler for when the add button is clicked to open the create menu. */
   const handleAddClick = (event) => {
     setAnchorEl(event.currentTarget)
   }
 
+  /** Handler for when the create menu is closed. */
   const handleCloseCreateMenu = () => {
     setAnchorEl(null)
   }
 
-  const handleCreateClick = () => {
+  /** Handler method for when the create menu option is clicked. */
+  const handleMenuOptionCreateClick = () => {
     handleCloseCreateMenu()
     setModalState(true)
   }
 
+  /** Handler for when the modal is closed. */
   const handleCloseCreateModal = (_, reason) => {
     if (reason && reason === 'backdropClick') return;
     setModalState(false)
   }
 
+  /** Handler for when the snackbar is closed. */
   const handleCloseSnackbar = (_, reason) => {
     if (reason && reason === 'clickaway') return
     setSnakbarOpen(false)
   }
 
+  /** Handler method for when the create button is clicked. */
   const handleOnCreate = async () => {
     const result = await onCreate()
     console.log('create enemy result', result)
     //setSnakbarOpen(true)
   }
 
+  /** The JSX Component */
   return (
     <span>
       <IconButton variant='outlined'
@@ -74,7 +84,7 @@ const CreateEnemy = (props) => {
         onClose={handleCloseCreateMenu}
         disablePortal
       >
-        <MenuItem onClick={handleCreateClick}>Add Enemy</MenuItem>
+        <MenuItem onClick={handleMenuOptionCreateClick}>Add Enemy</MenuItem>
       </Menu>
 
       <EnemyFormModal
