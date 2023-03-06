@@ -60,10 +60,10 @@ const CreateEnemy = ({onCreate}) => {
   }
 
   /** Handler method for when the create button is clicked. */
-  const handleOnCreate = async () => {
-    const result = await onCreate()
-    console.log('create enemy result', result)
-    // setSnakbarOpen(true)
+  const handleOnCreate = () => {
+    setSnakbarOpen(true)
+    // Parent Callback
+    onCreate()
   }
 
   /** The JSX Component */

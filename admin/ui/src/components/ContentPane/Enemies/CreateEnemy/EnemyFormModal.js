@@ -8,7 +8,7 @@ import CustomTextField from '../../../common/CustomTextField'
 const INITIAL_ENEMY = {
   name: '',
   levelBase: 1,
-  experienceBase: null,
+  experienceBase: 0,
   hpBase: 1,
   attackBase: 1,
   attackElement: [],
@@ -18,10 +18,10 @@ const INITIAL_ENEMY = {
   defenseEvade: 0.1,
   defenseElementResistance: [],
   defenseElementVulnerability: [],
-  magicBase: null,
+  magicBase: 0,
   magicElement: [],
-  magicAccuracy: null,
-  magicCooldown: null,
+  magicAccuracy: 0,
+  magicCooldown: 0,
   statusChance: 0,
   article: null
 }
@@ -56,7 +56,11 @@ const EnemyFormModal = ({ open, onClose, onCreate, elements }) => {
   }
 
   /** Handler for when the create button is clicked. */
-  const handleCreate = () => {
+  const handleCreate = async () => {
+    console.log('New Enemy To Be Created', newEnemy)
+    // await svc.CreateNewEnemy(newEnemy)
+    // if !success, return
+
     onCreate()
 
     if (keepOpen) {
@@ -95,7 +99,7 @@ const EnemyFormModal = ({ open, onClose, onCreate, elements }) => {
             description='The name of the enemy. (Required)'
             input={(
               <CustomTextField
-                label='The name of the enemy'
+                label='Enemy Name'
                 placeholder='"Wild Boar"'
                 required={true}
                 value={newEnemy.name}
@@ -110,7 +114,7 @@ const EnemyFormModal = ({ open, onClose, onCreate, elements }) => {
             description='The base level of the enemy. (Required)'
             input={(
               <TextField
-                label='The base level of the enemy.'
+                label='Base Lvl'
                 value={newEnemy.levelBase}
                 onChange={(event) => updateEnemyProperty('levelBase', event.target.value)}
                 size='small'
@@ -121,9 +125,58 @@ const EnemyFormModal = ({ open, onClose, onCreate, elements }) => {
             )}
           />
 
-          <TableRow>
-            <TableCell>Attack Elements</TableCell>
-            <TableCell>
+          <EnemyFormTableRow
+            name='Base Experience *'
+            description='The base experience awarded for defeating the enemy. (Required)'
+            input={(
+              <TextField
+                label='Base Exp'
+                value={newEnemy.experienceBase}
+                onChange={(event) => updateEnemyProperty('experienceBase', event.target.value)}
+                size='small'
+                type='number'
+                required
+                fullWidth
+              />
+            )}
+          />
+
+          <EnemyFormTableRow
+            name='Base Health Points *'
+            description='The base hp of the enemy. (Required)'
+            input={(
+              <TextField
+                label='Base HP'
+                value={newEnemy.hpBase}
+                onChange={(event) => updateEnemyProperty('hpBase', event.target.value)}
+                size='small'
+                type='number'
+                required
+                fullWidth
+              />
+            )}
+          />
+
+          <EnemyFormTableRow
+            name='Base Attack Power *'
+            description='The base atk power of the enemy. (Required)'
+            input={(
+              <TextField
+                label='Base Atk'
+                value={newEnemy.attackBase}
+                onChange={(event) => updateEnemyProperty('attackBase', event.target.value)}
+                size='small'
+                type='number'
+                required
+                fullWidth
+              />
+            )}
+          />
+
+          <EnemyFormTableRow
+            name='Attack Elements'
+            description="The elements of the enemy's base attack."
+            input={(
               <ElementsSelect
                 elements={elements}
                 enemy={newEnemy}
@@ -132,8 +185,178 @@ const EnemyFormModal = ({ open, onClose, onCreate, elements }) => {
                 newElements={newElementsToAdd}
                 updateNewElements={setNewElementsToAdd}
               />
-            </TableCell>
-          </TableRow>
+            )}
+          />
+
+          <EnemyFormTableRow
+            name='Attack Accuracy *'
+            description='The attack accuracy of the enemy. Should be a decimal number between 0 and 1. (Required)'
+            input={(
+              <TextField
+                label='Atk Accuracy'
+                value={newEnemy.attackAccuracy}
+                onChange={(event) => updateEnemyProperty('attackAccuracy', event.target.value)}
+                size='small'
+                type='number'
+                required
+                fullWidth
+              />
+            )}
+          />
+
+          <EnemyFormTableRow
+            name='Attack Frequency *'
+            description="The frequency of the enemy's attack per seconds. (Required)"
+            input={(
+              <TextField
+                label='Atk Freq'
+                value={newEnemy.attackFrequency}
+                onChange={(event) => updateEnemyProperty('attackFrequency', event.target.value)}
+                size='small'
+                type='number'
+                required
+                fullWidth
+              />
+            )}
+          />
+
+          <EnemyFormTableRow
+            name='Base Defense Power *'
+            description='The base def power of the enemy. (Required)'
+            input={(
+              <TextField
+                label='Base Def'
+                value={newEnemy.defenseBase}
+                onChange={(event) => updateEnemyProperty('defenseBase', event.target.value)}
+                size='small'
+                type='number'
+                required
+                fullWidth
+              />
+            )}
+          />
+
+          <EnemyFormTableRow
+            name='Evasion *'
+            description='The evasiveness of the enemy. Should be a decimal between 0 and 1. (Required)'
+            input={(
+              <TextField
+                label='Evasion'
+                value={newEnemy.defenseEvade}
+                onChange={(event) => updateEnemyProperty('defenseEvade', event.target.value)}
+                size='small'
+                type='number'
+                required
+                fullWidth
+              />
+            )}
+          />
+
+          <EnemyFormTableRow
+            name='Elemental Resistances'
+            description="The elements the enemy is resistent to."
+            input={(
+              <ElementsSelect
+                elements={elements}
+                enemy={newEnemy}
+                updateEnemy={setNewEnemy}
+                enemyProperty='defenseElementResistance'
+                newElements={newElementsToAdd}
+                updateNewElements={setNewElementsToAdd}
+              />
+            )}
+          />
+
+          <EnemyFormTableRow
+            name='Elemental Weakness'
+            description="The elements the enemy is vulnerable to."
+            input={(
+              <ElementsSelect
+                elements={elements}
+                enemy={newEnemy}
+                updateEnemy={setNewEnemy}
+                enemyProperty='defenseElementVulnerability'
+                newElements={newElementsToAdd}
+                updateNewElements={setNewElementsToAdd}
+              />
+            )}
+          />
+
+          <EnemyFormTableRow
+            name='Base Magic Power'
+            description='The base magic power of the enemy.'
+            input={(
+              <TextField
+                label='Base Magic'
+                value={newEnemy.magicBase}
+                onChange={(event) => updateEnemyProperty('magicBase', event.target.value)}
+                size='small'
+                type='number'
+                fullWidth
+              />
+            )}
+          />
+
+          <EnemyFormTableRow
+            name='Magic Elements'
+            description="The elements of the enemy's magical attack."
+            input={(
+              <ElementsSelect
+                elements={elements}
+                enemy={newEnemy}
+                updateEnemy={setNewEnemy}
+                enemyProperty='magicElement'
+                newElements={newElementsToAdd}
+                updateNewElements={setNewElementsToAdd}
+              />
+            )}
+          />
+
+          <EnemyFormTableRow
+            name='Magic Accuracy'
+            description='The accuracy of the magical attack of the enemy. Should be a decimal number between 0 and 1.'
+            input={(
+              <TextField
+                label='Magic Accuracy'
+                value={newEnemy.magicAccuracy}
+                onChange={(event) => updateEnemyProperty('magicAccuracy', event.target.value)}
+                size='small'
+                type='number'
+                fullWidth
+              />
+            )}
+          />
+
+          <EnemyFormTableRow
+            name='Magic Cooldown'
+            description='The base magic power of the enemy.'
+            input={(
+              <TextField
+                label='Magic Cooldown'
+                value={newEnemy.magicCooldown}
+                onChange={(event) => updateEnemyProperty('magicCooldown', event.target.value)}
+                size='small'
+                type='number'
+                fullWidth
+              />
+            )}
+          />
+
+          <EnemyFormTableRow
+            name='Status Chance'
+            description='The percentage chance of applying a status affect to its opponent. Should be a decimal between 0 and 1.'
+            input={(
+              <TextField
+                label='Status Chance'
+                value={newEnemy.statusChance}
+                onChange={(event) => updateEnemyProperty('statusChance', event.target.value)}
+                size='small'
+                type='number'
+                fullWidth
+              />
+            )}
+          />
+
         </TableBody>
       </Table>
 
@@ -183,13 +406,6 @@ const EnemyFormTableRow = (props) => {
     </TableCell>
     <TableCell>
       {input}
-      {/* <CustomTextField 
-        label='The name of the enemy'
-        placeholder='"Wild Boar"'
-        value={newEnemy.name}
-        onChange={(event) => updateEnemyProperty('name', event.target.value)}
-        onClearText={_ => updateEnemyProperty('name', '')}
-      /> */}
     </TableCell>
   </TableRow>)
 }
