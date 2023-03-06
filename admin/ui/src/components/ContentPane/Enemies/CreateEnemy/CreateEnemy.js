@@ -5,7 +5,7 @@ import EnemyFormModal from './EnemyFormModal'
 import { GetAllElements } from '../../../../services/Elements.svc'
 
 /**
- * 
+ * JSX Component for adding the Add Enemy button.
  * @param {{
  *  onCreate: Function
  * }} props The props passed into the component.
@@ -63,7 +63,7 @@ const CreateEnemy = ({onCreate}) => {
   const handleOnCreate = async () => {
     const result = await onCreate()
     console.log('create enemy result', result)
-    //setSnakbarOpen(true)
+    // setSnakbarOpen(true)
   }
 
   /** The JSX Component */

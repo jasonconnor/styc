@@ -12,12 +12,18 @@ const FormModal = ({ open, onClose, onCreate, header, children }) => {
       keepMounted={false}
       disablePortal
     >
-      <Box className='form-modal-wrapper'>
+      <Box className='form-modal-wrapper' 
+      >
         <Typography variant='h5' className='form-header-container'>
           {header}
         </Typography>
 
-        <Box className='form-body-container'>
+        <Box className='form-body-container' 
+          sx={{
+            maxHeight: '50vh',
+            overflowY: 'auto'
+          }}
+        >
           {children}
         </Box>
 
