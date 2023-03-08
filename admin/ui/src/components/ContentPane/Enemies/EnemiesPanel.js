@@ -26,8 +26,8 @@ const EnemiesPanel = () => {
   }
   useEffect(getEnemies, [])
   
-  const handleCreateClicked = () => {
-    console.log('Enemy created (not really). Refetch enemies from API.')
+  const handleCreateClicked = (updatedEnemiesList) => {
+    setEnemies(updatedEnemiesList)
   }
 
   return (<Stack id='enemies-panel-container' spacing={2}>

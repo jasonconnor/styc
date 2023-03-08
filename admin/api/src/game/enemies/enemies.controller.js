@@ -60,6 +60,12 @@ export const create = async (request, response) => {
 
   if (error) return response.status(500).json({ error: 'Error creating enemy.' })
 
-  return response.status(201).json(enemyResult)
+  console.log('New enemy created successfully!', enemyResult)
+
+  const { enemies, error: fetchAllError } = await getAllEnemies()
+
+  if (fetchAllError) return response.status(500).json({ error: 'Error fetching enemies after enemy successfully created.' })
+
+  return response.status(201).json(enemies)
 }
 

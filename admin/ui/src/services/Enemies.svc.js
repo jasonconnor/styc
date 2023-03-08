@@ -10,3 +10,14 @@ export const GetAllEnemies = async () => {
     return {error}
   }
 }
+
+export const CreateNewEnemy = async (enemy) => {
+  try {
+    const param = {enemy}
+    const response = await axios.post(`${APIURL}/enemies`, param)
+    return {enemies: response.data}
+  } catch (error) {
+    console.error('Enemies.svc|CreateNewEnemy: ', error.message)
+    return {error}
+  }
+}

@@ -60,10 +60,10 @@ const CreateEnemy = ({onCreate}) => {
   }
 
   /** Handler method for when the create button is clicked. */
-  const handleOnCreate = () => {
+  const handleOnCreate = (updatedEnemiesList) => {
     setSnakbarOpen(true)
     // Parent Callback
-    onCreate()
+    onCreate(updatedEnemiesList)
   }
 
   /** The JSX Component */

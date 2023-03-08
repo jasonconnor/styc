@@ -4,6 +4,7 @@ import ElementsSelect from './ElementsSelect'
 import FormModal from '../../../common/FormModal'
 import { Info } from '@mui/icons-material'
 import CustomTextField from '../../../common/CustomTextField'
+import { CreateNewEnemy } from '../../../../services/Enemies.svc'
 
 const INITIAL_ENEMY = {
   name: '',
@@ -57,11 +58,8 @@ const EnemyFormModal = ({ open, onClose, onCreate, elements }) => {
 
   /** Handler for when the create button is clicked. */
   const handleCreate = async () => {
-    console.log('New Enemy To Be Created', newEnemy)
-    // await svc.CreateNewEnemy(newEnemy)
-    // if !success, return
-
-    onCreate()
+    const {enemies: updatedEnemiesList, error} = await CreateNewEnemy(newEnemy)
+    if (error) return
 
     if (keepOpen) {
       setNewEnemy(INITIAL_ENEMY)
@@ -69,6 +67,8 @@ const EnemyFormModal = ({ open, onClose, onCreate, elements }) => {
     }
 
     handleClose()
+    
+    onCreate(updatedEnemiesList)
   }
 
   /**

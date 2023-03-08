@@ -50,7 +50,7 @@ export const generateElementIdsFromElementsAsync = async (elements) => {
 
   for (let requestElement of elements) {
     if (isValidObjectId(requestElement)) {
-      const { elementFoundById } = await findById(requestElement)
+      const { element: elementFoundById } = await findById(requestElement)
 
       if (elementFoundById) {
         returnElementsIds.push(requestElement)
