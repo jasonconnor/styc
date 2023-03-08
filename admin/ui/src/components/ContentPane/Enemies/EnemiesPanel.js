@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
-import { GetAllEnemies } from '../../../services/Enemies.svc'
+import { Menu, MenuItem, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import { DeleteEnemy, GetAllEnemies } from '../../../services/Enemies.svc'
 import './enemiesPanel.scss'
 import CreateEnemy from './CreateEnemy/CreateEnemy'
 
@@ -12,7 +12,13 @@ import CreateEnemy from './CreateEnemy/CreateEnemy'
  * Wire up Create Menu
  */
 
+const InitialContextMenu = {
+  anchor: null,
+  enemy: null
+}
+
 const EnemiesPanel = () => {
+  const [contextMenu, setContextMenu] = useState(InitialContextMenu)
   const [enemies, setEnemies] = useState([])
 
   // Should probably move this to a global state
@@ -25,53 +31,89 @@ const EnemiesPanel = () => {
     setEnemies(response.enemies)
   }
   useEffect(getEnemies, [])
-  
+
   const handleCreateClicked = (updatedEnemiesList) => {
     setEnemies(updatedEnemiesList)
   }
 
-  return (<Stack id='enemies-panel-container' spacing={2}>
-    <CreateEnemy 
-      onCreate={handleCreateClicked}
-    />
+  const handleContextMenu = (event, enemy) => {
+    setContextMenu({
+      enemy: enemy,
+      anchor: {
+        top: event.clientY,
+        left: event.clientX
+      }
+    })
+  }
 
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow className='table-header'>
-            <CustomTableColumnHeader>No.</CustomTableColumnHeader>
-            <CustomTableColumnHeader>ID</CustomTableColumnHeader>
-            <CustomTableColumnHeader>Name</CustomTableColumnHeader>
-            <CustomTableColumnHeader>Level Base</CustomTableColumnHeader>
-            <CustomTableColumnHeader>Exp Base</CustomTableColumnHeader>
-            <CustomTableColumnHeader>HP Base</CustomTableColumnHeader>
-            <CustomTableColumnHeader>Attack Base</CustomTableColumnHeader>
-            <CustomTableColumnHeader>Attack Element</CustomTableColumnHeader>
-            <CustomTableColumnHeader>Attack Accuracy</CustomTableColumnHeader>
-            <CustomTableColumnHeader>Attack Frequency</CustomTableColumnHeader>
-            <CustomTableColumnHeader>Defense Base</CustomTableColumnHeader>
-            <CustomTableColumnHeader>Defense Evade</CustomTableColumnHeader>
-            <CustomTableColumnHeader>Defense Element Resistances</CustomTableColumnHeader>
-            <CustomTableColumnHeader>Defense Element Vulnerabilities</CustomTableColumnHeader>
-            <CustomTableColumnHeader>Magic Base</CustomTableColumnHeader>
-            <CustomTableColumnHeader>Magic Elements</CustomTableColumnHeader>
-            <CustomTableColumnHeader>Magic Accuracy</CustomTableColumnHeader>
-            <CustomTableColumnHeader>Magic Cooldown</CustomTableColumnHeader>
-            <CustomTableColumnHeader>Status Chance</CustomTableColumnHeader>
-            <CustomTableColumnHeader>Article</CustomTableColumnHeader>
-            <CustomTableColumnHeader>Created At</CustomTableColumnHeader>
-            <CustomTableColumnHeader>Updated At</CustomTableColumnHeader>
-          </TableRow>
-        </TableHead>
+  const handleDeleteEnemyClicked = async () => {
+    await DeleteEnemy(contextMenu.enemy._id)
 
-        <TableBody>
-          {enemies.map((enemy, index) => (
-            <EnemyRow key={enemy._id} enemy={enemy} listNum={index} />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  </Stack>)
+    // update enemies table
+    setEnemies(enemies.filter(enemy => enemy._id !== contextMenu.enemy._id))
+    // await getEnemies()
+    
+    // close context menu
+    setContextMenu(InitialContextMenu)
+  }
+
+  return (<>
+    <Stack id='enemies-panel-container' spacing={2}>
+      <CreateEnemy
+        onCreate={handleCreateClicked}
+      />
+
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow className='table-header'>
+              <CustomTableColumnHeader>No.</CustomTableColumnHeader>
+              <CustomTableColumnHeader>ID</CustomTableColumnHeader>
+              <CustomTableColumnHeader>Name</CustomTableColumnHeader>
+              <CustomTableColumnHeader>Level Base</CustomTableColumnHeader>
+              <CustomTableColumnHeader>Exp Base</CustomTableColumnHeader>
+              <CustomTableColumnHeader>HP Base</CustomTableColumnHeader>
+              <CustomTableColumnHeader>Attack Base</CustomTableColumnHeader>
+              <CustomTableColumnHeader>Attack Element</CustomTableColumnHeader>
+              <CustomTableColumnHeader>Attack Accuracy</CustomTableColumnHeader>
+              <CustomTableColumnHeader>Attack Frequency</CustomTableColumnHeader>
+              <CustomTableColumnHeader>Defense Base</CustomTableColumnHeader>
+              <CustomTableColumnHeader>Defense Evade</CustomTableColumnHeader>
+              <CustomTableColumnHeader>Defense Element Resistances</CustomTableColumnHeader>
+              <CustomTableColumnHeader>Defense Element Vulnerabilities</CustomTableColumnHeader>
+              <CustomTableColumnHeader>Magic Base</CustomTableColumnHeader>
+              <CustomTableColumnHeader>Magic Elements</CustomTableColumnHeader>
+              <CustomTableColumnHeader>Magic Accuracy</CustomTableColumnHeader>
+              <CustomTableColumnHeader>Magic Cooldown</CustomTableColumnHeader>
+              <CustomTableColumnHeader>Status Chance</CustomTableColumnHeader>
+              <CustomTableColumnHeader>Article</CustomTableColumnHeader>
+              <CustomTableColumnHeader>Created At</CustomTableColumnHeader>
+              <CustomTableColumnHeader>Updated At</CustomTableColumnHeader>
+            </TableRow>
+          </TableHead>
+
+          <TableBody>
+            {enemies.map((enemy, index) => (
+              <EnemyRow key={enemy._id} enemy={enemy} listNum={index} onContext={handleContextMenu} />
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Stack>
+
+    {/* Popups */}
+    <Menu
+      anchorReference='anchorPosition'
+      anchorPosition={contextMenu.anchor}
+      open={contextMenu.anchor !== null}
+      onClose={_ => setContextMenu(InitialContextMenu)}
+      disablePortal
+      PaperProps={{onContextMenu: (e) => e.preventDefault()}}
+    >
+      {/* <MenuItem>Edit</MenuItem> */}
+      <MenuItem onClick={handleDeleteEnemyClicked}>Delete</MenuItem>
+    </Menu>
+  </>)
 }
 
 const CustomTableColumnHeader = ({ children }) => {
@@ -80,9 +122,10 @@ const CustomTableColumnHeader = ({ children }) => {
   </TableCell>
 }
 
-const EnemyRow = ({ enemy, listNum }) => {
+const EnemyRow = ({ enemy, listNum, onContext }) => {
   const handleOpenContext = (event) => {
     event.preventDefault()
+    onContext(event, enemy)
   }
 
   return (<TableRow className='enemy-row'

@@ -21,3 +21,13 @@ export const CreateNewEnemy = async (enemy) => {
     return {error}
   }
 }
+
+export const DeleteEnemy = async (enemyId) => {
+  try {
+    const response = await axios.delete(`${APIURL}/enemies/${enemyId}`)
+    return {result: response.data}
+  } catch (error) {
+    console.error('Enemies.svc|CreateNewEnemy: ', error.message)
+    return {error}
+  }
+}
