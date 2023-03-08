@@ -46,3 +46,13 @@ export const getEnemyById = async (id) => {
     return {error}
   }
 }
+
+export const deleteEnemy = async (id) => {
+  try {
+    const result = await EnemiesModel.deleteOne({_id: id})
+    return {result}
+  } catch (error) {
+    console.error(error)
+    return {error}
+  }
+}

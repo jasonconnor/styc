@@ -1,5 +1,5 @@
 import { generateElementIdsFromElementsAsync } from '../elements/elements.service.js'
-import { createNewEnemy, getAllEnemies, getRandomEnemy } from './enemies.service.js'
+import { createNewEnemy, deleteEnemy, getAllEnemies, getRandomEnemy } from './enemies.service.js'
 
 export async function findAll(_, response) {
   const { enemies, error } = await getAllEnemies()
@@ -69,3 +69,12 @@ export const create = async (request, response) => {
   return response.status(201).json(enemies)
 }
 
+export const deleteOne = async (request, response) => {
+  const { id: enemyId } = request.params
+
+  const { result, error } = await deleteEnemy(enemyId)
+
+  if (error) return response.status(500).json({ error: 'Error deleting enemy.' })
+  
+  return response.status(200).json(result)
+}
