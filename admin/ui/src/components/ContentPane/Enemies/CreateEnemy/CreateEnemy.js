@@ -16,8 +16,6 @@ const CreateEnemy = ({onCreate}) => {
   const [newElements, setNewElements] = useState([])
   const [snackbarOpen, setSnakbarOpen] = useState(false)
   const [modalState, setModalState] = useState(false)
-  const [anchorEl, setAnchorEl] = useState(null)
-  const openCreateMenu = Boolean(anchorEl)
 
   // Should probably move this to a global state
   /** Fetch elements from the API. */
@@ -31,19 +29,8 @@ const CreateEnemy = ({onCreate}) => {
   }
   useEffect(getElements, [])
 
-  /** Handler for when the add button is clicked to open the create menu. */
-  const handleAddClick = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
-
-  /** Handler for when the create menu is closed. */
-  const handleCloseCreateMenu = () => {
-    setAnchorEl(null)
-  }
-
   /** Handler method for when the create menu option is clicked. */
-  const handleMenuOptionCreateClick = () => {
-    handleCloseCreateMenu()
+  const handleAddEnemyButtonClicked = () => {
     setModalState(true)
   }
 
@@ -70,22 +57,12 @@ const CreateEnemy = ({onCreate}) => {
   return (
     <span>
       <IconButton variant='outlined'
-        onClick={handleAddClick}
+        onClick={handleAddEnemyButtonClicked}
       >
         <Add />
       </IconButton>
 
       {/* Popups */}
-
-      <Menu
-        anchorEl={anchorEl}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        open={openCreateMenu}
-        onClose={handleCloseCreateMenu}
-        disablePortal
-      >
-        <MenuItem onClick={handleMenuOptionCreateClick}>Add Enemy</MenuItem>
-      </Menu>
 
       <EnemyFormModal
         open={modalState}
